@@ -1,0 +1,44 @@
+Reference(Copyright Reserved):
+http://www.pythonforbeginners.com/python-on-the-web/beautifulsoup-4-python/
+
+Beautiful Soup 4 Python
+Overview
+This article is an introduction to BeautifulSoup 4 in Python.
+
+If you want to know more I recommend you to read the official documentation
+found here: https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+
+What is Beautiful Soup?
+Beautiful Soup is a Python library for pulling data out of HTML and XML files. 
+
+BeautifulSoup 3 or 4?
+Beautiful Soup 3 has been replaced by Beautiful Soup 4.
+Beautiful Soup 3 only works on Python 2.x, but Beautiful Soup 4 also works on
+Python 3.x. 
+Beautiful Soup 4 is faster, has more features, and works with third-party parsers
+like lxml and html5lib. 
+You should use Beautiful Soup 4 for all new projects.
+
+Installing Beautiful Soup
+If you run Debian or Ubuntu, you can install Beautiful Soup with the system
+package manager
+#apt-get install python-bs4
+Beautiful Soup 4 is published through PyPi, so if you can’t install it with the
+system packager, you can install it with easy_install or pip. 
+The package name is beautifulsoup4, and the same package works on Python 2 and
+Python 3.
+#easy_install beautifulsoup4
+#pip install beautifulsoup4
+If you don’t have easy_install or pip installed, you can download the Beautiful
+Soup 4 source tarball and install it with setup.py.
+#python setup.py install
+
+BeautifulSoup Usage
+Right after the installation you can start using BeautifulSoup. 
+At the beginning of your Python script, import the library
+Now you have to pass something to BeautifulSoup to create a soup object. 
+That could be a document or an URL. 
+BeautifulSoup does not fetch the web page for you, you have to do that yourself. 
+That's why I use urllib2 in combination with the BeautifulSoup library.
+
+
