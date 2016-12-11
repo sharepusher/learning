@@ -1,6 +1,9 @@
 1. Knowledge Base
 
-1) python library
+1) Python Standard Library
+
+doctest - Test interactive Python examples
+https://docs.python.org/2/library/doctest.html
 
 collections - High performance container types
 https://docs.python.org/2/library/collections.html#collections.namedtuple
