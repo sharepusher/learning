@@ -1,6 +1,9 @@
 1. Knowledge Base
 
 1) python library
-collections - High performance container types
-DOC - https://docs.python.org/2/library/collections.html#collections.namedtuple
 
+collections - High performance container types
+https://docs.python.org/2/library/collections.html#collections.namedtuple
+
+random - Generate pseudo-random numbers
+https://docs.python.org/2/library/random.html
