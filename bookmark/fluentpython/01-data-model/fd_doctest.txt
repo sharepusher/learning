@@ -1,0 +1,17 @@
+The "frenchdeck" module
+=======================
+
+Using "frenchdeck"
+------------------
+
+This is an text file in reStructuredText format. First import
+"FrenchDeck" from the "frenchdeck" module:
+    
+    >>> from frenchdeck import FrenchDeck
+
+Now use it:
+    >>> deck = FrenchDeck()
+    >>> len(deck)
+    52
+    >>> deck[1]
+    Card(rank='3', suit='spades')

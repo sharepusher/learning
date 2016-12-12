@@ -2,6 +2,11 @@ import collections
 Card = collections.namedtuple('Card', ['rank', 'suit'])
 
 class FrenchDeck:
+    """
+    >>> deck = FrenchDeck()
+    >>> deck[0]
+    Card(rank='2', suit='spades')
+    """
     ranks = [str(n) for n in range(2, 11) + list('JQKA')]
     # better way to creat a string list
     suits = 'spades diamonds clubs hearts'.split()
