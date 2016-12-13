@@ -13,6 +13,12 @@ https://docs.python.org/2/library/random.html
 
 math - Mathematical functions
 https://docs.python.org/2/library/math.html
+math.hypot(x,y)
+http://www.tutorialspoint.com/python/number_hypot.htm
+
+timeit - Measure execution time of small code snippets
+https://docs.python.org/2/library/timeit.html
+
 
 2) Features
 
