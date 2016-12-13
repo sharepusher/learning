@@ -1,0 +1,42 @@
+Slice.
+A snake appears near your foot. It moves from the invisible to the visible. Our vision reveals(like a slice) only a part of the world.
+
+Summary:
+a python slice is composed by 'start'(default 0), 'stop' and 'step'(default 1), all of them are optional.
+The step means how many steps walked from the beginning.
+
+What is a python slice?
+a python slice extracts elements, based on a START and STOP.
+We take slices on many types in python. We specify an optional first index, an optional last index, and an optionl step.
+When we omit a value, a default is used.
+
+How to use the slice in python?
+Get elements from...
+NOTE: index start from 0, and the default is 0, the step default is 1.
+
+Start, end. In slicing, if you omit the first or the second index, it means "start" or "end". This is clearer than specifying 0 or the length.
+
+Step: There is a third, optional index used in slicing. If the step is two, we advance two places after an element is copied.
+This allows us to quickly access all odd or even elements in an array. No complicated loops are required.
+
+Examples:
+values[1:3] Index1 to index2.
+>>> test = '01234'
+>>> test[1:3]
+'12'
+values[2:-1] Index2 to the tailend(NOT included)
+>>> test = '01234'
+>>> test[2:-1]
+'23'
+>>> test[4:-1]
+''
+>>> test[3:-1]
+'3'
+>>> test[-1]
+'4'
+
+value[::2] Start through end, walk 2 steps each time.
+>>> test[::1]
+'01234'
+>>> test[::2]
+'024'
