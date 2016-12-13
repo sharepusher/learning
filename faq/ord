@@ -1,0 +1,12 @@
+ord(...)
+ord(character) -> integar
+Return the integer ordinal of a one-character string.
+
+Ordinal['o:rdenl]
+Noun:
+The number designating place in an ordered sequence.
+
+Adjective:
+of or relating to a taxonoic order;
+being or denoting a numerical order in a series;
+
