@@ -11,6 +11,9 @@ https://docs.python.org/2/library/collections.html#collections.namedtuple
 random - Generate pseudo-random numbers
 https://docs.python.org/2/library/random.html
 
+math - Mathematical functions
+https://docs.python.org/2/library/math.html
+
 2) Features
 
 Slice
