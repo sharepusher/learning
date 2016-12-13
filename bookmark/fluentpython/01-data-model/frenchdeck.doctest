@@ -7,9 +7,12 @@ Using "frenchdeck"
 This is an text file in reStructuredText format. First import
 "FrenchDeck" from the "frenchdeck" module:
     
-    >>> from frenchdeck import FrenchDeck
+    >>> from frenchdeck import FrenchDeck, Card
 
 Now use it:
+    >>> been_card = Card('7', 'diamonds')
+    >>> been_card
+    Card('7', 'diamonds')
     >>> deck = FrenchDeck()
     >>> len(deck)
     52
