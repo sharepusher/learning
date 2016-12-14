@@ -19,10 +19,15 @@ http://www.tutorialspoint.com/python/number_hypot.htm
 timeit - Measure execution time of small code snippets
 https://docs.python.org/2/library/timeit.html
 
+Operator - Standard operators as functions
+https://docs.python.org/2.7/library/operator.html#operator.itemgetter
 
 2) Features
 
 Slice
 https://www.dotnetperls.com/slice-python
+
+Sorting
+https://docs.python.org/2.7/howto/sorting.html
 
 
