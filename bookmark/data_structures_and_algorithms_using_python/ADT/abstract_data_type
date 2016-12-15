@@ -1,0 +1,35 @@
+Data type:
+1) primitives: simple data types; complex data types(objects, strings, lists, dictionaries, and etc.)
+2) user-defined types.
+
+Data abstraction: seperating the properties of a data type(its values and operations) from the implementation of that data type.
+
+Abstract Data Types( or ADT ) is a programmer-defined data type that specifies a set of data values and a collection of well-defined operations that can be performed on those values.
+Information hiding: ADTs are defined independent of their implementation, allowing us to focus on the use of the new data type instead of how it's implemented.
+
+The set of operations can be grouped into four categories:
+Constructors: Create and initialize new ADT instances;
+Accessors: Return data contained in an ADT instance without modifying it;
+Mutators: Modify the contents of an ADT instance;
+Iterators: Process individual data components sequentially.
+
+Advantages:
+Focus on solving problems instread of implementation details;
+Reduce logical errors by direct access to the implementation;
+The implementation changes won't impact the interfaces that using;
+Easier to manage and divide larger programs into smaller modules.
+
+Data structure: physical representation of how data is organized and manipulated.
+Data structures can be characterized by how they store and organize the individual data elements and what operations are available for accessing and manipulating the data.
+All data structures store a collections of values, but differ in how they organize the individual data items and by what operations can be applied to manage the collection.
+
+Collection: a group of values with no implied organization or relationship between the individual values.
+Container: any data structure or abstract data type that stores and organizes a collection. The individual values of the collection are known as elements of the container, and a container with no elements is said to be empty.
+Sequence: a container arranges the elements in linear order from front to back, with each element accessible by position.
+1) mutable sequence: list
+2) immutable sequence: string, tuple
+Sorted sequence: the position of the elements is based on a prescribed relationship between each element and its successor.
+
+
+
+
