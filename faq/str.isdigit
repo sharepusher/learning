@@ -1,0 +1,4 @@
+Both 8-bits strings and Unicode objects support.
+
+str.isdigit()
+Return true if all characters in the string are digits and there is at least one character, false otherwise.
