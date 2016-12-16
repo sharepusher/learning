@@ -22,6 +22,10 @@ https://docs.python.org/2/library/timeit.html
 Operator - Standard operators as functions
 https://docs.python.org/2.7/library/operator.html#operator.itemgetter
 
+Built-in Types
+https://docs.python.org/2/library/stdtypes.html
+String Methods.
+
 2) Features
 
 Slice
