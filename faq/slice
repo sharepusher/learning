@@ -6,6 +6,8 @@ a python slice is composed by 'start'(default 0), 'stop' and 'step'(default 1), 
 The step means how many steps walked from the beginning.
 
 What is a python slice?
+Slicing is an operation that creates a NEW list consisting of a contiguous subset of elements from the original list.
+The original list is not modified by this operation.
 a python slice extracts elements, based on a START and STOP.
 We take slices on many types in python. We specify an optional first index, an optional last index, and an optionl step.
 When we omit a value, a default is used.
