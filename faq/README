@@ -26,6 +26,11 @@ Built-in Types
 https://docs.python.org/2/library/stdtypes.html
 String Methods.
 
+ctypes - A foreign function library for Python
+https://docs.python.org/2/library/ctypes.html#module-ctypes
+
+
+
 2) Features
 
 Slice
