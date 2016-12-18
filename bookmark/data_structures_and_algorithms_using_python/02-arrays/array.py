@@ -21,19 +21,19 @@ class Array:
         assert index >= 0 and index < len(self), "Array subscript out of range"
         return self._elements[index]
 
-     # Puts the value in the array element at index position.
-     def __setitem__(self, index, value):
-         assert index >= 0 and index < len(self), "Array subscript out of range"
-         self._elements[index] = value
+    # Puts the value in the array element at index position.
+    def __setitem__(self, index, value):
+        assert index >= 0 and index < len(self), "Array subscript out of range"
+        self._elements[index] = value
 
-     # Clears the array by setting each element to the given value.
-     def clear(self, value):
-         for i in range(len(self)):
-             self._elements[i] = value
+    # Clears the array by setting each element to the given value.
+    def clear(self, value):
+        for i in range(len(self)):
+            self._elements[i] = value
 
-     # Returns the array's iterator for traversing the elements.
-     def __iter__(self):
-         return _ArrayIterator(self._elements)
+    # Returns the array's iterator for traversing the elements.
+    def __iter__(self):
+        return _ArrayIterator(self._elements)
 
 
 # An iterator for the Array ADT.
@@ -42,16 +42,19 @@ class _ArrayIterator:
         self._arrayRef = theArray
         self._curNdx = 0
   
-     def __iter__(self):
-         return self
+    def __iter__(self):
+        return self
 
-     def __next__(self):
-         if self._curNdx < len(self._arrayRef):
-             entry = self._arrayRef[self._curNdx]
-             self._curNdx += 1
-             return entry
-         else:
-             raise StopIteration
+    def __next__(self):
+        if self._curNdx < len(self._arrayRef):
+            entry = self._arrayRef[self._curNdx]
+            self._curNdx += 1
+            return entry
+        else:
+            raise StopIteration
 
-ArrayType = ctypes.py_object * 5
-slots = ArrayType()
+if __name__ == "__main__":
+    newArr = Array(5)
+    newArr[0] = 1
+    print(newArr[0], len(newArr))
+   
