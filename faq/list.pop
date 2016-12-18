@@ -1,0 +1,5 @@
+list.pop([i])
+Remove the item at the given position in the list, and RETURN it.
+If no index is specified, a.pop() removes and returns the LAST item in the list.
+The square brackets around the i in the method signature denote that the parameter is optional, 
+NOT that you should type square brackets at that position. You will see this notation frequently in the Python Library Reference.
