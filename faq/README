@@ -46,6 +46,8 @@ Sorting
 https://docs.python.org/2.7/howto/sorting.html
 
 3) Glossary
+
 hashable
+immutable
 https://docs.python.org/2/glossary.html#term-hashable
 
