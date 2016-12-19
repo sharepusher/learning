@@ -5,6 +5,9 @@
 doctest - Test interactive Python examples
 https://docs.python.org/2/library/doctest.html
 
+sets - Unordered collections of unique elements
+https://docs.python.org/2/library/sets.html#module-sets
+
 collections - High performance container types
 https://docs.python.org/2/library/collections.html#collections.namedtuple
 
