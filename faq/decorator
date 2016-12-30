@@ -57,8 +57,20 @@ What you need to know before learning decorators?
     new_call()
 
 3) closure(lexical closures, or function closures).
-   A closure is a record storing a function together with an environment.
+   Functions that refer to variables from the scope(non-local) in which they were defined.
+   A function closure is a combination of a FUNCTION, AND a set of REFERENCES to the variables in the scope,
+   in which the FUNCTION was defined. This allows the function to be executed outside of where it is defined
+  
+   The criteria that must be met to create closure in Python are summarized in the following points.
+   Have a nested function (function inside a function);
+   The nested function MUST REFER to a value defined in the enclosing function;
+   The enclosing function MUST RETURN the nested function.
 
+4) First-class function
+   Meaning, you can assign function to variables, pass them as arguments to other functions, compare them
+   in expressions, etc.
+
+   
 
 Decorrators.
 Basically, a decorator TAKEs in a function, ADDs some functionality and RETURNs it.
