@@ -2,6 +2,9 @@
 
 1) Python Standard Library
 
+functools - Higher-order functions and operations on callable objects
+https://docs.python.org/2/library/functools.html
+
 doctest - Test interactive Python examples
 https://docs.python.org/2/library/doctest.html
 
@@ -57,6 +60,11 @@ https://en.wikipedia.org/wiki/First-class_function
 
 Higer-order function
 https://en.wikipedia.org/wiki/Higher-order_function
+
+
+Decorator
+https://www.programiz.com/python-programming/decorator
+
 
 3) Glossary
 
