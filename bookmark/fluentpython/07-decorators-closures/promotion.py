@@ -1,3 +1,12 @@
+#
+# Decorator enhanced strategy pattern
+#
+
+# Most decorators do change the decorated function. They usuallly do it by defining an inner function and returning it to
+# replace the decorated function.
+# Code that uses inner functions almost always depends on closures to operate correctly.
+# 
+
 promos = []
 
 def promotion(promo_func):
