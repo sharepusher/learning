@@ -17,6 +17,7 @@ registry = []
 def register(func):
     print("running register(%s)" % func) 
     registry.append(func)
+    print("registry updated", registry)
     return func
 
 @register
@@ -56,4 +57,14 @@ if __name__ == "__main__":
 #running register(<function f1 at 0x106ab60c8>)
 #running register(<function f2 at 0x106ab66e0>)
 
+#
+# The main point of example above is to emphasize that function decorators are executed as soon as the module is imported.
+# but the decorated functions only run when they are explicitly involked.
+#
 
+#
+# Considering how decorators are commonly employed in real code
+# 1) The decorator function is defined in the same module as the decorated functions.
+#    A real decorator is usually defined in one module and applied to functions in other modules
+# 2) The register decorator returns the same function passed as argument.
+#    In practice, most decorators define an inner function and return it
