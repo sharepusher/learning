@@ -1,3 +1,9 @@
+## Reference
+https://docs.python.org/2/library/sets.html
+
+## keywords
+Unordered, Unique
+
 What is set?
 A set is an unordered collection with no duplicate elements.
 Like other collections, sets support 'x in set, len(set), and for x in set'.
@@ -7,6 +13,11 @@ Accordingly, sets DO NOT support indexing, slicing, or other sequence-like behav
 When to use it?
 Basic uses incude membership testing and eliminating duplicate entries.
 Set objects also support mathematical operations like union, intersection, difference, and symmetric difference.
+Common uses: 
+1) membership testing; 
+2) removing duplicates from a sequence;
+3) computing standard math operations on sets such as intersection, union, difference, and symmetric difference.
+
 
 How to use it ?
 Curly braces or the set() function can be used to create sets.
@@ -20,6 +31,26 @@ As of Python2.7, non-empty sets(not frozensets) can be created by placing a comm
 for example: {'jack', 'sjoerd'}, in addition to the set constructor.
 class set([iterable])
 class frozenset([iterable])
+
+Set Objects
+Instances of Set and ImmutableSet both provide the following operations
+1) len(s)
+2) x in s
+3) x not in s
+4) s.issubset(t)
+5) s.issuperset(t)
+6) s.union(t)
+7) s.intersection(t)
+8) s.difference(t)
+9) s.symmetric_difference(t)
+10) s. copy()
+
+The following lists operations available in set BUT NOT in ImmutableSet
+1) s.add(x) - add element x to set s
+2) s.remove(x) - remove x from set s; raises KeyError if not present
+3) s.discard(x) - removes x from set s if present
+4) s.pop() - remove and return an arbitrary element from s; raises KeyError if empty
+5) s.clear() - remove all elements from set s
 
 Examples:
 >>> a = {'a', 'b'}
