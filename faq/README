@@ -21,6 +21,9 @@ https://docs.python.org/2/library/stdtypes.html#set
 collections - High performance container types
 https://docs.python.org/2/library/collections.html#collections.namedtuple
 
+collections.Counter()
+https://docs.python.org/dev/library/collections.html#collections.Counter
+
 random - Generate pseudo-random numbers
 https://docs.python.org/2/library/random.html
 
@@ -44,6 +47,9 @@ https://docs.python.org/2/library/ctypes.html#module-ctypes
 
 List Operation
 https://docs.python.org/2/tutorial/datastructures.html
+
+sys.maxint
+https://www.reddit.com/r/Python/comments/39p57f/how_can_python_deal_with_bigger_numbers_than/?st=iznw77lo&sh=8fa7ceaa
 
 2) Features
 enumerate
