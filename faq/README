@@ -2,6 +2,9 @@
 
 1) Python Standard Library
 
+Queue - A synchronized queue class
+https://docs.python.org/2/library/queue.html
+
 dis - Python Bytecode Disassembler
 https://docs.python.org/2/library/dis.html
 https://pymotw.com/2/dis/
