@@ -24,6 +24,10 @@ https://docs.python.org/2/library/collections.html#collections.namedtuple
 collections.Counter()
 https://docs.python.org/dev/library/collections.html#collections.Counter
 
+collections.deque()
+https://docs.python.org/2/library/collections.html#collections.deque
+
+
 random - Generate pseudo-random numbers
 https://docs.python.org/2/library/random.html
 
