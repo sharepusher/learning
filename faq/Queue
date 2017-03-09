@@ -1,0 +1,37 @@
+Queue - A synchronized queue class
+NOTE:
+The Queue module has been renamed to queue in Python3. 
+
+The Queue module implements multi-producer, multi-consumer queues.
+It is especially useful in threaded programming when information must be exhanged safely between multiple threads.
+The Queue class in this module implements all the required locking semantics. 
+It depends on the availability of thread support in Python.
+
+The module implements three tyeps of queue, which differ only in the order in which the entries are retrieved.
+In a FIFO queue, the first tasks added are the first retrieved. In a LIFO queue, the most recently added entry is the first
+  retrieved(operating like a stack.) 
+With a priority queue, the entires are kept sorted(using the heapq module) and the lowest valued entry is retrieved first.
+
+The Queue module defines the following classes and exceptions:
+class Queue.Queue(maxsize=0)
+    Constructor for a FIFO queue.
+    maxsize is an integer that sets the upperbound limit on the number of items that can be placed in the queue.
+    Insertion will block once this size has been reached, until queue items are consumed.
+    If maxsize is less than or equal to zero, the queue size is infinite.
+
+class Queue.LifoQueue(maxsize=0)
+    Constructor for a LIFO queue. maxsize is an integer that sets the upperbound limit on the number of items
+    that can be placed in the queue.
+    Insertion will block once this size has been reached, unitl queue items are consumed. If maxsize is less than or equal
+    to zero, the queue size is infinite.
+
+class Queue.PriorityQueue(maxsize=0)
+    Constructor for a priority queue. maxsize is an integer that sets the upperbound limit on the number of items that 
+    can be placed in the queue.
+    Insertion will block once this size has been reached, until items are consumed. If maxsize is less than or equal to zero,
+    the queue size is infinite.    
+
+
+
+
+
