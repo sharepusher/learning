@@ -31,5 +31,11 @@ popleft() - Remove and return an element from the left side of the deque. If no 
 remove(value) - Removed the first occurence of value. If not found, raises a ValueError.
 reverse() - Reverse the elements of the deque in-place and then return None.
 
- 
+NOTE: 
+In additon to the above, deques support iteration, pickling, len(d), reversed(d), copy.copy(d), copy.deepcopy(d),
+membership testing with the in operator, and subscript references such as d[-1].
+Indexed access is O(1) at both ends, BUT SLOWS to O(N) in the middle. 
+For fast random access, use lists instead. 
+
+
 
