@@ -1,0 +1,28 @@
+More On http://blog.csdn.net/screaming/article/details/50506942
+
+In python3, they made the "/" operator do a floating-point division, 
+and added the "//" operator to do integer division(i.e. quotient without remainder).
+Whereas in Python2, the "/" operator was simply integer division, unless one of the operands was already 
+a floating point number.
+For further reference, see PEP238.
+"//" is unconditonally "truncating division", e.g:
+>>> 4.0 // 1.5
+2.0
+As you see, even though both operands are floats, "//" still truncates, so you always know securely what it's gonna do.
+Since "/" may or may not truncate depending on Python release, future imports, and even flags on which Python's run,
+
+In Python2.X:
+>>> 10/3
+3
+# To get a floating point number from integer division
+>>> 10.0 / 3
+3.333333335
+>>> float(10) / 3
+3.33333335
+
+In Python3:
+>>> 10 / 3
+3.33333335
+>>> 10 // 3
+3
+
