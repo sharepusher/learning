@@ -1,6 +1,5 @@
 Learning summary and practices.
-
-Bookmarks: books read and summary.
-
-FAQ: summaries on the questions or problems of python libraries.
+1) bookmark: books read and summary.
+2) faq: summaries on the problems of python libraries.
+3) fullstack: fullstack learning materials 
 
