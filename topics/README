@@ -1,6 +1,10 @@
 collected articles and related code by topics. 
 #############################
 
+Shallow and Deep Copy
+http://www.python-course.eu/deep_copy.php
+
+
 Decorators
 http://y.tsutsumi.io/dry-principles-through-python-decorators.html
 
