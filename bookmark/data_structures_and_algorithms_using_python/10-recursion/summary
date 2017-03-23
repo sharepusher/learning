@@ -1,0 +1,13 @@
+# Recursion is a process for solving problems by SUB-DIVIDING a large problem into smaller cases
+# of the problem itself and then solving the smaller, more trival parts.
+
+# Recursion is a powerful programming and problem-solving tool.
+# It can be used with a wide range of problems from basic traditional iterations to the more
+# advanced backtracking problems.
+
+# While recursion is very powerful, recursive solutions are not always the most efficient.
+
+# In some instances, however, recursion is the implementation of choice as it allows us to easily develop 
+# a solution for a complicated problem that may otherwise be difficult to solve.
+
+
