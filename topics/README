@@ -17,6 +17,10 @@ http://www.diveintopython.net/native_data_types/joining_lists.html
 http://www.decalage.info/en/python/print_list
 
 
+List of class object
+http://en.sharejs.com/python/19915
+
+
 Division and Remainders
 http://blog.csdn.net/screaming/article/details/50506813
  
@@ -26,3 +30,7 @@ Segment Trees
 https://www.hackerearth.com/practice/data-structures/advanced-data-structures/segment-trees/tutorial/
 
 
+
+## Tools
+Virtual environment
+http://docs.python-guide.org/en/latest/dev/virtualenvs/#virtualenvironments-ref
