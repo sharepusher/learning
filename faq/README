@@ -44,6 +44,9 @@ https://docs.python.org/2/library/timeit.html
 
 Operator - Standard operators as functions
 https://docs.python.org/2.7/library/operator.html#operator.itemgetter
+BinaryOperator
+http://www.tutorialspoint.com/python/bitwise_operators_example.htm
+
 
 Built-in Types
 https://docs.python.org/2/library/stdtypes.html
