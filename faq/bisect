@@ -1,0 +1,10 @@
+The bisect module offers two main functions: bisect and insort, 
+which use the binary search algorithm to quickly FIND and INSERT items in any sorted sequence.
+
+1. Searching with bisect
+bisect(haystack(source), needle(target)) does a binary search for needle in haystack,
+which must be a sorted sequence, to locate the position where needle can be inserted while maintaining haystack in ascending order.
+In other words, all items appearing up to that position are less than or equal(<=) to needle.
+You could use the result of bisect(haystack, needle) as the index argument to haystack.insert(index, needle), however,
+using insort does both steps, and is faster.
+

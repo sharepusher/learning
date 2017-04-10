@@ -1,0 +1,10 @@
+math.hypot(x, y)
+x - This must be a numeric value
+y - This must be a numeric value
+Return the Euclidean norm, sqrt(x*x + y*y). This is the length of the vector from the origin to ponit(x, y).
+
+Example:
+>>> import math
+>>> print "hypot(-3, 3): ", math.hypot(-3, 3)
+hypot(-3, 3):  4.24264068712
+

@@ -1,0 +1,92 @@
+Summary:
+namedtuple() can be used to define tuples with named fields and return a subclass to create tuple-like objects.
+
+What is namedtuple?
+namedtuple()
+Factory function for creating tuple subclasses with named fields - New in version2.6
+
+What does the namedtuple do?
+Named tuples assign meaning to each positon in a tuple and allow for more readable, self-documenting code.
+
+When do I use it?
+They can be used wherever regular tuples are used, and they add the ability to access fields by name instead of position index.
+
+How to use namedtuple?
+collections.namedtuple(typename, field_names[, verbose=False][,rename=False])
+1) Returns a new tuple subclss named typename.
+The new subclass is used to create tuple-like objects that have fields accessible by attribute lookup as well as being indexable and iterable. 
+Instances of the subclass also have a helpful docstring (with typename and field_names) and a helpful __repr__() method which lists the tuple contents in a name=value format.
+2) field_names are a sequence of STRINGS such as a string list ['x', 'y']. Alternatively, field_names can be a single string with each fieldname separated by whitespace and/or commas, for example 'x y' or 'x, y'.
+Any valid python identifier may be used for a fieldname except for names starting with an underscore.
+Valid identifiers consist of letters, digits, and underscores but do NOT start with a digit or underscore and can NOT be a keyword such as class, for, return, global, pass, print, or raise.
+3) If verbose is true, the class definition is printed just before being built.
+In other words, if you want see the definition details, you can set the verbose to true, then the definition will be displayed.
+4) Named tuple instances do NOT have per-instance dictionaries, so they are lightweight and require no more memory than regular tuples.
+
+Examples:
+>>>>Point = namedtuple('test', 'x, y', verbose=True)
+class test(tuple):
+    'test(x,y)'
+    __slots__ = ()
+    _fields = ('x', 'y')
+    
+    def __new__(_cls, x, y):
+        'Create new instance of test(x, y)'
+        return _tuple.__new__(_cls, (x, y))
+    
+    ...
+    
+    def __repr__(self):
+        'Return a nicely formatted representation string'
+         return 'Point(x=%r, y=%r)' % self
+
+    ...
+    
+    ....
+>>>> t = Point(3, y=5) # instantiate with positional or keyword arguments
+>>>> Point
+<class '__main__.test'>
+>>>> t
+test(x=3, y=5)
+>>>> t[0] + t[1]  # indexable like the plain tuple
+8
+>>>> x, y = t     # unpack like a regular tuple
+>>>> x, y
+(3, 5)
+>>>> t.x + t.y    # fields also accessible by name after assigned to function
+8
+
+5) In additon to the methods inherited from tuples, named tuples support three additional methods and one attribute.
+To prevent conflicts with field names, the method and attribute names start with an underscore.
+
+classmethod somenamedtuple._make(iterable)
+@Class method that makes a new instance from an existing sequence or iterable.
+>>> newp = [11, 22]
+>>> t._make(newp)
+test(x=11, y=22)
+
+somenamedtuple._replace(kwargs)
+@Return a new instance of the named tuple replacing specified fields with new values
+>>> newt = t(x=11, y=22)
+>>> newt
+test(x=11, y=22)
+>>> newt._replace(x=99)
+test(x=99, y=22)
+>>> newt
+test(x=11, y=22)
+NOTE: It's a new instance returned, but not the original one !!!  
+
+
+6) Named tuples are especially useful for assigning field names to result tuples returned by the csv or sqlite3 modules.
+EmplyeeRecord = namedtuple('EmployeeRecord', 'name, age, title, department, paygrade')
+import csv
+for emp in map(EmployeeRecord._make, csv.reader(open("employees.csv", "rb"))):
+    print emp.name, emp.title
+
+import sqlite3
+conn = sqlite3.connect('/companydata')
+cursor = conn.cursor()
+cursor.execute('SELECT name, age, title, department, paygrade FROM employees')
+for emp in map(EmployeeRecord._make, cursor.fetchall()):
+    print emp.name, emp.title
+

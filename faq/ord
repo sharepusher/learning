@@ -1,0 +1,25 @@
+ord(...) - Expecting string of length 1.
+ord(character) -> integar
+Return the integer ordinal of a one-character string.
+
+Example:
+>>> ord('1')
+49
+>>> ord('a')
+97
+>>> ord('A')
+65
+>>> ord(1)
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: ord() expected string of length 1, but int found
+
+
+Ordinal['o:rdenl]
+Noun:
+The number designating place in an ordered sequence.
+
+Adjective:
+of or relating to a taxonoic order;
+being or denoting a numerical order in a series;
+

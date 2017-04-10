@@ -1,0 +1,5 @@
+immutable
+An object with a FIXED value.
+Immutable objects include numbers, strings and tuples. Such an object can NOT be altered.
+A new object has to be created if a different value has to be stored. 
+They plan an important role in places where a constant hash value is needed, for example as a key in a dictionary.

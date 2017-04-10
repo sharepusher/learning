@@ -1,0 +1,30 @@
+Puspose: Convert code objects to a human-readable representation of the bytecodes for analysis.
+Available In: 1.4 and later
+
+The dis module includes functions for working with Python bytecode by "disassembling" it into a more human-readable form.
+Reviewing the bytecodes being executed by the interpreter is a good way to hand-tune tight loops and perform other kinds of optimizations.
+It is also useful for finding race conditions in multi-threaded applications, since you can estimate the point in your code 
+where thread control may switch.
+
+Basic Disassembly
+The function dis.dis() prints the disassembled representation of a Python code source(module, class, method, function, or code object).
+We can disassemble a module such as dis_simple.py: 
+#!/usr/bin/env python
+# encoding: utf-8
+
+my_dict = { 'a': 1 }
+
+by running dis from the command line. The output is organized into columns with the original source line number.
+The instruction address within the code object, the opcode name, and any arguments passed to the opcode.
+$python -m dis dis_simple.py
+
+In this case, the source translates to 5 different operations to create and populate the dictionary, 
+then save the results to a local variable.
+Since the Python interpreter is stack-based, the first steps are to put the constants onto the stack in the correct order 
+with LOAD_CONST, and then use STORE_MAP to pop off the new key and value to be added to the dictionary.
+The resulting object is bound to the name "my_dict" with STORE_NAME.
+
+Disassembling Functions
+Unfortunately, disassembling the entire module does not recurse into functions automatically.
+For example, if we start with this module:
+

@@ -1,0 +1,139 @@
+What is Closure?
+A function closure is a combination of a FUNCTION, AND a set of REFERENCES to the variables in the scope,
+in which the FUNCTION was defined. 
+This allows the function to be executed outside of where it is defined. 
+
+The criteria that must be met to create closure in Python are summarized in the following points.
+1) Have a nested function (function inside a function).
+2) The nested function MUST REFER to a value defined in the enclosing function.
+3) The enclosing function MUST RETURN the nested function. 
+
+
+What is Nested function?
+A function defined inside another function is called a nested function. 
+Nested functions can access variables of the enclosing scope.
+In Python these non-local variables are read only by default, 
+and we must declare them explicitly as non-local(using nonlocal keyword) in order to modify them.
+
+Following is an example of a nested function accessing a non-local variable.
+The nested function printer() is able to access the non-local variable msg of the outer enclosing function.
+def print_msg(msg):
+    # This is the outer enclosing function
+    def printer():
+        # This is the nested function
+        print(msg)
+    printer()
+
+print_msg("What happened!")
+
+
+What is Closure Function?
+In the example above, what would happen if the last line of the function print_msg() returned the printer() function instead of calling it? This means the function was defined as follows.
+def print_msg(msg):
+    # This is the outer enclosing function
+    def printer():
+        # This is the nested function
+        print(msg)
+    # this got changed
+    return printer
+# Let's try calling the returned function.
+another = print_msg("Closure func")
+another()
+
+The print_msg() function was called with the string "Closure func" and the returned function was bound to the name another.
+On calling another(), the message was still remembered although we had already finished executing the print_msg() function.
+This technique by which some data ("Closure func") gets attached to the code is called closure in Python.
+
+This value in the enclosing scope is remembered even when the variable goes out of scope or the function itself is 
+    removed from the current namespace.
+Try running the following in the Python shell to see the output.
+
+>>> def print_msg(msg):
+...     def printer():
+...         print(msg)
+...     print(type(printer))
+...     return printer
+... 
+>>> print_msg("Closure func")
+<type 'function'>
+<function printer at 0x1019416e0>
+
+>>> del print_msg
+>>> another()
+Closure func
+>>> print_msg("Closure func")
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+NameError: name 'print_msg' is not defined
+
+In Python, the referencing environment is stored as as a tuple of cells. 
+You can access them by using the func_closure or __closure__ attributes. 
+It is important thing to keep in mind that the REFERENCES are JUST references, but NOT deep copies of the objects.
+
+All function objects have a __closure__ attribute that returns a tuple of cell objects if it is a closure function.
+The cell object has the attribute cell_contents which stores the closed value.
+
+Referring to the example above, we know another is colsure function:
+>>> another.__closure__
+(<cell at 0x101936b08: str object at 0x101936a78>,)
+>>> another.__closure__[0].cell_contents
+'Closure func'
+>>> print([str(c.cell_contents) for c in another.__closure__])
+['Closure func']
+
+
+When do we have a closure ?
+As seen from the above example, we have a closure in Python when a nested function references a value in its enclosing scope.
+
+
+
+When do we use closures ? what are colsures good for?
+1) Closures can avoid the use of global values and provides some form of data hiding.
+2) It can also provide an object oriented solution to the problem.
+When there are few methods(one method in most cases) to be implemented in a class, 
+closures can provide an alternate and more elegent solutions. 
+But when the number of attributes and methods get larger, better implement a class.
+3) Decorators in Python make an extensive use of closure as well.
+
+Here is a simple example where a closure might be more preferable than defining a class and making objects.
+But the preference is all yours.
+
+def make_multiplier_of(n):
+    def multiplier(x):
+        return x*n
+    return multiplier
+
+# Multiplier of 3
+times3 = make_multiplier_of(3)
+ 
+# Multiplier of 5
+times5 = make_multiplier_of(5)
+
+print(times3(7))
+print(times5(6))
+print(times5(times3(3)))
+
+
+How and Why to Use Closures?
+First-class functions and closures give you a powerful tool for implementing simple interfaces while maintaining state.
+
+How closures interact with variable scope?
+Say you want to sort a list of numbers, but prioritize one group of numbers to come first.
+This pattern is useful when you're rendering a user interface and want important messages or exceptional events
+to be displayed before everything else.
+
+
+
+
+
+More General Closure.
+In programming language, closures(also lexical closures or function closures) are techniques 
+for implementing lexically scoped name binding in languages with first-class functions.
+Operationally, a closure is a record sotring a function together with an environment: 
+a mapping associating each free variable of the function(variables that are used locally, but defined in an enclosing scope)
+    with the value or reference to which the name was bound when the closure was created.
+A closure - unlike a plain function, allows the function to access those captured variables through the closure's copies 
+   of their values or references, even when the function is invoked outside their scope. 
+
+More on nested scopes.
+https://www.python.org/dev/peps/pep-0227/

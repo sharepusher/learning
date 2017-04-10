@@ -1,0 +1,9 @@
+random.choice(seq)
+@Return a random element from the non-empty sequence seq. If seq is empty, raises IndexError
+
+Example:
+>>> import random
+>>> random.choice('abcdef')   # Choose a random element
+'c'
+>>> random.choice([1, 3, 2]) 
+2
