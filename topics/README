@@ -1,0 +1,53 @@
+collected articles and related code by topics. 
+#############################
+
+Shallow and Deep Copy
+http://www.python-course.eu/deep_copy.php
+
+
+Decorators
+http://y.tsutsumi.io/dry-principles-through-python-decorators.html
+
+List reverse
+http://effbot.org/pyfaq/how-do-i-iterate-over-a-sequence-in-reverse-order.htm
+
+
+List Join
+http://www.diveintopython.net/native_data_types/joining_lists.html
+http://www.decalage.info/en/python/print_list
+
+
+List of class object
+http://en.sharejs.com/python/19915
+
+
+Division and Remainders
+http://blog.csdn.net/screaming/article/details/50506813
+ 
+
+
+Swap variables without temporary variable
+https://ask.julyedu.com/question/138
+
+
+## Advanced Data Structures
+Segment Trees
+https://www.hackerearth.com/practice/data-structures/advanced-data-structures/segment-trees/tutorial/
+
+
+
+## Tools
+Virtual environment
+http://docs.python-guide.org/en/latest/dev/virtualenvs/#virtualenvironments-ref
+
+
+
+## Git
+How to undo a git pull?
+http://stackoverflow.com/questions/5815448/how-to-undo-a-git-pull
+
+How to undo a git add?
+http://stackoverflow.com/questions/348170/how-to-undo-git-add-before-commit
+
+
+
