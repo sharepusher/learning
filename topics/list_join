@@ -1,0 +1,26 @@
+## Joining Lists and Splitting Strings
+You have a list of key-value pairs in the form key-value, and you want to join them into a single string.
+To join any list of strings into a single string, use the join method of a string object.
+
+Here is an example of joining a list from the buildConnectionString function:
+return ";".join(["%s=%s" % (k, v) for k, v in params.items()])
+
+One interesting note before you continue. I keep repeating that functions are objects, strings are objects, 
+everything is an object. You might have thought I meant that string variables are objects.
+But no, look closely at this example and you'll see that the string ";" itself is an object, and you are calling its join method.
+
+The join method joins the elements of the list into a single string, with each element separated by a semi-clolon. 
+The delimiter doesn't need to be a semi-colon; it doesn't even need to be a single character.
+It can be any string.
+
+NOTE: join works ONLY on lists of STRING; it does NOT do any type coercion.
+    Joining a list that has one or more non-string elements will raise an exception.
+
+Example:
+>>> params = {"server": "mpilgrim", "database":"master"}
+>>> ["%s-%" % (k, v) for k,v in params.items()]
+['server=mpilgrim', 'database=master']
+>>> ";".join(["%s-%s" % (k, v) for k, v in params.items()])
+'server=mpilgrim;database=master'
+
+

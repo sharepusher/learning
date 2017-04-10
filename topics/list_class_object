@@ -1,0 +1,21 @@
+## A list of Class Objects
+# A list of class objects mimics a C array of structures. The snippet explores how to setup the list, 
+# and sort the list according to a selected attribute.
+# Then we use a format string to display the sorted list.
+# Take a look at how to search the list.
+# All in all an easy way to handle structured data.
+
+class Person(object):
+    def __init__(self, name=None, job=None, quote=None):
+        self.name, self.job, self.quote = name, job, quote
+
+personList = []
+personList.append(Person("Payne", "coach", "there is no rule."))
+personList.append(Person("Mia", "bicyclist", "we'd all fall off."))
+personList.append(Person("Sanosi", "teacher", "work heard."))
+personList.append(Person("hugh", "organist", "age"))
+personList.append(Person("herasmus", "dentist", "enough"))
+
+print("show one particular item:", personList)
+
+#####

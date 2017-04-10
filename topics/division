@@ -1,0 +1,60 @@
+More On http://blog.csdn.net/screaming/article/details/50506942
+http://blog.csdn.net/screaming/article/details/50506813
+
+In python3, they made the "/" operator do a floating-point division, 
+and added the "//" operator to do integer division(i.e. quotient without remainder).
+Whereas in Python2, the "/" operator was simply integer division, unless one of the operands was already 
+a floating point number.
+For further reference, see PEP238.
+"//" is unconditonally "truncating division", e.g:
+>>> 4.0 // 1.5
+2.0
+As you see, even though both operands are floats, "//" still truncates, so you always know securely what it's gonna do.
+Since "/" may or may not truncate depending on Python release, future imports, and even flags on which Python's run,
+
+## Divison Operators
+In general, the data type of an expression depends on the types of the arguments. 
+This rule meets our expectations for most operators: when we add two integers, the result should be an integers.
+However, this doesn't work out well for division because there are two different expectations.
+
+Sometimes, we expect division to create precise answers, usually the floating-point equivalents of fractions. 
+Other times, we want a rounded-down integer result.
+The classical Python defination of "/" depended entirely on the arguments. 
+so "685/252" was 2, because both arguments are integers. 
+While, "685./252" was 2.71825, because the arguments were floating point. 
+
+This definition often caused problems for applications where data types were used that the author hadn't expected.
+For example, a simple prgoram doing Celsius to Fahrenheit conversions will produce different answers depending on the input.
+If one user provides 18 and another provides 18.0, the answers were different, even thought all of the inputs all had 
+the equal numeric values.
+
+This unexpected inaccuracy was generally due to the casual use of integers where floating-point numbers were more appropriate.
+This can also occur using integers where complex numbers were implictly expected. 
+An explicit conversion function, like float(x) can help prevent this. 
+The idea, however, is for Python be a simple and sparse language, without a dense clutter of conversitions to cover the 
+rare case of an unexpected type.
+
+Starting with Python2.2, a new division operator was added to clarify what was expected.
+The ordinary "/" operator will, in the future, return floating-point results.
+A special division operator, "/" will return rounded-down results.
+Generally, the new "//" operator is what most mathematical processing will use.
+
+ 
+
+
+
+In Python2.X:
+>>> 10/3
+3
+# To get a floating point number from integer division
+>>> 10.0 / 3
+3.333333335
+>>> float(10) / 3
+3.33333335
+
+In Python3:
+>>> 10 / 3
+3.33333335
+>>> 10 // 3
+3
+

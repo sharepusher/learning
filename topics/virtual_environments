@@ -1,0 +1,33 @@
+## Reference
+# http://docs.python-guide.org/en/latest/dev/virtualenvs/#virtualenvironments-ref
+
+## Virtual Environments
+A Virtual Environment is a tool to keep the dependencies required by different projects in separate places,
+by creating virtual Python environments for them. It solves the "Project X depends on version 1.x but Project Y needs 4.x" dilemma,
+and keeps your golbal site-packages directory clean and manageable.
+
+## Virtualenv 
+virtualenv is a tool to create isolated Python environments. "virtualenv" creats a folder which contains all the necessary executables
+to use the packages that a Python project would need.
+
+## Install virtualenv
+$pip install virtualenv
+
+## Usage
+# 1) create a virtual environment for a project
+$ cd new_project_folder
+$ virtualenv my_project
+"virtualenv my_project" will create a folder in the current directory which will contain the Python executable files,
+and a copy of the pip library which you can use to install other packages.
+The name of the virtual environment(in this case, it was my_project) can be anything; 
+omitting the name will place the files in the current directory instead.
+You can slo use the Python interpreter of your choice, say Python2.7
+$virtualenv -p /usr/bin/python2.7 my_project
+or change the interpreter globally with an env variable in ~/.bashrc
+$export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
+
+# 2) To begin using the virtual environment, it needs to be activated:
+$ source my_project/bin/activate
+
+## virtualenvwrapper
+

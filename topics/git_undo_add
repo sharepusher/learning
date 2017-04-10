@@ -1,0 +1,71 @@
+## Summary
+# I mistypoed the stupid "git add ." at home directory, which means it will add all the file and directorys recursively.
+# so I found the stackoverflow ans.
+# I tried "git rm -r --cached .", but as there are some direcories that was created for temp project and not on git
+# I can't remove them unless using '-f'
+# so "git rm -rf --cached" solved my problem.
+# 
+# This problem was caused when I tried to merge a conflict.
+# after change the conflict file, I have to "git add the_conflict_file", and then "git commit", but not "git commit <file>".
+# And then I can push or pull correctly. 
+
+
+
+You want:
+
+git rm --cached <added_file_to_undo>
+Reasoning:
+
+When I was new this, I first tried
+
+git reset .
+
+(to undo my entire initial add), only to get this (not so) helpful message:
+
+fatal: Failed to resolve 'HEAD' as a valid ref.
+It turns out that this is because the HEAD ref (branch?) doesn't exist until after the first commit. That is, you'll run into the same beginner's problem as me if your workflow, like mine, was something like:
+
+cd to my great new project directory to try out Git, the new hotness
+git init
+git add .
+git status
+
+... lots of crap scrolls by ...
+
+=> Damn, I didn't want to add all of that.
+google "undo git add"
+
+=> find Stack Overflow - yay
+git reset .
+
+=> fatal: Failed to resolve 'HEAD' as a valid ref.
+
+It further turns out that there's a bug logged against the unhelpfulness of this in the mailing list.
+
+And that the correct solution was right there in the Git status output (which, yes, I glossed over as 'crap)
+
+...
+# Changes to be committed:
+#   (use "git rm --cached <file>..." to unstage)
+...
+And the solution indeed is to use git rm --cached FILE.
+
+
+Note the warnings elsewhere here - git rm deletes your local working copy of the file, but not if you use --cached. Here's the result of git help rm:
+
+--cached Use this option to unstage and remove paths only from the index. Working tree files, whether modified or not, will be left.
+I proceed to use
+
+git rm --cached .
+to remove everything and start again. Didn't work though, because while add . is recursive, turns out rm needs -r to recurse. Sigh.
+
+git rm -r --cached .
+
+Okay, now I'm back to where I started. Next time I'm going to use -n to do a dry run and see what will be added:
+
+git add -n .
+I zipped up everything to a safe place before trusting git help rm about the --cached not destroying anything (and what if I misspelled it).
+
+
+
+
