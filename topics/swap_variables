@@ -1,0 +1,23 @@
+# Python can swap variables without temporary variables
+# say, x,y = y,x
+>>>import dis
+>>>dis.dis("x,y = y,x")
+      1           0 LOAD_NAME                0 (y)
+                  3 LOAD_NAME                1 (x)
+                  6 ROT_TWO
+                  7 STORE_NAME               1 (x)
+                 10 STORE_NAME               0 (y)
+                 13 LOAD_CONST               0 (None)
+                 16 RETURN_VALUE
+
+# Python uses PyObject pointer.
+# ROT_TWO: rotate two is implemented by CPython
+TARGET(ROT_TWO) {
+        PyObject *top = TOP();
+        PyObject *second = SECOND();
+        SET_TOP(second);
+        SET_SECOND(top);
+        FAST_DISPATCH();
+    }
+# Therefore, python uses temporary variables to make it.
+
