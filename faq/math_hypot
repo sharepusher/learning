@@ -1,4 +1,0 @@
-math.hypot(x, y)
-Return the Euclidean norm, sqrt(x*x + y*y). This is the length of the vector from the origin to ponit(x, y).
-
-

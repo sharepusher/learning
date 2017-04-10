@@ -1,4 +1,0 @@
-## sys.maxint
-The largest positive integer supported by Python's regular integer type.
-This is at least 2**31-1.
-The largest negative integer is -maxint-1

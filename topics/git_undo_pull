@@ -1,7 +1,0 @@
-git reflog show should show you the history of HEAD. 
-You can use that to figure out where you were before the pull. 
-Then you can reset your HEAD to that commit.
-
-git reset HEAD@{x}
-
-

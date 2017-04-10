@@ -1,8 +1,0 @@
-# The insert method expects an index and the value to be inserted.
->>> myList.insert(0, "yes")
->>> myList
-["Yes", "The"]
-# The value "yes" was inserted at the index 0 in the list and all the other elements were shifted accordingly.
-
-
-
