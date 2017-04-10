@@ -1,0 +1,21 @@
+Most sorting algorithm can be divided into two categories:
+Comparison sorts;
+Distribution sorts.
+
+In a comparison sort, the data items can be arranged in either ascending (from smallest to largest)
+  or descending (from largest to smallest) order by performing pairwise logical comparisons between the sort keys.
+The pairwise comparisons are typically based on either numerical order when working with integers and reals 
+  or lexicographical order between the sort keys.
+
+A distribution sort, on the other hand, distributes or divides the sort key into intermediate group or collections
+  based on the individual key values. 
+For example, consider the problem of sorting a list of numerical grades based on their equivalent letter grade instead of the
+  actual numerical value. The grades can be divided into groups based on the corresponding letter grade without having to make
+  comparisons between the numerical values.
+
+Two comparison sort algorithms, both of which use recursion and apply a divide and conquer strategy to sort sequences.
+Many of the comparison sort can be applied to linked lists.
+
+
+
+
