@@ -1,0 +1,99 @@
+## NOTES:
+# 1) Avoid being verbose: Do NOT supply 0 for the start index or the length of the sequence for the end index.
+# 2) Slicing is forgiving of start or end indexes that are out of bounds, making it easy to express slices
+#    on the front or back boundaries of a sequence(like a[:20] or a[-20:]) 
+# 3) Assigning to a list slice will replace that range in the original sequence with 
+#    what's referenced even if their lengths are different.
+
+## Know how to slice sequences
+# Python includes syntax for slicing sequences into pieces.
+# Slicing lets you access a subset of a sequence's items with minimal effort.
+# The simplest uses of slicing are the built-in types: list, str and bytes.
+# Slicing can be extended to any Python class that implements the __getitem__ and __setitem__ special methods.
+
+## The basic form of the slicing syntax is somelist[start:end], where start is INCLUSIVE, and end is EXCLUSIVE.
+# in other words, the list[start:end] means, index from start to end-1.
+
+a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+print('first four:', a[:4])
+print('last four:', a[-4:])
+print('middle two:', a[4:-4])
+
+## when slicing from the start of a list, you should leave out the zero index to reduce visual noise.
+assert a[:5] == a[0:5]
+
+## when slicing to the end of a list, you should leave out the final index because it's redundant.
+assert a[5:] == a[5:len(a)]
+
+## If leave out both the start and the end indexes when slicing, you'll end up with a COPY of the 
+# original list.
+b = a[:]
+assert b == a and b is not a
+
+## using negative numbers for slicing is helpful for doing offsets relative to the end of a list.
+a[: -1] # NOTE: the end is Exclusive, the acutal index is end-1
+
+## slicing deals properly with start and end indexes that are beyond the boundaries
+#  of the list. That makes it easy for your code to establish a maximum length to consider for an 
+#  input sequence.
+first_twenty = a[:20]
+last_twenty = a[-20:]
+# In contrast, accessing the same index directly causes an exception, say, a[20]
+
+## NOTE:
+# Beware that indexing a list by a negative variable is one of the few situation in
+# which you can get surprising results from slicing.
+# For example, the expression somelist[-n:] will work fine when n is greater than one,
+# e.g., somelist[-3:]. 
+# However, when n is zero, the expression somelist[-0:] will result in a copy of the original list.
+
+## The result of slicing a list is a whole NEW list.
+# References to the objects from the original list are maintained.
+# Modifying the result of slicing won't affect the original list.
+b = a[4:]
+print('Before:', b)
+b[1] = 99
+print('After: ', b)
+print('No change on a: ', a) 
+
+## when used in assignments, slices will replace the specified range in the original list.
+# unlike tuple assignments(like, a, b = c[:2]), the length of slice assignments don't need 
+# to be the same.
+# The values before and after the assigned slice will be preserved.
+# The list will grow or shrink to accommodate the new values.
+print('Before a changes: ', a)
+a[2:7] = [99, 22, 14]
+print('After a changes, a shrinked: ', a)
+
+## If you assign a slice with no start or end indexes, you'll replace its entire contents
+# with a copy of what's referenced(instead of allocating a new list).
+
+b = a
+print("Before a is changed: ", a)
+a[:] = [101, 102, 103]
+assert a is b # still the same list object
+print("After a is changed: ", a) # Now has different contents.
+
+## Assigning to slices.
+# Mutable sequences can be grafted, excised, and otherwise modified in place using slice notation
+# on the left side of an assignment statement or as the target of del statement.
+b = list(range(10))
+print("Before b is changed: ", b)
+b[2:5] = [390, 570]
+print("After b is changed: ", b)
+
+print("Before b is del: ", b)
+del b[5:7]
+print("After b is del: ", b)
+
+## NOTE:
+# when the target of the assignment is a slice, the right side MUST be an iterable object, 
+# even if it has just one item.
+
+print("Before b is changed: ", b)
+b[2:5] = [100]
+print("After b is changed: ", b)
+
+
+
+
