@@ -1,0 +1,29 @@
+What is array?
+One-dimensional array: is composed of multiple sequential elements stored in contiguous bytes of memory 
+                       and allows for random access to the individual elements.
+
+Any difference with list structure in Python?
+Two major differences between the array and the list: Operation and Size.
+1) First, an array has limited number of operations, which only commonly include those for array creation, reading a value from a specific element, and writing a value to a specific element.
+The list, on the other hand, provides a large number of operations for working with the contents of the list.
+2) Second, the size of an array cannot be chagned after it has been created.
+The list can grow and shrink during execution as elements are added or removed.
+
+When to use array/list?
+Fixed size needed or not. multiple operations needed or not.
+The decision as to whether an array or list should be used is not limited to the size of the sequence structure. It also depends on hwo it will be used.
+
+Array ADT.
+Once an array is created, its size cannot be changed.
+Array(size): Creates a one-dimensional array consisting of size elements with each element initially set to None.
+Size must be greater than zero.
+
+length(): Returns the length or number of elements in the array.
+
+getitem(index): Returns the value stored in the array at element position index. The index must be within the valid range.
+
+clearing(value): Clears the array by setting every element to value.
+
+iterator(): Creates and returns an iterator that can be used to traverse the elements of the array.
+
+

@@ -1,0 +1,58 @@
+## Tree structure
+# nodes + edges -> hierachical fashion
+# A tree is by definition a recursive structure.
+
+# root node: the topmost of the tree, the single access point of the structure.
+# every non-empty tree must contain a root node
+
+# path
+
+# parent: every node, except the root, has a parent node.
+
+# child node: Each node can have one or more child nodes resulting in a parent-child hierarchy.
+
+# Interior nodes: Nodes that have at least one child are known as interior nodes
+# leaf nodes: nodes that have no children
+
+# Subtree. Every node can be the root of its own subtree.
+
+# Descendants: All of the nodes in a subtree are descendants of the subtree's root.
+# Ancestors: The ancestors of a node include the parent of the node, its grandparent, its great-grandparent, 
+#            and so on all the way up to the root.
+#            The ancestors of a node can also be identified by the nodes along the path from the root to the given node.
+
+
+# Trees can come in many different shapes, and they can vary in the number of children allowed per node or in the way they
+# organize data values within the nodes.
+
+# Binary tree: is a tree in which each node can have AT MOST two children. 
+#    one child is identified as the Left child, and the other as the Right child.
+# Binary trees come in many different shapes and sizes. 
+# The shapes vary depending on the number of nodes and how the nodes are linked.
+
+# Tree size: the size of a binary tree is simply the number of nodes in the Tree
+# levels - root node at level 0. Each level corresponds to a generation.
+# depth - a node distance from the root, with distance being the number of levels that separate the wo.
+# height - is the number of levels in the tree.
+# width - the number of nodes on the level containing the most nodes.
+# An empty tree has a height of 0 and a width of 0, and its size is 0.
+
+
+# A binary tree of size N can have a maximum height of N, wlhich results when there is one node per level.
+# What is the minimum height of a binary tree with N nodes?
+# in this case, the nodes have to be organized with each level at full capacity.
+# This corresponds to a given level i having a capacity for 2^i nodes. if we sum the size of each level,
+# when all of the levels are filled to capacity, except possibly the last one, we find 
+# that the minimum height of a binary tree of size N is logN+1
+
+# The height of the tree will be important in analyzing the time-complexities of various algorithms applied to binary trees.
+
+## Full Binary Tree - is a binary tree in which each interior node contains two children.
+## Perfect Binary Tree - is a full binary tree in which all leaf nodes are at the same level.
+#    The prefect binary tree has all possible node slots filled from top to bottom with NO gaps.
+
+## Complete Binary Tree - a binary tree(with height h) is perfect binary tree down to height h-1, and the nodes
+#      on the lowest level fill the available slots from left to right leaving no gaps.
+# 
+
+
