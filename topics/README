@@ -12,6 +12,10 @@ List reverse
 http://effbot.org/pyfaq/how-do-i-iterate-over-a-sequence-in-reverse-order.htm
 
 
+Queue and deque
+http://stackoverflow.com/questions/717148/queue-queue-vs-collections-deque
+
+
 List Join
 http://www.diveintopython.net/native_data_types/joining_lists.html
 http://www.decalage.info/en/python/print_list
