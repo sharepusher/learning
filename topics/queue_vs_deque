@@ -1,0 +1,18 @@
+## Reference
+# http://stackoverflow.com/questions/717148/queue-queue-vs-collections-deque
+
+# Summary
+# Queue.Queue - threads communication
+# deque - data structure
+
+# Queue.Queue and collections.deque serve different purposes.
+# Queue.Queue is intended for allowing different threads to communicate using queued messages/data,
+# whereas collections.deque is simply intended as a datastructure.
+# That's why Queue.Queue has methods like put_nowait(), get_nowait(), and join(), 
+# whereas collections.deque doesn't.
+# Queue.Queue isn't intended to be used as a collection, which is why it lacks the likes of the 'in' operator.
+
+# It boils down to this:
+# If you have multiple threads and you want them to be able to communicate without the need for locks, you're looking for Queue;
+# If you just want a queue or a double-ended queue as datastructure, use collections.deque.
+
