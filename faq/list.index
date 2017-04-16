@@ -1,0 +1,2 @@
+L.index(value, [start,[stop]]) -> integer -- return first index of value.
+# Raises ValueErrorif the value is not present.
