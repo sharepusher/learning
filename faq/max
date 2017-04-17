@@ -1,0 +1,6 @@
+max(...)
+    max(iterable[, key=func]) -> value
+    With a single iterable argument, return its largest item. 
+    max(a, b, c, ...[, key=func]) -> value
+    With two or more arguments, return the largest argument.
+
