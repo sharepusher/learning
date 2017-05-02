@@ -1,0 +1,3 @@
+## str.lower()
+Return a copy of the string with all the cased characters convertedto lowercase.
+
