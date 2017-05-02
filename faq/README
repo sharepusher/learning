@@ -51,9 +51,9 @@ map
 https://docs.python.org/2/tutorial/datastructures.html
 
 
-Built-in Types
-https://docs.python.org/2/library/stdtypes.html
+## Built-in Types
 String Methods.
+https://docs.python.org/2/library/stdtypes.html
 
 ctypes - A foreign function library for Python
 https://docs.python.org/2/library/ctypes.html#module-ctypes
