@@ -1,0 +1,27 @@
+## An OrderedDict is a dictionary subclass that remembers the order in which its contents are added.
+import collections
+print("reguar dictionary:")
+d = {}
+d['a'] = 'A'
+d['b'] = 'B'
+d['c'] = 'C'
+for k, v in d.items():
+    print(k,v)
+print(d.keys())
+print("\nOrderedDict:")
+d = collections.OrderedDict()
+d['a'] = 'A'
+d['b'] = 'B'
+d['c'] = 'C'
+for k,v in d.items():
+    print(k,v)
+print(d.keys())
+
+# A regular dict does NOT track the insertion order, and iterating over it produces
+# the values in an arbitrary order. In an OrderedDict, by contrast, the order the items
+# are inserted and used when creating an iterator.
+
+## Equality
+# A reular dict looks at its contents when testing for equality.
+# An OrderedDict also considers the order the items were added.
+
