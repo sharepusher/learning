@@ -30,6 +30,8 @@ https://docs.python.org/dev/library/collections.html#collections.Counter
 collections.deque()
 https://docs.python.org/2/library/collections.html#collections.deque
 
+collections.OrderedDict()
+https://pymotw.com/2/collections/ordereddict.html
 
 random - Generate pseudo-random numbers
 https://docs.python.org/2/library/random.html
