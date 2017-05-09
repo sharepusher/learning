@@ -1,0 +1,27 @@
+The algorithm is based on finding the next permutation in lexicographic ordering, if it exists.
+It can handle repeated values, for which case it generates the distinct multiset permutations each once.
+Even for ordinary permutations it is significantly more efficient than generating values for the Lehmer code in
+lexicographic order(possibly using the factorial number system) and converting those to permutations.
+To use it, one starts by sorting the sequence in (weakly) increasing order(which gives its lexicographically minimal
+permutation), and then repeats advancing to the next permutation as long as one is found.
+The method goes back to Narayana Pandita in 14th Century India.
+
+## Find the next perumtation algorithm
+
+The following algorithm generates the next permutation lexicographically after a given permutation.
+It changes the given permutation in-place.
+1. Find the largest index k such that a[k] < a[k+1]. If no such index exists, the permutation is the last permutation.
+2. Find the largest index l greater than k such that a[k] < a[l]
+3. Swap the value of a[k] with that of a[l]
+4. Reverse the sequence from a[k+1] up to and including the final element a[n].
+
+## Find the previous permutation algorithm
+
+No matter find the next or the previous permutation, the lexicographcially order is almost the same.
+There are 4 steps totally.
+Excapt that the previous one is:
+1) find the largest k that a[k] > a[k+1]; and then
+2) find the largest j that greater than k, that a[j] < a[k];
+3) exchange a[k], a[j]
+4) reverse k+1 to n-1
+
