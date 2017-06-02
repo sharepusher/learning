@@ -1,0 +1,26 @@
+## heapq - min heap
+# This module provides an implementation of the heap queue algorithm,
+# also known as the priority queue algorithm.
+# heaps are binary trees for which every parent node has a value less than or equal to any of its children.
+# This implementation uses arrays for which heap[k] <= heap[2*k+1] and heap[k]<=heap[2*k+2] for all k,
+# counting elements from zero.
+# For the sake of comparison, non-existing elements are considered to be infinite.
+# The interesting property of a heap is that its smallest elment is always the root, heap[0]
+
+# To create a heap, use a list initialized to [], or you can transform a populated list into a heap via function heapify().
+
+# heapq.heappush(heap, item)
+#  Push the value item onto the heap, maintaining the heap invariant.
+
+# heapq.heappop(heap)
+#  Pop and return the smallest item from the heap, maintaining the heap invariant. If the heap is empty, IndexError is raised.
+#  To access the smallest item without popping it, use heap[0].
+
+## heapq.heappushpop(heap, item)
+#  Push item on the heap, then pop and return the smallest item from the heap. The combined action runs more efficiently than 
+#  than heappush() followed by a separate call to heappop().
+
+## heapq.heapify(x)
+# Transform list x into a heap, in-place, in linear time. O(N)time; O(1)space.  
+
+
