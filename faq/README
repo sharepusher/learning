@@ -2,6 +2,9 @@
 
 1) Python Standard Library
 
+heapq - Heap queue 
+https://docs.python.org/2/library/heapq.html
+
 Queue - A synchronized queue class
 https://docs.python.org/2/library/queue.html
 
