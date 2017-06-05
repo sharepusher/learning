@@ -1,11 +1,14 @@
 ## Reference
 https://docs.python.org/2/library/sets.html
+https://wiki.python.org/moin/TimeComplexity
+https://stackoverflow.com/questions/7351459/time-complexity-of-python-set-operations
 
 ## keywords
 Unordered, Unique
 
 What is set?
-A set is an unordered collection with no duplicate elements.
+A set is an unordered collection with no duplicate elements, which is implemented as a hashtable.
+The lookup/insert in O(1) average.
 Like other collections, sets support 'x in set, len(set), and for x in set'.
 Being an unordered collection, sets DO NOT record element position or order of insertion.
 Accordingly, sets DO NOT support indexing, slicing, or other sequence-like behavior.
