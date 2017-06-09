@@ -72,5 +72,12 @@ https://stackoverflow.com/questions/1108/how-does-database-indexing-work
 
 
 
+## MacOS PKG Installation
+postgresql install
+http://www.alonely.com.cn/PostgreSQL/20161018/54697.html
+
+nginx install
+://www.reinbach.com/blog/uwsgi-nginx-flask-virtualenv-mac-os-x/
+
 
 
