@@ -29,5 +29,7 @@ $export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
 # 2) To begin using the virtual environment, it needs to be activated:
 $ source my_project/bin/activate
 
+# 3) leave/exit virtualenv
+$ deactivate
 ## virtualenvwrapper
 
