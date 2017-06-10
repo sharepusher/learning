@@ -65,6 +65,13 @@ Permutation Generation in Lexicographic order.
 https://en.wikipedia.org/wiki/Permutation#Generation_in_lexicographic_order
 
 
+## Web Framework and Related
+wsgi
+https://www.python.org/dev/peps/pep-3333/
+https://www.sitepoint.com/python-web-applications-the-basics-of-wsgi/
+https://www.biaodianfu.com/cgi-fastcgi-wsgi.html
+
+
 
 ## Database
 Database indexing
