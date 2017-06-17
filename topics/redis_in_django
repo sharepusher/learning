@@ -1,0 +1,31 @@
+## MACOS
+# reference
+https://redis.io/download
+http://www.cnblogs.com/iwangzheng/p/3974511.html
+https://pypi.python.org/pypi/redis/
+
+
+# install redis client
+sudo pip install redis
+# install toolkit for redis in django
+sudo pip install django-redis
+
+# download and install redis server
+wget http://download.redis.io/releases/redis-3.2.9.tar.gz
+tar xzf redis-3.2.9.tar.gz
+cd redis-3.2.9
+make
+
+# verify the redis server
+# the binaries that are now compiled are available in the src directory. Run redis with
+$src/redis-server
+
+# src/redis-cli
+redis> set foo bar
+OK
+
+redis> get fool
+"bar"
+
+
+
