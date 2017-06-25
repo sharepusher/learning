@@ -1,0 +1,13 @@
+##  PostgreSQL command line
+psql will try to login postgresql database with current user, if you do not wanna use current user, a -U to indicate the database user is required.
+\? will show the help in the command line mode
+\d [db name] can show the schema of the db.
+\l will show all the db created by the database user.
+
+
+## How to show data in a table by using psql command line interface
+you can use the query set directly, do NOT forget the ;
+SELECT * FROM tablename 
+
+
+
