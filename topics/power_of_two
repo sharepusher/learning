@@ -1,0 +1,27 @@
+## Reference
+https://en.wikipedia.org/wiki/Power_of_two
+
+## Power of Two
+In mathematics, a power of two means a number of the form 2^N where N is an integer,
+i.e. the result of exponentiation with number two as the base and integer N as the exponent.
+In a context where only integers are considered, N is restricted to non-negative values, 
+so we have 1, 2, and 2 multiplied by itself a certain number of times.
+
+Because two is the base of the binary numeral system, powers of two are common in computer science.
+Written in binary, a power of two always has the form 100...000 or 0.00...001, just like a power of ten in the decimal system.
+
+## Python power of two
+>> 2**3
+8
+>> 2**4
+16
+
+## Fast alogrithm to check if a POSITIVE number is a power of two.
+The binary representation of integers makes it possbible to apply a very fast test to determin whether a given positive integer x is a power of two.
+i.e. The positive X is a power of two <=> X & X-1 is equal to ZERO.
+Where & is a bitwise logical AND operator. 
+
+NOTE:  if X is 0, this incorrectly indicates that 0 is a power of two, so this check ONLY works if X > 0. in other words, X is positive integer.
+
+
+
