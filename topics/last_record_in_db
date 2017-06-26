@@ -1,0 +1,17 @@
+## How to read the last row in db?
+SELECT id from db_table ORDERED BY id DESC LIMIT 1
+
+## Get last record in a queryset in django-redis
+lastest(field_name=None) returns the latest object in the table, by date, using the field_name provided as the date field.
+Entry.objects.latest('pub_date')
+Entry.objects.latest('id')
+books.objects.all().last()
+books.objects.last()
+
+# get the first one
+books.objects.all().first()
+books.objects.first()
+
+
+
+
