@@ -1,22 +1,28 @@
 ## MACOS
-# reference
+## Reference
 https://redis.io/download
 http://www.cnblogs.com/iwangzheng/p/3974511.html
 https://pypi.python.org/pypi/redis/
+https://www.phodal.com/blog/django-cache-system-redis-install-and-memcached/
+https://realpython.com/blog/python/caching-in-django-with-redis/
+python 2.7.10
+django 1.10.3
+postgreSQL 9.4.5
+redis-server 3.2.9
 
-
-# install redis client
+## install redis client
 sudo pip install redis
-# install toolkit for redis in django
+
+## install toolkit for redis in django
 sudo pip install django-redis
 
-# download and install redis server
+## download and install redis server
 wget http://download.redis.io/releases/redis-3.2.9.tar.gz
 tar xzf redis-3.2.9.tar.gz
 cd redis-3.2.9
 make
 
-# verify the redis server
+## verify the redis server
 # the binaries that are now compiled are available in the src directory. Run redis with
 $src/redis-server
 
@@ -27,5 +33,37 @@ OK
 redis> get fool
 "bar"
 
+
+## Configure redis as cache in Django
+
+vi settings.py
+
+CACHES = {
+    "default": {
+        "BACKEND": "redis_cache.cache.RedisCache",
+        "LOCATION": "127.0.0.1:6379:1",
+        "OPTIONS": {
+            "CLIENT_CLASS": "redis_cache.client.DefaultClient",
+        }
+    }
+}
+
+
+view.py
+
+# Create your views here.
+from django.http import HttpResponse
+from django.views.decorators.cache import cache_page
+from django.core.cache import cache
+from django.shortcuts import render_to_response
+
+@cache_page(60)
+def home(request):
+    cache.set('my_key', 'hello, world!', 30)
+
+    return render_to_response("index.html",{'name':cache.get('my_key')})
+
+run redis-server; 
+run redis-cli, then MONITOR command will trace the redis server activities, visit pages, and check whether the redis works as expected.
 
 
