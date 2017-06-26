@@ -26,13 +26,17 @@ make
 # the binaries that are now compiled are available in the src directory. Run redis with
 $src/redis-server
 
-# src/redis-cli
-redis> set foo bar
+# src/redis-cli -n 1
+redis[1]> set foo bar
 OK
 
-redis> get fool
+redis[1]> get fool
 "bar"
 
+redis[1]> keys *
+
+NOTE: Run the "flushall" command on the Redis CLI to clear all of the keys from the data store. 
+Then you can run through again without waiting for the cache expire. 
 
 ## Configure redis as cache in Django
 
