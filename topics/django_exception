@@ -1,0 +1,14 @@
+## How to catch db query DoesNotExist exception of django?
+DoesNotExist is a property of the model itself, therefore, it's YouModelName.DoesNotExist.
+
+You can also import ObjectDoesNotExist from django.core.exceptions, if you want a generic model-independent way to catch the exception.
+
+from django.core.exceptions import ObjectDoesNotExist
+try:
+    SomeModel.objects.get(pk=1)
+except ObjectDoesNotExist:
+    print("Error msg")
+
+
+
+
