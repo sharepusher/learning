@@ -1,0 +1,16 @@
+## Reference
+https://docs.python.org/2/library/string.html#formatspec
+https://docs.python.org/2/library/stdtypes.html#str.format
+https://docs.python.org/3/library/functions.html#bin
+
+1) Python's string format method can take a format spec: str.format()
+
+>>> "{0:b}".format(2)
+'10'
+# 0 is the index of items in format; b is the type.
+
+2) built-in lib: bin(x) - convert an integer number to a binary STRING. 
+The result is a valid Python expression. 
+
+
+
