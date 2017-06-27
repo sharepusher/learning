@@ -1,0 +1,31 @@
+## Reference 
+https://www.quora.com/What-are-the-differences-between-nginx-and-gunicorn
+https://words.volant.is/articles/understanding-gunicorns-async-worker-concurrency-model/
+http://www.aosabook.org/en/nginx.html
+
+
+Nginx - responsible for serving static content, gzip compression, ssl, proxy_buffers and other HTTP stuff 
+Gunicorn - responsible for interfacing with both nginx and the actual python web app code to serve dynamic content.
+
+High-level overview of lifecycle of an HTTP request. Suppose one server running a simple app with three main processes.
+Nginx - Listening on Port 80 for incomming HTTP requests from the internet.
+Gunicorn - Listening on another port (8000 is the popular one) for HTTP requests from nginx. Gunicorn is configured with your Python web app.
+Database: Typically, a relational database Postgres or MySQL
+1) a browser/bot makes an HTTP request to the web app.
+2) Nginx receives the HTTP request.
+   If it's a static resource(CSS/js/images), Nginx serves it without bothering gunicorn.
+   If the url is a dynamic one, Nginx receives all the TCP packets belong to the HTTP request EFFICIENTLY and FORWARDs the request to Gunicorn
+   once the entire HTTP request is received.
+   This frees the Gunicorn processes from handling slow clients.
+3) Gunicorn receivies the request from Nginx, translates it to a WSGI(Web Server Gateway Interface) compatible request and calls 
+   the web framework's request handler method.
+4) The web framework implements the buissiness logic and returns an HTTP response.
+   You can configure Gunicorn to make network calls to your database and other external services concurrently using non-blocking I/O
+   So that the application can execute the business logic of one request while waiting on the socket for other requests.
+5) Gunicorn now returns the response to Nginx which in turn sends the response back to the client.
+
+
+
+
+
+
