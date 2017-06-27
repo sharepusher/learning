@@ -1,0 +1,16 @@
+## Reference
+http://adamghost.com/2012/08/mac-nginx-mac-ports/
+
+启动nginx:
+sudo nginx
+访问http://127.0.0.1/，就可以看到Nginx的Welcome页面。
+如何重启nginx？
+# 检测配置文件是否有效
+sudo nginx -t
+# 重启
+sudo nginx -s reload
+# 帮助
+sudo nginx -h
+
+
+
