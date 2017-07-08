@@ -1,0 +1,8 @@
+## Reference
+# https://docs.python.org/2/library/functions.html#eval
+# eval(expression[,globals[,locals]])
+#   The arguments are a Unicode or Latin-1 encoded string and optional globals and locals.
+#   If provided, globals must be a dicionary. If povided, locals can be any mapping object.
+# The expression argument is parsed and evaluated as a Python expression(technically speaking, a condition list)
+
+
