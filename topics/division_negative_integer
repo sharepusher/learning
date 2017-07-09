@@ -1,0 +1,44 @@
+## Reference
+# https://stackoverflow.com/questions/5535206/negative-integer-division-surprising-result
+# https://stackoverflow.com/questions/19517868/integer-division-by-negative-number
+
+## Problem
+#>>> 8/-7 = -2
+
+## solution
+# if you wanna the round towards zero when negative interger, remember converit to float, and then convert it back.
+# in other words, 
+>>> int(8.0/-7) = -1
+
+## Answer
+# Language designer gets to choose if their language will round towards zero, negative infinity,
+# or prositive infinity when doing integer division.
+# Different languages have made different chocies.
+# The language authors of Python and Ruby both decided that rounding towards negative infinity 
+# makes more sense than rounding towards zero.
+I was asked (again) today to explain why integer division in Python returns the floor of the result instead of truncating towards zero like C.
+
+For positive numbers, there's no surprise:
+
+>>> 5//2
+2
+But if one of the operands is negative, the result is floored, i.e., rounded away from zero (towards negative infinity):
+
+>>> -5//2
+-3
+>>> 5//-2
+-3
+This disturbs some people, but there is a good mathematical reason. The integer division operation (//) and its sibling, the modulo operation (%), go together and satisfy a nice mathematical relationship (all variables are integers):
+
+a/b = q with remainder r
+such that
+
+b*q + r = a and 0 <= r < b
+(assuming a and b are >= 0).
+If you want the relationship to extend for negative a (keeping b positive), you have two choices: if you truncate q towards zero, r will become negative, so that the invariant changes to 0 <= abs(r) < otherwise, you can floor q towards negative infinity, and the invariant remains 0 <= r < b. [update: fixed this para]
+
+In mathematical number theory, mathematicians always prefer the latter choice (see e.g. Wikipedia). For Python, I made the same choice because there are some interesting applications of the modulo operation where the sign of a is uninteresting. Consider taking a POSIX timestamp (seconds since the start of 1970) and turning it into the time of day. Since there are 24*3600 = 86400 seconds in a day, this calculation is simply t % 86400. But if we were to express times before 1970 using negative numbers, the "truncate towards zero" rule would give a meaningless result! Using the floor rule it all works out fine.
+
+
+
+
