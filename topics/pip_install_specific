@@ -1,0 +1,4 @@
+## spcify the version of software to install
+pip install -v xxx==1.x.x
+
+
