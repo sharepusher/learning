@@ -1,0 +1,42 @@
+## Difference Regular Assigment, shallow copy and deepcopy.
+# Reference - https://www.djangospin.com/python-regular-assignment-shallow-copy-deep-copy/
+# http://www.python-course.eu/deep_copy.php
+
+# There are three ways to copy objects in Python: assignment, shallow copy & deep copy.
+# 1) Reguar assignment: points the new variable towards the original objects. 
+#    Let's use the built in id() function
+#    provie this. The id() function returns the object's address.
+objOne = [1,2,3]
+objTwo = [4,5,6]
+objThree = [objOne, objTwo]
+objFour = objThree
+
+if id(objThree) == id(objFour):
+    print("objThree and objFour are the same object.")
+if id(objThree[0]) == id(objFour[0]):
+    print("objThree[0] and objFour[0] are the same object.")
+
+# 2) Shallow copy
+# The difference between shallow and deep copying is only relevent for compound objects
+# (objects that contain other objects, like lists or class instances):
+# A shallow copy constructs a new compound object and then (to the extent possible)
+# inserts references into it to the objects found in the original.
+# A deep copy constructs a new compound object and then, recursively, insert copies into it of the objects found in the original.
+
+# shallow copy
+import copy
+objFour = copy.copy(objThree)
+if id(objFour) != id(objThree):
+    print("objFour is a new object")
+if id(objThree[0]) == id(objFour[0]):
+    print("objFour[0] is the same object as objThree[0]")
+
+# deep copy
+objFour = copy.deepcopy(objThree)
+
+if id(objThree) != id(objFour):
+    print("objFour is a new object")
+if id(objThree[0]) != id(objFour[0])):
+    print("objFour[0] is a new object")
+
+
