@@ -1,0 +1,4 @@
+When we wanna login in the server reserved our public key from a new server.
+We may need copy the private key to the ~/.ssh directory in the server,
+and then we need make the server know the private key by running the ssh-add -k ~/.ssh/my_privatekey
+we can verify that by ssh-add -l.
