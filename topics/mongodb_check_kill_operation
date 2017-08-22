@@ -1,0 +1,6 @@
+1. go to admin db: use admin
+2. auth if necessary: db.auth('root', 'root')
+3. check current running operation: db.currentOp()
+4. kill specific operation by "opid": db.killOp($opid)
+
+
