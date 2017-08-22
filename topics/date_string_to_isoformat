@@ -1,0 +1,9 @@
+1) convert date string to date object 
+>>>current = datetime.datetime.strptime('20190701', "%Y%m%d").date()
+datetime.date(2019,7,1)
+2) convert date object to the format you want by strftime
+>>> current.strftime("%d%m%Y %H%M%S")
+>>> current.isoformat()
+
+
+
