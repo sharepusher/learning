@@ -11,7 +11,7 @@ virtualenv is a tool to create isolated Python environments. "virtualenv" creats
 to use the packages that a Python project would need.
 
 ## Install virtualenv
-$pip install virtualenv
+$(sudo)pip install virtualenv
 
 ## Usage
 # 1) create a virtual environment for a project
@@ -21,7 +21,7 @@ $ virtualenv my_project
 and a copy of the pip library which you can use to install other packages.
 The name of the virtual environment(in this case, it was my_project) can be anything; 
 omitting the name will place the files in the current directory instead.
-You can slo use the Python interpreter of your choice, say Python2.7
+You can also use the Python interpreter of your choice, say Python2.7
 $virtualenv -p /usr/bin/python2.7 my_project
 or change the interpreter globally with an env variable in ~/.bashrc
 $export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
