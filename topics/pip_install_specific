@@ -1,4 +1,12 @@
 ## spcify the version of software to install
 pip install -v xxx==1.x.x
 
+## use source once
+pip install -i https://pypi.tuna.tsinghua.edu.cn/simple gevent
+
+## Or change forever
+vi ~/.pip/pip.conf
+# change index-url to tuna or douban: http://pypi.douban.com/simple/
+[global]
+index-url = https://pypi.tuna.tsinghua.edu.cn/simple
 
