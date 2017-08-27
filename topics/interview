@@ -1,3 +1,6 @@
+## interview References
+https://hellohell.gitbooks.io/java-/content/python_mian_shi_ti.html
+
 ## Difference Regular Assigment, shallow copy and deepcopy.
 # Reference - https://www.djangospin.com/python-regular-assignment-shallow-copy-deep-copy/
 # http://www.python-course.eu/deep_copy.php
@@ -36,7 +39,100 @@ objFour = copy.deepcopy(objThree)
 
 if id(objThree) != id(objFour):
     print("objFour is a new object")
-if id(objThree[0]) != id(objFour[0])):
+if id(objThree[0]) != id(objFour[0]):
     print("objFour[0] is a new object")
+
+
+## Difference  *args and **kwargs
+# It is not necessary to write *args or **kwargs.
+# ONly the * is necessary, writing *args and **kwargs is justa a convention, you can also written *var, and **vars
+# Usage of *args
+# *args and **kwargs are mostly used in function definitions.
+# *args and **kwargs allow you to pass a variable number of arguments to a function.
+# What does variable mean here is that you do NOT know before hand that how mnay arguments can be passed to your function
+# by the user so in this case you use these two keywords.
+
+# *args is used to send a non-keyworded variable length argument list to the function.
+def test_var_args(f_arg, *argv):
+    print("first normal arg:", f_arg)
+    for arg in argv:
+        print("another arg through *argv:", arg)
+
+test_var_args("yahho", "python", "test", "whatpp")
+
+# Usage of **kwargs
+# **kwargs allows you to pass keyworded variable length of arguments to a function.
+# You should use **kwargs if you want to handle Named Arguments in a function.
+def greetme(**kwargs):
+    if kwargs:
+        for key,value in kwargs.iteritems():
+            print("%s==%s" % (key,value))
+greetme(name="yahoo")
+
+def test_args_kwargs(arg1, arg2, arg3):
+   print("arg1:", arg1)
+   print("arg2:", arg2)
+   print("arg3:", arg3)
+
+args = ("two", 3,5)
+test_args_kwargs(*args)
+
+# now with **kwargs
+kwargs = {"arg3":3, "arg2":"two", "arg1":5}
+test_args_kwargs(**kwargs)
+
+
+## staticmethod, classmethod
+# Reference 
+# http://pythoncentral.io/difference-between-staticmethod-and-classmethod-in-python/
+
+def foo(x):
+    print("executing foo(%s)" % x)
+
+class A(object):
+    def foo(self, x):
+        print("executing foo(%s,%s)" % (self, x))
+    @classmethod
+    def class_foo(cls, x):
+        print("executing class_foo(%s, %s) % (cls, x)")
+    @staticmethod
+    def static_foo(x):
+        print("executing static_foo(%s)" % x)
+
+
+
+## Yield
+# Reference - https://stackoverflow.com/questions/231767/what-does-the-yield-keyword-do-in-python
+# Generators are iterators, but you can ONLY iterate over them once. 
+# It's because they do NOT store all values in memory, they generate the values on the fly.
+mygenerator = (x*x for x in range(3))
+for i in mygenerator:
+    print(i)
+# It is just the same except that you used () instread []. 
+# BUT you cannot perform for i in mygenerator a second time, since generator can only 
+# be used once.
+
+# Yield is a keyword that is used like RETURN.
+# Except the function will return a generator.
+def createGenerator():
+    mylist = range(3)
+    for i in mylist:
+        yield i*i
+# create a generator
+mygenerator = createGenerator()
+print(mygenerator)
+for i in mygenerator:
+    print(i)
+
+# It's handy when you know your function will return a huge set of values that you will only need
+# to read once.
+# To master yield, you must understand that when you call the function, the code you have 
+# written in the function body does NOT RUN.
+# The function only returns the generator object, this is a bit tricky.
+# Then, your code will be run each time the for uses the generator.
+
+
+
+
 
 
