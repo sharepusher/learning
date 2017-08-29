@@ -1,0 +1,6 @@
+# admin shell logrotate set true
+>>> use admin
+>>> db.auth('root','root')
+>>> logrotate
+
+
