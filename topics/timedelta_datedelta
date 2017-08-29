@@ -1,0 +1,7 @@
+#!/usr/bin/python
+# _*_ coding=utf-8 _*_
+## datatime has timedelta
+import datetime
+deltaed_date = datetime.date.today() - datetime.timedelta(days=3)
+# convert the datetime object to string
+print(deltaed_date.strftime("%Y-%m-%d %H:%M%S"))
