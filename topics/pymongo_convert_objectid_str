@@ -1,0 +1,4 @@
+
+In pymongo str(o) get a hex encoded version of ObjectId o.
+In other words, ObjectId => str(o)
+str(o) => ObjectId(o)
