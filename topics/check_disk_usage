@@ -1,0 +1,14 @@
+Reference:
+https://www.tecmint.com/check-linux-disk-usage-of-files-and-directories/
+
+The Linux “du” (Disk Usage) is a standard Unix/Linux command.
+Used to check the information of disk usage of files and directories.
+The du command has many parameter options that can be used to get the results in many formats. 
+The du command also displays the files and directory sizes in a recursively manner.
+
+To get the summary of a grand total disk usage size of an directory use the option “-s” as follows.
+
+The “-c” flag provides a grand total usage disk space at the last line.
+
+
+
