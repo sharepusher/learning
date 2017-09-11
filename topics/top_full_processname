@@ -1,0 +1,4 @@
+While top is running, you can press c to toggle between showing the process name and the command line.
+To remember the toggle state for next time,
+press W to save the current configuration to ~/.toprc.
+
