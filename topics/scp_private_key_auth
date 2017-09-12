@@ -1,0 +1,4 @@
+
+scp -C -i ./your_private_Key -r source_directory user@ip:/dest_directory
+
+
