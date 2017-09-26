@@ -1,0 +1,8 @@
+## How to check kafka versions
+# There is nothing like kafka --version at present.
+# There fore we can only rely on checking version from kafka/libs direcotry 
+# or run following command:
+find ./libs/ -name \*kafka_\* | head -1 | grep -o '\kafka[^\n]*'
+# Or 
+find / -name \*kafka_\* | head -1 | grep -o '\kafka[^\n]*' 
+
