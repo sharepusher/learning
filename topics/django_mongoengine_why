@@ -1,0 +1,12 @@
+## why use mongoengine
+1) Django does NOT support mongodb officially, though they have a plan to make it in the future;
+2) pymongo is straightforward but we have to maintain the db connection and CRUD.
+3) django-nonrel, i.e. Django non relationship. 
+   django-norel is implemented by simulating the SQL operation in memory,
+   which is not supported by Django, so it's just an external version
+4) mongoengine, provide similar operation experience as Django Model(ORM).
+
+## Reference
+
+
+
