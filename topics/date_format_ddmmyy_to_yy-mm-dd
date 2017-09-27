@@ -1,0 +1,11 @@
+## Reference
+https://stackoverflow.com/questions/502726/converting-date-between-dd-mm-yyyy-and-yyyy-mm-dd
+## How to convert string date time between different format?
+## datetime format convert ammong: DD-MM-YY or YYMMDD or YY/MM/DD
+
+1) convert string datetime to datetime tuple by .strptime(datetime_string, "dateformat")
+2) convert the datetime tuple to string in specified format .strftime("date_format")
+import datetime
+datetime.datetime.strptime("21/12/2008","%d%m%Y").strftime("%Y-%m-%d")
+# the .strptime() parses the first argument according to the format specified in the second.
+
