@@ -1,0 +1,30 @@
+## Reference
+# https://docs.mongodb.com/manual/reference/method/cursor.itcount/
+# https://docs.mongodb.com/manual/reference/method/cursor.count/
+
+
+## aggregation group items and count how many records have the same group items.
+# count:{$sum:1} is in the group, and paralel with _id
+view.aggregate([{'$match': {'Fr':'schedule','Dt.DT': {'$lte': '2017-09-29 13:39:00', '$gte': '2017-09-29 13:38:00'}}}, {'$unwind': '$Dt'}, {'$match': {'Dt.DT': {'$lte': '2017-09-29 13:39:00', '$gte': '2017-09-29 13:38:00'}}}, {'$group': {'_id': {'hq_hotel_id': '$HHI', 'supplier_id': '$SI', 'from': '$Fr', 'hq_city_id': '$HCI', 'checkin': '$CI', 'done_time': '$Dt.DT', 'adult': '$Ad', 'child': '$Cd', 'checkout': '$CO', 'sp_city_code':'$SCI', 'sp_hotel_id':'$SHI'}, count:{$sum:1}}}, {$match:{count:{$gt:1}}}],{allowDiskUse:true})
+
+## aggregation result count numbers by itcount(), but itcount will aggregate the result and iterate all the items and count the number, which is not efficent.
+aggregate([{'$match':{'Dt.DT': {'$lte': '2017-09-28 00:00:00', '$gte': '2017-09-27 00:00:00'}}}, {'$unwind': '$Dt'}, {'$match': {'Dt.DT': {'$lte': '2017-09-28 00:00:00', '$gte': '2017-09-27 00:00:00'}}}],{allowDiskUse:true}).itcount()
+
+db.collection.aggregate(
+   [
+      { $group: { _id: null, count: { $sum: 1 } } }
+   ]
+)
+To get a count of documents that match a query condition, include the $match stage as well:
+
+db.collection.aggregate(
+   [
+      { $match: <query condition> },
+      { $group: { _id: null, count: { $sum: 1 } } }
+   ]
+)
+
+## group and count percent
+db.temp_summary.group({key:{'_id.from':1},reduce:function(curr,result){result.count++;}, initial:{count:0},finalize:function(result){result.percent=result.count/1735516.0;}})
+
+
