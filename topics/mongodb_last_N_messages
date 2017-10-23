@@ -1,0 +1,6 @@
+# The last N added records, from less recent to most recent
+1) db.collection.find().skip(db.collection.count()-N)
+
+2) db.collection.find().sort({$natural:-1}).limit(N)
+
+
