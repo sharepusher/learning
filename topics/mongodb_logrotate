@@ -1,0 +1,8 @@
+# Rotate log file by mongo shell cmd
+use admin
+db.auth(xx,xx)
+db.runCommand({logRotate:1})
+
+
+
+
