@@ -1,0 +1,5 @@
+# first project gets the first element of the array
+# second project gets the section of the array
+db.collection.aggregate([{$project:{dtime:{$slice:[$section_tobesliced, 1]}}},{$project:{"dtime.DT":1}}],{allowDiskUse:true})
+
+
