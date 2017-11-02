@@ -1,0 +1,7 @@
+## merge two dict to a new one
+newdict = dict({1:1},**olddict)
+
+## update/append to the old one 
+olddict.update({1:1})
+
+
