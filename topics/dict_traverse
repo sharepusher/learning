@@ -1,0 +1,8 @@
+##  Reference
+https://stackoverflow.com/questions/4992739/how-to-traverse-through-dict
+ 
+for k,v in dict.iteritems()
+for k in dict.iterkeys() 
+for v in dict.itervalues()
+
+
