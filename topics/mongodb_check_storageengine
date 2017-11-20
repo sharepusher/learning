@@ -1,0 +1,5 @@
+# use admin
+# db.auth("root","rootpassword")
+
+db.serverStatus().storageEngine
+
