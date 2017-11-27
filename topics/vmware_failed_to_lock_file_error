@@ -1,0 +1,17 @@
+# VMware workstation 12
+# Ubuntu 64
+## Problem Statement
+# When server shutdown/poweroff unexpected, then the lock file may be not removed properly.
+# Then the vm server may have a boot error: Failed to lock the file, cannot open the disk ***.vmdk or one of the snapshot is depends on. 
+# Module Disk power on fialed. Failed to start the virutal machine.
+
+# Solution:
+delete/backup the lock files of the virtual machine.
+The lock files locate at the virtualmachines directory, together with the vmdk and vmsd 
+
+
+## Reference
+www.networknet.nl/apps/wp/archives/396/comment-page-1
+
+
+
