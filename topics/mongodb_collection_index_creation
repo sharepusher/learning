@@ -1,0 +1,5 @@
+# mongodb collection will be created automatically when the collection is operated if it's not exist.
+# in other words, we needn't creat a collection before insert/update/index operation.
+# when you wanna create an index, the collection needn't exist, it will be created automatically if necessary. 
+
+
