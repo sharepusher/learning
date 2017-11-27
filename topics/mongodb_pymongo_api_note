@@ -1,0 +1,8 @@
+## Record special pymongo and mongo API pair
+# pymongo 3.4
+1. db.collection.getIndexes() <=> db.collection.index_information()
+# NOTE: the collection must be exist !
+# Or the index_information will raise OperationFailure due to "no collection"
+  
+
+
