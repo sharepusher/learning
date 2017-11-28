@@ -1,0 +1,8 @@
+## How to manage mongodb connections
+# db.auth('x','x')
+# db.serverStatus().connections
+{"current": 5928, "available": 47400, "totalCreated":2491436}
+
+## Reference
+# dbversity.com/how-to-manage-max-connections-in-mongodb
+
