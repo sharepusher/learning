@@ -1,0 +1,13 @@
+## Convert string format date to mongo ISODate
+db.temp_summary.find().forEach(
+  function(doc){
+      doc.checkin=new Date(doc.checkin);
+      db.temp_summary.save(doc)
+  }
+)
+
+
+## Reference
+# https://stackoverflow.com/questions/10942931/converting-string-to-date-in-mongodb
+
+
