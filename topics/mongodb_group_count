@@ -5,6 +5,7 @@
 
 ## aggregation group items and count how many records have the same group items.
 # count:{$sum:1} is in the group, and paralel with _id
+# NOTE: count is PARALEL with _id !!!!
 view.aggregate([{'$match': {'Fr':'schedule','Dt.DT': {'$lte': '2017-09-29 13:39:00', '$gte': '2017-09-29 13:38:00'}}}, {'$unwind': '$Dt'}, {'$match': {'Dt.DT': {'$lte': '2017-09-29 13:39:00', '$gte': '2017-09-29 13:38:00'}}}, {'$group': {'_id': {'hq_hotel_id': '$HHI', 'supplier_id': '$SI', 'from': '$Fr', 'hq_city_id': '$HCI', 'checkin': '$CI', 'done_time': '$Dt.DT', 'adult': '$Ad', 'child': '$Cd', 'checkout': '$CO', 'sp_city_code':'$SCI', 'sp_hotel_id':'$SHI'}, count:{$sum:1}}}, {$match:{count:{$gt:1}}}],{allowDiskUse:true})
 
 ## aggregation result count numbers by itcount(), but itcount will aggregate the result and iterate all the items and count the number, which is not efficent.
