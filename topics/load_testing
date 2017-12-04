@@ -1,0 +1,13 @@
+## Apache Bench for Load Testing
+# AB( Apache Bench) is a command line utility to measure performance of any web server. It’s originally designed to test the Apache HTTP server.
+1) Running ab is like a denial-of-service attack.
+2) Use verbose to debug a high number of failed requests
+3) Be mindful of unnecessary variance in network latency
+4) Use keep-alive, but know it may be faulty
+5) Better simulate a realistic load scenario
+
+
+## Reference
+# http://techieroop.com/performance-benchmark-using-apache-bench-tool/
+# https://blog.getpolymorph.com/7-tips-for-heavy-load-testing-with-apache-bench-b1127916b7b6
+
