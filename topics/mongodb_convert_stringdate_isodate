@@ -2,6 +2,7 @@
 db.temp_summary.find().forEach(
   function(doc){
       doc.checkin=new Date(doc.checkin);
+      doc.checkout=new Date(doc.checkout);
       db.temp_summary.save(doc)
   }
 )
