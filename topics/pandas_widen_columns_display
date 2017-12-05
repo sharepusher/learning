@@ -1,0 +1,18 @@
+
+import pandas as pd
+pd.set_option('display.height', 1000)
+pd.set_option('display.max_rows', 500)
+pd.set_option('display.max_columns', 500)
+pd.set_option('display.width', 1000)
+
+set_option(pat,value) - Sets the value of the specified option
+
+Available options:
+display.[chop_threshold, colheader_justify, column_space, date_dayfirst,
+         date_yearfirst, encoding, expand_frame_repr, float_format, height,
+         line_width, max_columns, max_colwidth, max_info_columns, max_info_rows,
+         max_rows, max_seq_items, mpl_style, multi_sparse, notebook_repr_html,
+         pprint_nest_depth, precision, width]
+mode.[sim_interactive, use_inf_as_null]
+
+
