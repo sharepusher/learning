@@ -1,0 +1,40 @@
+# Memory Management
+# 1) unlike many other languages, python doesn't necessarily release memory back to OS. Instead, it has a special object allocator for small objects,
+#    smaller or equals to 512bytes, which keeps some chunks of already allocated memory for further use in future. The amount of memory that Python
+#    holds depending on the usage patterns, in some cases, all allocated memory will NEVER be released.
+# 2) Garbage collection algorithms
+#    Standard Cpython's garbage collector has two components: reference counting collector; generational garbage collector(known as gc module).
+# 3) Reference counting
+#    Reference counting is a simple technique in which objects are deallocated when there is no reference to them in a program.
+#    Every variable in python is a reference(a pointer) to an object, and NOT the actual value itself.
+#    For example, the assignment statement just adds a new reference to the right-hand side.
+#    Where the reference count increases:
+#    assignment operator; argument passing; appending an object to a list(object's reference count will be increased)
+#    If the reference count reaches zero, CPython automatically calls the object-specific deallocation function.
+#    If an object contains references to other objects then their reference count is decremented too.
+#    Variables, which declared outside of functions, classes, and blocks are called globals. Usually, such variables live until the
+#    end of the Python's process. Thus, the reference count of objects, which are referred by globals, never drops to 0.
+#    Variables, which are defined inside blocks(in a function or class) have a local scope(they are local to its block).
+#    If Python interpreter exits from the block, all the references created inside it are destroyed.
+#    You can always check the number of current references using sys.getrefcount function.
+#    The main advantage of such approach is that the objects can be immediately destroyed after they are no longer needed.
+#    The disadvantages, such as circular references, thread locking and memory and performance overhead.
+# 4) Generational Garbage collector
+#    classical reference counting has a fundamental problem. It can NOT detect reference cycles.
+#    A reference cycle occurs when one or more objects are referencing each other.
+#    Reference cycles can ONLY occur in container objects(i.e. in objects which can contain other objects), such as lists, dicts, classes, tuples.
+#    The GC does NOT track all immutable types except for a tuple. Tuples and dicts containing only immutable objects can also be untracked depending
+#    on certain conditions. Thus, the reference counting technique handles all non-circular references.
+
+
+
+
+
+
+
+
+
+## Reference
+# python3.6 https://rushter.com/blog/python-garbage-collector/
+
+
