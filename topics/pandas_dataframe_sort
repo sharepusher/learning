@@ -1,0 +1,8 @@
+df.sort_values(['c1','c2'], ascending=[False,True])
+or
+df = df.sort_values(by="c1", ascending=False)
+
+# ascending default True
+
+
+
