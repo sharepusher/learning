@@ -28,4 +28,7 @@ db.collection.aggregate(
 ## group and count percent
 db.temp_summary.group({key:{'_id.from':1},reduce:function(curr,result){result.count++;}, initial:{count:0},finalize:function(result){result.percent=result.count/1735516.0;}})
 
+## group and count seperate
+db.stat512.group({key:{'hci':1}, reduce:function(curr,result){switch (curr.iv) {case 1: result.c1 += curr.count; result.total+=curr.count;break; case 2: result.c2+=curr.count; result.total += curr.count; break; case 3: result.c3+=curr.count; result.total += curr.count; break; case 4: result.c4+=curr.count; result.total+=curr.count; break; case 5: result.c5+=curr.count; result.total+=curr.count; break; default: result.others+=curr.count; result.total+=curr.count;}}, initial:{c1:0, c2:0,c3:0,c4:0,c5:0,others:0,total:0}, finalize:function(result){result.p1=result.c1/result.total;result.p2=result.c2/result.total;result.p3=result.c3/result.total;result.p4=result.c4/result.total;result.p5=result.c5/result.total;result.po=result.others/result.total;}})
+
 
