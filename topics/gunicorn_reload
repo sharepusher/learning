@@ -1,0 +1,7 @@
+## How do I reload my application in Gunicorn?
+Gracefully reload by sending HUP signal to gunicorn.
+$kill -HUP masterpid
+# 
+
+
+
