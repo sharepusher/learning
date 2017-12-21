@@ -76,7 +76,13 @@ Using threads instead of processes is a good way to reduce the memory footprint 
 upgrades using the reload signal, as the application code will be shared among workers but loaded only in the worker processes,
 unlike when using the preload setting, which loads the code in the master process.
  
+## Does Gunicorn suffer from the thundering herd problem? Yes! You may experience HIGH LOAD due to this problem when using many workers or threads!!!
+The thundering herd problem occurs when many sleeping request handles, which may be either threads or processes, wake up at the same time to handle a new request.
+Since only one handler will receive the request, the others will have been awakened for no reason, wasting CPU cycles.
+At this time, Gunicorn does not implement any IPC solution for coordinating between worker processes.
 
+You may experience high load due to this problem when using many workers or threads.
+However a work has been started to remove this issue.
 
 
 
