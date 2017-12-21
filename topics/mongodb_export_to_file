@@ -1,0 +1,11 @@
+## Reference: 
+https://docs.mongodb.com/manual/reference/program/mongoexport/
+https://stackoverflow.com/questions/12823990/how-to-get-mongo-command-results-in-to-a-flat-file
+
+1) mongoexport is a utility that produces a JSON or CSV export of data stored in a MongoDB instance.
+2) mongoexport should be run from the system command line, NOT the mongo shell.
+3) Avoid using mongoexport for full instance production backups, use mongodump/mongorestore, as which do not reliably preserve all rich BSON data types,
+   because JSON can only represent a subset of the types supported by BSON.
+4) mongoexport -u my_username -p my_password --authenticationDatabase db_name -h host_name:27017 -d db_name -c collection_name -q '{"query_condition":"20"}' -o output_jsoncsv
+
+
