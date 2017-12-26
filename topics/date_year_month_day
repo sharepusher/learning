@@ -1,0 +1,12 @@
+>>>import datetime
+>>> datetime.datetime.today()
+datetime.datetime(2017, 12, 26, 16, 43, 10, 606291)
+>>> datetime.datetime.today().year
+2017
+>>> datetime.datetime.today().day
+26
+>>> datetime.datetime.today().month
+12
+
+
+
