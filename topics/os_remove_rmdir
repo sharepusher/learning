@@ -1,0 +1,22 @@
+## Reference
+# https://www.tutorialspoint.com/python/os_rmdir.htm
+# http://www.tutorialspoint.com/python/os_remove.htm
+
+## os.remove(file_name)
+# removes the file path. If the path is a directory, OSError is raised.
+# In other words, it's used to remove file but not direcotry.
+import os, sys
+print "The dir is: %s" % os.listdir(os.getcwd())
+try:
+    os.remove("aa.txt")
+except OSError:
+    print("Failed to remove file")
+   
+## os.rmdir(empty_directory)
+# removes the directory path, it works ONLY when the directory is empty, OSError raised if not.
+try:
+    os.rmdir("/test")
+except OSError:
+    print("Failed to remove directory")
+
+
