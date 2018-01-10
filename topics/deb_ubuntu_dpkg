@@ -1,0 +1,29 @@
+## Reference
+https://askubuntu.com/questions/40779/how-do-i-install-a-deb-file-via-the-command-line
+https://www.cyberciti.biz/faq/ubuntu-linux-how-do-i-install-deb-packages/
+
+## Description
+Debian (.deb) packages are the packages that are used in Ubuntu. You can install any .deb package in your system.
+1) .deb files can generally be installed from your file manager (Nautilus) merely by clicking on them, 
+   since file associations with the default installer is already set in Ubuntu. 
+
+2) Packages are manually installed via the dpkg command (Debian Package Management System).  
+dpkg is the backend to commands like apt-get and aptitude, which in turn are the backend for GUI install apps like the Software Center and Synaptic.
+
+
+## Operation
+dpkg -i package-name-here.deb
+dpkg --install package-name-here.deb
+dpkg -i -R /path/to/dir/name/with/lots/of/dot-deb-files/
+dpkg -i --recursive /path/to/dir/name/with/lots/of/dot-deb-files/
+
+sudo dpkg -r PACKAGE_NAME
+
+Where,
+
+-i or --install : Install the package.
+-R or --recursive : Recursively installed all *.deb files found at specified directories and all of its sub-directories. 
+/path/to/dir/name/with/lots/of/dot-deb-files/ must refer to a directory instead of package-name-here.deb file name.
+
+
+
