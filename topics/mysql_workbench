@@ -1,0 +1,20 @@
+## Reference
+https://docs.oracle.com/cd/E19078-01/mysql/mysql-workbench/wb-installing.html
+
+## Description
+1) install
+sudo dpkg -i mysqlworkbench.deb
+or
+sudo rpm -i mysqlworkbench.rpm
+
+2) launch
+/usr/bin/mysql-workbench
+
+3) uninstall
+sudo dpkg -r mysql-workbench-oss
+or
+sudo rpm -e mysql-workbench-oss
+
+
+
+
