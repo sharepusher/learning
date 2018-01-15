@@ -1,0 +1,16 @@
+## login
+mongo -u xx -p xxx --authenticationDatabase db_name_to_auth --host=127.0.0.1:27017
+use db_name_to_use
+
+## insert
+>db.collection_to_use.insert({"H":1,"S":2,"Dt":{"x":1,"y":2}})
+
+## find and sort
+>db.coll_to_use.find({"field":vlaue}).sort({"field":-1/1})
+## only find the field exist
+>db.coll_to_use.find({"field":{$exists:true/false}}).sort("field":-1/1)
+
+
+## drop index
+>db.collection_to_use.dropIndex("index_name")
+
