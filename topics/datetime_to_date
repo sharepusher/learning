@@ -1,0 +1,9 @@
+## Convert datetime to date
+Use date() method.
+
+datetime.datetime.now().date() == datetime.date.today()
+
+
+
+
+
