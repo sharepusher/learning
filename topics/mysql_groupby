@@ -1,0 +1,5 @@
+## Group by multiple columns
+
+select * from table group by col1, col2
+
+
