@@ -77,6 +77,11 @@ https://www.biaodianfu.com/cgi-fastcgi-wsgi.html
 Database indexing
 https://stackoverflow.com/questions/1108/how-does-database-indexing-work
 
+postgreSQL
+https://stackoverflow.com/questions/26040493/how-to-show-data-in-a-table-by-using-psql-command-line-interface
+
+redis
+https://realpython.com/blog/python/caching-in-django-with-redis/
 
 
 ## MacOS PKG Installation
@@ -87,4 +92,6 @@ nginx install
 ://www.reinbach.com/blog/uwsgi-nginx-flask-virtualenv-mac-os-x/
 
 
-
+## Math
+Power of Two
+https://en.wikipedia.org/wiki/Power_of_two
