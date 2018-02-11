@@ -1,0 +1,12 @@
+## Reference 
+https://stackoverflow.com/questions/706101/python-json-decoding-performance
+https://github.com/esnme/ultrajson
+
+## ujson is a better choice to replace json for performance consideration
+UltraJSON is an ultra fast JSON encoder and decoder written in pure C with bindings for Python 2.5+ and 3
+
+$ pip install ujson
+
+
+
+
