@@ -1,5 +1,6 @@
 ## Reference
 https://dev.mysql.com/doc/refman/5.7/en/apis-python.html
+https://dev.mysql.com/doc/connector-python/en/connector-python-example-cursor-select.html
 
 ## Description
 MySQLdb is a third-party driver that provides MySQL support for Python, compliant with the Python DB API version 2.0. 
