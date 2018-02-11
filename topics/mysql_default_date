@@ -1,0 +1,32 @@
+## Reference
+http://www.jb51.net/article/23966.htm
+
+## Intro
+MySQL default date format(3 bytes) is YYYY-MM-DD, the range is from 1000-01-01 to 9999-12-31
+DATETIME(8 bytes) is a type with date and time, and in format: YYYY-MM-DD HH:MM:SS. The range is from 10000-01-01 00:00:00 to 9999-12-31 23:59:59
+YEAR (1 bytes) YYYY from 1901 to 2155
+timestamp (4 bytes): YYYY-MM-DD HH:MM:SS 1970-01-01 00:00:01 ~ 2038
+
+## Comparision
+datetime: range greater than timestamp, but timestamp storage size only half of datetime.
+Additionally, timestamp can be inserted/updated automatically with current_timestamp
+
+create table t8 (
+  `id1` timestamp NOT NULL default CURRENT_TIMESTAMP,
+  `id2` datetime default NULL
+);
+
+两者之间的比较:
+1. timestamp容易所支持的范围比timedate要小。 并且容易出现超出的情况
+2.timestamp比较受时区timezone的影响以及MYSQL版本和服务器的SQL MODE的影响.
+
+time           3 bytes   HH:MM:SS              -838:59:59          ~ 838:59:59
+time 时间范围居然有这么大的范围，特别是 time 可以取负值，有点奇怪。后来，看了 MySQL 手册才知道这是为了满足两个日期时间相减才这样设计的。
+select timediff('2000:01:31 23:59:59', '2000:01:01 00:00:00'); -- 743:59:59 
+select timediff('2000:01:01 00:00:00', '2000:01:31 23:59:59'); -- -743:59:59 
+select timediff('23:59:59', '12:00:00');                        -- 11:59:59
+注意，timediff 的两个参数只能是 datetime/timestamp, time 类型的，并且这两个参数类型要相同。即：datetime/timestamp 和 datetime/timestamp 比较；time 和 time 相比较。
+
+
+
+
