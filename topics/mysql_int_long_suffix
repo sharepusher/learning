@@ -1,0 +1,14 @@
+## Reference
+https://stackoverflow.com/questions/11764713/why-do-integers-in-database-row-tuple-have-an-l-suffix
+http://docs.python.org/library/stdtypes.html#numeric-types-int-float-long-complex
+
+## Why do intergers in database row tuple have an "L" suffix?
+It can be removed the "L" by passing values with int()
+Because long integer literals were indicated with an 'l' or 'L' suffix before Python 3.
+Since Python3, int and long have been merged into "int", which functions pretty much like long used to.
+Do note that, technically, Python2's int was equivalent to C's long, while Python's long was more like a BigNumber-type
+thing with unlimited precision.
+
+MySQLdb convert ALL integer types to long type on Python2.x
+
+
