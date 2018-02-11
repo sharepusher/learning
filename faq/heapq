@@ -1,3 +1,6 @@
+## Reference
+# https://docs.python.org/2/library/heapq.html
+
 ## heapq - min heap
 # This module provides an implementation of the heap queue algorithm,
 # also known as the priority queue algorithm.
@@ -8,6 +11,13 @@
 # The interesting property of a heap is that its smallest elment is always the root, heap[0]
 
 # To create a heap, use a list initialized to [], or you can transform a populated list into a heap via function heapify().
+def heapsort(iterable):
+    h = []
+    for value in iterable:
+        heappush(h, value)
+    return [heappop(h) for i in range(len(h))]      
+heapsort([5,7,1,2,6,3,4])
+
 
 # heapq.heappush(heap, item)
 #  Push the value item onto the heap, maintaining the heap invariant.
