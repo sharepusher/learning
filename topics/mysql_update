@@ -1,0 +1,2 @@
+update stat.summary set total_num=7811, hit_total=4212 where id=21
+
