@@ -1,0 +1,82 @@
+## Reference
+#  https://www.keakon.net/2009/02/21/在Python下转换时间格式
+
+## 1) datetime to GMT time
+# 先看如何将datetime类型转换成HTTP头所用的GMT时间格式的字符串（如'Thu, 19 Feb 2009 16:00:07 GMT')
+import datetime
+GMT_FORMAT = '%a, %d %b %Y %H:%M:%S GMT'
+
+# 生成datetime对象的过程和我可能不同，这里是拿当前时间来生成
+datetime.datetime.utcnow().strftime(GMT_FORMAT)
+
+## 2) GMT to datetime 
+再看如何将GMT时间格式的字符串转换成datetime类型：
+TIME = 'Thu, 19 Feb 2009 16:00:07 GMT'
+datetime.datetime.strptime(TIME, GMT_FORMAT)
+
+最后，如果要增加一段时间再输出，则可以这样写（以增加10天为例）：
+(datetime.datetime.strptime(TIME, GMT_FORMAT) + datetime.timedelta(10)).strftime(GMT_FORMAT)
+
+
+## 3) 其实就是使用strftime和strptime这2个方法相互转换而已
+
+%a 本地的星期缩写
+%A 本地的星期全称
+%b 本地的月份缩写
+%B 本地的月份全称
+%c 本地的合适的日期和时间表示形式
+%d 月份中的第几天，类型为decimal number（10进制数字），范围[01,31]
+%f 微秒，类型为decimal number，范围[0,999999]，Python 2.6新增
+%H 小时（24进制），类型为decimal number，范围[00,23]
+%I 小时（12进制），类型为decimal number，范围[01,12]
+%j 一年中的第几天，类型为decimal number，范围[001,366]
+%m 月份，类型为decimal number，范围[01,12]
+%M 分钟，类型为decimal number，范围[00,59]
+%p 本地的上午或下午的表示（AM或PM），只当设置为%I（12进制）时才有效
+%S 秒钟，类型为decimal number，范围[00,61]（60和61是为了处理闰秒）
+%U 一年中的第几周（以星期日为一周的开始），类型为decimal number，范围[00,53]。在度过新年时，直到一周的全部7天都在该年中时，才计算为第0周。只当指定了年份才有效。
+%w 星期，类型为decimal number，范围[0,6]，0为星期日
+%W 一年中的第几周（以星期一为一周的开始），类型为decimal number，范围[00,53]。在度过新年时，直到一周的全部7天都在该年中时，才计算为第0周。只当指定了年份才有效。
+%x 本地的合适的日期表示形式
+%X 本地的合适的时间表示形式
+%y 去掉世纪的年份数，类型为decimal number，范围[00,99]
+%Y 带有世纪的年份数，类型为decimal number
+%Z 时区名字（不存在时区时为空）
+%% 代表转义的"%"字符
+
+4) timestamp to datetime 	
+
+import datetime
+timestamp = 1234567890
+dt = datetime.datetime.utcfromtimestamp(timestamp) # 时区为UTC
+dt = datetime.datetime.fromtimestamp(timestamp) # 时区为本地时区
+# 不建议使用后者，因为在Mac OS X下，系统时区为北京时间时，datetime.datetime.fromtimestamp(0)的结果为datetime.datetime(1970, 1, 1, 8, 30)，多出了30分钟。time.mktime(datetime.datetime(1970, 1, 1).utctimetuple()) / 3600的结果为-8.5，也差了半小时。但是选择上海等其他城市却没有这30分钟的时差。
+
+5) datetime to timestamp
+
+import time
+timestamp = calendar.timegm(dt.utctimetuple()) # 时区为UTC
+timestamp = int(time.mktime(dt.timetuple())) # 时区为本地时区
+# 不加int，则返回浮点数，但time的最小精度是1秒，所以浮点部分是没用的
+# 需要微秒部分可以取microsecond属性，再除以1百万，但与JavaScript交互时可以直接传递字符串，避免浮点数误差
+timestamp = int(time.time()) # 时区为本地时区
+timestamp = int((dt - datetime(1970, 1, 1)).total_seconds()) # 时区为UTC，但需要dt是naive类型（不含tzinfo）的零时区时间，例如datetime.utcnow()
+
+
+6) timestamp to Javascript Date
+d = new Date(1234567890000);
+//JavaScript中的timestamp为零时区1970年1月1日到该Date对象所经过的毫秒数，精确到毫秒，所以多加3个0
+
+7) Javascript Date to timestamp
+d = new Date(1234567890);
+Date.parse(d);
+// 结果是1234567000，因为JavaScript的时间处理有点问题，会丢失最后3位
+Date.parse(d) + d.getMilliseconds();
+// 结果是1234567890，终于正确了
+d.getTime();
+// 结果也是1234567890，这明显方便多了
++d;
+// 结果还是1234567890，懒人必备
+
+8) 最后要注意的是，转换不支持unicode。如果需要中文格式的话，使用GBK或UTF-8编码的字符串
+
