@@ -1,0 +1,18 @@
+# Reference
+https://docs.python.org/2/library/os.path.html
+https://stackoverflow.com/questions/82831/how-to-check-whether-a-file-exists
+
+
+import os
+os.path.exists(path)
+Return True if path refers to an existing path.
+Returns False for broken symbolic links.
+On some platforms, this function may return False if permission is not granted to execute os.stat() on the requested file,
+even if the path physically exists.
+
+os.path.exists(file_path)
+This returns True for both files and directories but you can instead use os.path.isfile to test if it's a file specifically. 
+It follows symlinks.
+
+
+
