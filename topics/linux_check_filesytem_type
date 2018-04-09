@@ -1,0 +1,12 @@
+## Reference
+https://www.tecmint.com/find-linux-filesystem-type/
+
+1. Using df Command
+df command reports Disk File Sytem space usage, to include the file system type on a particular disk partition,
+use -T flag as below:
+$ df -Th
+OR
+$ df -Th | grep "^/dev"
+
+
+
