@@ -1,0 +1,11 @@
+## Reference
+https://stackoverflow.com/questions/674519/how-can-i-convert-a-python-dictionary-to-a-list-of-tuples
+
+from operator import itemgetter
+# sorted list
+sorted[mydict.iteritems(), key=itemgetter(1), reverse=True]
+
+# unsorted list
+mydict.items()
+
+
