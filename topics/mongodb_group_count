@@ -1,6 +1,7 @@
 ## Reference
 # https://docs.mongodb.com/manual/reference/method/cursor.itcount/
 # https://docs.mongodb.com/manual/reference/method/cursor.count/
+# https://docs.mongodb.com/manual/reference/operator/aggregation/size/
 
 
 ## aggregation group items and count how many records have the same group items.
@@ -30,5 +31,21 @@ db.temp_summary.group({key:{'_id.from':1},reduce:function(curr,result){result.co
 
 ## group and count seperate
 db.stat512.group({key:{'hci':1}, reduce:function(curr,result){switch (curr.iv) {case 1: result.c1 += curr.count; result.total+=curr.count;break; case 2: result.c2+=curr.count; result.total += curr.count; break; case 3: result.c3+=curr.count; result.total += curr.count; break; case 4: result.c4+=curr.count; result.total+=curr.count; break; case 5: result.c5+=curr.count; result.total+=curr.count; break; default: result.others+=curr.count; result.total+=curr.count;}}, initial:{c1:0, c2:0,c3:0,c4:0,c5:0,others:0,total:0}, finalize:function(result){result.p1=result.c1/result.total;result.p2=result.c2/result.total;result.p3=result.c3/result.total;result.p4=result.c4/result.total;result.p5=result.c5/result.total;result.po=result.others/result.total;}})
+
+## $size
+Counts and returns the total number of items in an array!
+Can using with $group, $project
+
+db.inventory.aggregate(
+   [
+      {
+         $project: {
+            item: 1,
+            numberOfColors: { $size: "$colors" }
+         }
+      }
+   ]
+)
+
 
 
