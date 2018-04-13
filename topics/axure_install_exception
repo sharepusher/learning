@@ -1,0 +1,17 @@
+## Problem
+After axure installation, failed to kickoff and pop up exception window.
+
+## Research
+check axure log
+vi ~/Documents/Axure\ User\ Data/Axure-8-0/logs/error_log_2018-04-13.log
+
+========== Beg Wrapped Inner Exception 0 ==========
+System.TypeInitializationException: The type initializer for 'ai' threw an exception. ---> System.UnauthorizedAccessException: Access to the path "/Users/zack/.config/.isolated-storage" is denied.
+
+File permission issue.
+
+
+## Solution:
+The direcotry owner is root, change it to current user.
+
+
