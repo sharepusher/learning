@@ -1,0 +1,10 @@
+## Reference
+http://railsapps.github.io/xcode-command-line-tools.html
+https://davidwalsh.name/fix-git-high-sierra-upgrade
+
+## Error
+xcrun: error: invalid active developer path (/Library/Developer/CommandLineTools), missing xcrun at: /Li
+
+## Solution
+xcode-select --install
+
