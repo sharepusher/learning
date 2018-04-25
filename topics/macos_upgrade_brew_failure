@@ -1,0 +1,9 @@
+## Reference
+https://github.com/Homebrew/brew/issues/3285
+
+## Solution
+uninstall and reinstall brew
+
+/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+
+ 
