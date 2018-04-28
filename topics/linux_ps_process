@@ -1,0 +1,11 @@
+Reference:
+https://blog.csdn.net/zhangfn2011/article/details/7488746
+
+
+pidof httpd
+
+top -p 21538,31117,31116,31115,31114
+
+
+
+
