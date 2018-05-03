@@ -9,6 +9,7 @@ chown owner-user:owner-group file
 chown owner-user:owner-group directory
 chown options owner-user:owner-group file
 
+sudo chown -R $(whoami):admin bigdata/
 
 
 
