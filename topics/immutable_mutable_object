@@ -1,0 +1,40 @@
+## Reference
+https://medium.com/@meghamohan/mutable-and-immutable-side-of-python-c2145cf72747
+
+Since everything in Python is an Object, every variable holds an object instance.
+When an object is initiated, it is assigned a unique object id.
+Its type is defined at runtime and once set can never change, however its state can be changed if it is mutable.
+Simple put, a mutable object can be changed after it is created, and an immutable object can’t.
+
+Objects of built-in types like (int, float, bool, str, tuple, unicode) are immutable.
+Objects of built-in types like (list, set, dict) are mutable.
+Custom classes are generally mutable. 
+To simulate immutability in a class, one should override attribute setting and deletion to raise exceptions.
+
+
+Now comes the question, how do we find out if our variable is a mutable or immutable object. 
+For this we should understand what ‘ID’ and ‘TYPE’ functions are for.
+
+The built-in function id() returns the identity of an object as an integer.
+This integer usually corresponds to the object’s location in memory
+The is operator compares the identity of two objects.
+
+The built-in function type() returns the type of an object.
+
+How objects are passed to Functions?
+Memory efficiency is highly affected when the proper objects are used.
+Immutable objects can be called by reference because its value cannot be changed anyways.
+
+As we can see from the above example, we have called the list via call by reference, so the changes are made to the original list itself.
+
+
+def updateNumber(n):
+    print(id(n))
+    n += 10
+b = 5
+print(id(b))                   # 10055680
+updateNumber(b)                # 10055680
+print(b)                       # 5
+
+In the above example the same object is passed to the function, but the variables value doesn’t change even though the object is identical. This is called pass by value. So what is exactly happening here? When the value is called by the function, only the value of the variable is passed, not the object itself. So the variable referencing the object is not changed, but the object itself is being changed but within the function scope only. Hence the change is not reflected.
+
