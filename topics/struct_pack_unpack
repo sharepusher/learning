@@ -1,0 +1,23 @@
+## Reference
+https://blog.csdn.net/ithomer/article/details/5974029
+https://docs.python.org/2/library/struct.html
+https://www.jianshu.com/p/5a985f29fa81
+
+## Convert num or character flow to byte flow(byte array)
+在struct模块中，将一个整型数字、浮点型数字或字符流（字符数组）转换为字节流（字节数组）时，需要使用格式化字符串fmt告诉struct模块被转换的对象是什么类型，比如整型数字是'i'，浮点型数字是'f'，一个ascii码字符是's'。
+i 4 bytes
+Q 8 bytes
+
+Q	unsigned long long	long	8
+
+
+为了同c中的结构体交换数据，还要考虑有的c或c++编译器使用了字节对齐，通常是以4个字节为单位的32位系统，故而struct根据本地机器字节顺序转换.可以用格式中的第一个字符来改变对齐方式.定义如下
+Character	Byte order	Size and alignment
+@	native	native 凑够4个字节
+=	native	standard 按原字节数
+<	little-endian	standard 按原字节数
+>	big-endian	standard 按原字节数
+!	network (= big-endian)	standard 按原字节数
+
+
+
