@@ -1,0 +1,92 @@
+## Reference 
+https://linoxide.com/linux-how-to/split-large-text-file-smaller-files-linux/
+
+Syntax
+
+split [options] filename prefix
+
+
+-a –suffix-length=N use suffixes of length N (default 2)
+-b –bytes=SIZE put SIZE bytes per output file
+-C –line-bytes=SIZE put at most SIZE bytes of lines per output file
+-d –numeric-suffixes use numeric suffixes instead of alphabetic
+-l –lines=NUMBER put NUMBER lines per output file
+
+
+
+## Split a file into multiple pieces by default usage
+
+# cat systemlog | wc -l
+1099
+# split systemlog
+# ll
+total 160
+-rw-rw-r-- 1 root root 76294 Mar 25 12:02 systemlog
+-rw-r--r-- 1 root root 68251 Mar 25 12:07 xaa
+-rw-r--r-- 1 root root 8043 Mar 25 12:07 xab
+# cat xaa | wc -l
+1000
+# cat xab | wc -l
+99
+
+
+## Split the file, based upon the number of lines
+# split -l 200 systemlog
+# ll
+total 172
+-rw-rw-r-- 1 root root 76294 Mar 25 12:02 systemlog
+-rw-r--r-- 1 root root 14369 Mar 25 12:16 xaa
+-rw-r--r-- 1 root root 12795 Mar 25 12:16 xab
+-rw-r--r-- 1 root root 13566 Mar 25 12:16 xac
+-rw-r--r-- 1 root root 13681 Mar 25 12:16 xad
+-rw-r--r-- 1 root root 13840 Mar 25 12:16 xae
+-rw-r--r-- 1 root root 8043 Mar 25 12:16 xaf
+# cat xaa | wc -l; cat xab | wc -l; cat xac | wc -l; cat xad | wc -l; cat xae | wc -l; cat xaf | wc -l
+200
+200
+200
+
+
+## Split a large file into 500MB files
+# split -b 500MB httpd.log
+# ll -lh
+total 1.9G
+-rw-r--r-- 1 root root 954M Mar 25 12:35 httpd.log
+-rw-r--r-- 1 root root 477M Mar 25 12:38 xaa
+-rw-r--r-- 1 root root 477M Mar 25 12:38 xab
+
+## Split a large file into  200MB files with the given prefix
+# split -b 200M httpd.log split.log
+# ll -lh
+total 1.9G
+-rw-r--r-- 1 root root 954M Mar 25 12:35 httpd.log
+-rw-r--r-- 1 root root 200M Mar 25 12:52 split.logaa
+-rw-r--r-- 1 root root 200M Mar 25 12:52 split.logab
+-rw-r--r-- 1 root root 200M Mar 25 12:52 split.logac
+
+
+## Split the file and name it with numbers
+You can use the option -d to name the files with number suffixes as 00, 01, 02 .. 
+# split -d -b 200M httpd.log log
+# ll -lh
+total 1.9G
+-rw-r--r-- 1 root root 954M Mar 25 12:35 httpd.log
+-rw-r--r-- 1 root root 200M Mar 25 12:58 log00
+-rw-r--r-- 1 root root 200M Mar 25 12:58 log01
+
+## Csplit
+
+Csplit is another command utility which divides single files into multiple files determined by context lines.
+
+Syntax
+csplit [option]... filename pattern.
+By passing 4 as a command-line argument, this command splits our domainslist file at the 4th line.
+# csplit domainslist 4
+36
+60
+# ll
+total 20
+-rw-r--r-- 1 root root 96 Mar 25 14:08 domainslist
+-rw-r--r-- 1 root root 36 Mar 25 14:08 xx00
+-rw-r--r-- 1 root root 60 Mar 25 14:08 xx01
+
