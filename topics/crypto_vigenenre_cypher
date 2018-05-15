@@ -1,0 +1,56 @@
+## Reference
+http://www.cnblogs.com/maoguy/p/6002510.html
+
+Vigenenre密码使用一个词组作为密钥，密钥中每一个字母用来确定一个代换表，每一个密钥字母被用来加密一个明文字母，第一个密钥字母加密第一个明文字母，第二个密钥字母加密第二个明文字母，等所有密钥字母使用完后，密钥再次循环使用，于是加解密前需先将明密文按照密钥长度进行分组
+设密钥K=(k1,k2,…,kd)，明文M=(m1,m2,…,mn)，密文C=(c1,c2,…,cn)；
+
+加密变换为：ci=Eki(mi)=mi+ki(mod 26)
+
+解密变换为：mi=Dki(ci)=ci-ki(mod 26)
+
+通常通过查询维吉尼亚表进行加解密。
+
+The vigenere cipher is a symmetric key cipher that operates as a group of
+Caesar ciphers in sequence with different rotations:
+    KEY         == boomboombo
+    MESSAGE     == helloworld
+    CIPHERTEXT  == jvopbrfqba
+This cipher is crackable in a few ways but most notably it is known to have
+repeating bits across a ciphertext which give away the blocks of the original
+key. When you know how long a key is and the ciphertext of that key, all that
+you have to do is run a Caesar cipher on each block until you break the code.
+This does however help some against frequency attacks as letters don't
+correspond as well.
+The basic formula is as follows:
+    E(m) = ((m1 + k1) % 26, (m2 + k2) % 26, ..., (mi + ki) % 26)
+    D(m) = ((c1 - k1) % 26, (c2 - k2) % 26, ..., (ci - ki) % 26)
+
+
+from itertools import cycle
+
+ALPHA = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ'
+
+
+def encrypt(key, plaintext):
+    """Encrypt the string and return the ciphertext"""
+    pairs = zip(plaintext, cycle(key))
+    result = ''
+
+    for pair in pairs:
+        total = reduce(lambda x, y: ALPHA.index(x) + ALPHA.index(y), pair)
+        result += ALPHA[total % 26]
+
+    return result.lower()
+
+
+def decrypt(key, ciphertext):
+    """Decrypt the string and return the plaintext"""
+    pairs = zip(ciphertext, cycle(key))
+    result = ''
+
+    for pair in pairs:
+        total = reduce(lambda x, y: ALPHA.index(x) - ALPHA.index(y), pair)
+        result += ALPHA[total % 26]
+
+    return result
+
