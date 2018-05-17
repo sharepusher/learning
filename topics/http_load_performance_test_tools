@@ -1,0 +1,36 @@
+## Reference 
+https://httpd.apache.org/docs/2.4/programs/ab.html
+http://craigwickesser.com/2015/01/post-data-to-load-test-with-apachebench/
+https://stackoverflow.com/questions/3683003/apache-bench-and-post-data/9624289#9624289
+https://prabuddha.me/apache-bench-ab-post-json-api/
+http://tutorials.jumpstartlab.com/topics/performance/load_testing.html
+
+
+## ApacheBench
+ab is a tool for benchmarking your Apache Hypertext Transfer Protocol (HTTP) server. 
+It is designed to give you an impression of how your current Apache installation performs. 
+This especially shows you how many requests per second your Apache installation is capable of serving.
+
+
+
+# ab POST request
+ -p POST-file option which lets you POST a File containing data to POST.
+
+ab -n 1 -p post -v 4 -T application/x-www-form-urlencoded "http://oz01.zappos.net/registrations"
+>>> import urllib
+>>> outfile = open('post.data', 'w')
+>>> params = ({ 'auth_token': 'somelongstringthatendswithanequalssign=' })
+>>> encoded = urllib.urlencode(params)
+>>> outfile.write(encoded)
+>>> outfile.close()
+
+ab -n 10 -c 2 -p data/small.json -T 'application/json' http://0.0.0.0:9000/
+
+# The json file is in {} format
+
+import json
+with open('data.json', 'w') as outfile:
+    json.dump(data, outfile)
+
+
+
