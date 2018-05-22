@@ -1,0 +1,16 @@
+## Reference
+https://stackoverflow.com/questions/3822648/how-do-i-query-between-two-dates-using-mysql
+http://www.mysqltutorial.org/mysql-between
+https://dev.mysql.com/doc/refman/5.7/en/comparison-operators.html
+
+
+Your query should have date as
+
+select * from table between `lowerdate` and `upperdate`
+
+This is equivalent to the expression (min <= expr AND expr <= max)
+
+## Be careful when compare date with timestamp, the date will be converted automatically to timestamp,
+BUT the date will be converted with "00:00:00", in this case, the last day wont' be searched
+
+
