@@ -1,0 +1,62 @@
+## Reference
+http://www.mysqltutorial.org/mysql-limit.aspx
+http://www.cnblogs.com/davidwang456/p/4109968.html
+http://www.xarg.org/2011/10/optimized-pagination-using-mysql/
+https://stackoverflow.com/questions/6896412/how-to-split-search-results-into-pages
+http://www.jb51.net/article/109749.htm
+http://www.jb51.net/article/46015.htm
+http://www.jb51.net/article/31868.htm
+
+
+
+## mysql limit can constrain the number of rows returned by select statement
+
+1) with limit and offeset
+The real problem are clicks on sites with a large offset, like this:
+
+SELECT *
+FROM city
+ORDER BY id DESC
+LIMIT 100000, 15
+Which takes about 0.22 sec on my data set with about 2M rows. 
+An EXPLAIN shows, that 100015 rows were read but only 15 were really needed and the rest was thrown away. 
+Large offsets are going to increase the data set used,MySQL has to bring data in memory that is never used! 
+
+2) with SQL_CALC_FOUND_ROWS
+
+SELECT SQL_CALC_FOUND_ROWS *
+FROM city
+ORDER BY id DESC
+LIMIT 100000, 15;
+
+Using SQL_CALC_FOUND_ROWS for pagination is the worst idea, because there is no LIMIT optimization
+
+
+3) WHERE and limit 
+
+A very fast approach is using a query which is based on the last ID the user has seen. The query for the next page looks like this, where you have to pass the id of the last element on a page:
+
+SELECT *
+FROM news WHERE id < $last_id
+ORDER BY id DESC
+LIMIT $perpage
+
+
+4)
+一：分页需求：
+
+客户端通过传递start(页码)，limit(每页显示的条数)两个参数去分页查询数据库表中的数据，那我们知道MySql数据库提供了分页的函数limit m,n，但是该函数的用法和我们的需求不一样，所以就需要我们根据实际情况去改写适合我们自己的分页语句，具体的分析如下：
+
+比如：
+
+查询第1条到第10条的数据的sql是：select * from table limit 0,10;   ->对应我们的需求就是查询第一页的数据：select * from table limit (1-1)*10,10;
+
+查询第10条到第20条的数据的sql是：select * from table limit 10,20;  ->对应我们的需求就是查询第二页的数据：select * from table limit (2-1)*10,10;
+
+查询第20条到第30条的数据的sql是：select * from table limit 20,30;  ->对应我们的需求就是查询第三页的数据：select * from table limit (3-1)*10,10;
+
+
+
+二：通过上面的分析，可以得出符合我们自己需求的分页sql格式是：select * from table limit (start-1)*limit,limit; 其中start是页码，limit是每页显示的条数
+
+
