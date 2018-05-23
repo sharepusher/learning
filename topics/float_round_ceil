@@ -1,0 +1,19 @@
+## Reference
+http://www.jb51.net/article/102248.htm
+
+
+## Solution
+
+>>> round(3.25); round(4.85)
+3.0
+5.0
+
+>>> import math
+>>> math.ceil(3.25)
+4.0
+>>> math.ceil(3.75)
+4.0
+>>> math.ceil(4.85)
+5.0
+
+
