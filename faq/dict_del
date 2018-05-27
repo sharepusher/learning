@@ -1,2 +1,22 @@
+## Reference
+https://docs.python.org/3/reference/simple_stmts.html#grammar-token-del_stmt
+https://stackoverflow.com/questions/5844672/delete-an-element-from-a-dictionary
+
+## Solution
+You can use both dict.pop() method and a more generic del statement to remove items from a dictionary. 
+They both mutate the original dictionary, so you need to make a copy (see details below).
+
+And both of them will raise a KeyError if the key you're providing to them is not present in the dictionary:
+
+key_to_remove = "c"
+d = {"a": 1, "b": 2}
+del d[key_to_remove]  # Raises `KeyError: 'c'`
+and
+
+key_to_remove = "c"
+d = {"a": 1, "b": 2}
+d.pop(key_to_remove)  # Raises `KeyError: 'c'`
+
+
 It is possible to delete a key:value pair with del.
 
