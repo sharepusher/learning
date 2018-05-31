@@ -1,0 +1,44 @@
+## Reference
+https://stackoverflow.com/questions/1143671/python-sorting-list-of-dictionaries-by-multiple-keys
+https://docs.python.org/2.7/howto/sorting.html
+
+
+## Solution
+multiple key supported !!!!!
+
+mylist = sorted(mylist, key=itemgetter('name', 'age'))
+mylist = sorted(mylist, key=lambda k: (k['name'].lower(), k['age']))
+mylist = sorted(mylist, key=lambda k: (k['name'].lower(), -k['age']))
+
+The key-function patterns shown above are very common, so Python provides convenience functions to make accessor functions easier and faster. The operator module has operator.itemgetter(), operator.attrgetter(), and starting in Python 2.5 an operator.methodcaller() function.
+
+Using those functions, the above examples become simpler and faster:
+
+>>> from operator import itemgetter, attrgetter
+>>> sorted(student_tuples, key=itemgetter(2))
+[('dave', 'B', 10), ('jane', 'B', 12), ('john', 'A', 15)]
+
+The operator module functions allow multiple levels of sorting. For example, to sort by grade then by age:
+
+>>> sorted(student_tuples, key=itemgetter(1,2))
+[('john', 'A', 15), ('dave', 'B', 10), ('jane', 'B', 12)]
+>>> sorted(student_objects, key=attrgetter('grade', 'age'))
+[('john', 'A', 15), ('dave', 'B', 10), ('jane', 'B', 12)]
+
+## Ascending and Descending
+Both list.sort() and sorted() accept a reverse parameter with a boolean value. This is used to flag descending sorts. For example, to get the student data in reverse age order:
+
+>>> sorted(student_tuples, key=itemgetter(2), reverse=True)
+[('john', 'A', 15), ('jane', 'B', 12), ('dave', 'B', 10)]
+>>> sorted(student_objects, key=attrgetter('age'), reverse=True)
+[('john', 'A', 15), ('jane', 'B', 12), ('dave', 'B', 10)]
+
+## Sort Stability and Complex Sorts
+Starting with Python 2.2, sorts are guaranteed to be stable. That means that when multiple records have the same key, their original order is preserved.
+
+>>> data = [('red', 1), ('blue', 1), ('red', 2), ('blue', 2)]
+>>> sorted(data, key=itemgetter(0))
+[('blue', 1), ('blue', 2), ('red', 1), ('red', 2)]
+
+
+
