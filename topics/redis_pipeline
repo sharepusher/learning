@@ -1,0 +1,17 @@
+## Reference
+https://stackoverflow.com/questions/42278433/python-redis-how-do-i-set-multiple-key-value-pairs-at-once
+
+
+## Solution
+Python, redis: How do I set multiple key-value pairs at once
+
+
+Assuming you want a single redis call for set ops:
+
+pipe = redis_con.pipeline()
+for i in range(0,len(keys)):
+  pipe.set(keys[i], vals[i])
+pipe.execute()
+
+
+
