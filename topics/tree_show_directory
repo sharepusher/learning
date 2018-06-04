@@ -1,0 +1,45 @@
+## Reference
+https://www.cyberciti.biz/faq/linux-show-directory-structure-command-line/
+
+
+## Linux: HowTo See Directory Tree Structure
+
+tree command installation on a Linux
+
+By default the tree command is not installed. Type the following command to install the same on a RHEL / CentOS / Fedora Linux using yum command:
+# yum install tree
+
+If you are using Debian / Mint / Ubuntu Linux, type the following apt-get command to install the tree command:
+$ sudo apt-get install tree
+
+If you are using Apple OS X, type:
+
+brew install tree
+tree command syntax
+
+
+The syntax is:
+
+tree
+tree /path/to/directory
+tree [options]
+tree [options] /path/to/directory
+To list contents of /etc in a tree-like format:
+
+tree /etc
+Sample outputs:
+
+
+
+
+The -a option should be passed to see all files. By default tree does not print hidden files (those beginning with a dot ‘.’). In no event does tree print the file system constructs ‘.’ (current directory) and ‘..’ (previous directory).:
+
+tree -a
+To list directories only, run:
+
+tree -d
+Pass the -C option to see colorized output, using built-in color defaults:
+
+tree -C
+Sample outputs:
+
