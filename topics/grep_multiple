@@ -1,0 +1,49 @@
+## Reference
+http://www.blogjava.net/zhyiwww/archive/2009/01/21/252170.html
+https://www.cyberciti.biz/faq/searching-multiple-words-string-using-grep/
+
+
+## Problem
+Search Multiple Words / String Pattern Using grep Command on Bash shell
+
+
+## Solution
+
+
+The syntax is:
+
+Use single quotes in the pattern: grep 'pattern*' file1 file2
+Use extended regular expressions: egrep 'pattern1|pattern2' *.py
+Use this syntax on older Unix shells: grep -e pattern1 -e pattern2 *.pl
+
+Here are all other possibilities:
+grep 'word1\|word2\|word3' /path/to/file
+### Search all text files ###
+grep 'word*' *.txt
+### Search all python files for 'wordA' or 'wordB' ###
+grep 'wordA*'\''wordB' *.py
+grep -E 'word1|word2' *.doc
+grep -e string1 -e string2 *.pl
+egrep "word1|word2" *.c
+
+netstat -an | grep -E  "ESTABLISHED|WAIT"
+netstat -an | grep -e EST -e WAIT
+
+
+Examples
+
+In this example, search warning, error, and critical words in a text log file called /var/log/messages, enter:
+$ grep 'warning\|error\|critical' /var/log/messages
+
+To just match words, add the -w option:
+$ grep -w 'warning\|error\|critical' /var/log/messages
+
+Use the egrep command and you can skip the above syntax to search three words:
+$ egrep -w 'warning|error|critical' /var/log/messages
+
+OR
+$ grep -e 'warning|error|critical' /var/log/messages
+
+I recommend that you pass the -i (ignore case) and --color option as follows too:
+$ egrep -wi --color 'warning|error|critical' /var/log/messages
+
