@@ -1,6 +1,109 @@
+## Reference
+https://stackoverflow.com/questions/3483520/use-cases-for-the-setdefault-dict-method
+https://stackoverflow.com/questions/7423428/python-dict-get-vs-setdefault/22326645
+
+
+You could say defaultdict is useful for settings defaults before filling the dict and setdefault is useful for setting defaults while or after filling the dict.
 
 setdefault(key[, default])
 If key is in the dictionary, return its value. If not, insert key with a value of default and return default. default defaults to None.
+
+d = {}
+# To add a key->value pair, do the following:
+d.setdefault(key, []).append(value)
+
+# To retrieve a list of the values for a key
+list_of_values = d[key]
+
+# To remove a key->value pair is still easy, if
+# you don't mind leaving empty lists behind when
+# the last value for a given key is removed:
+d[key].remove(value)
+
+# Despite the empty lists, it's still possible to 
+# test for the existance of values easily:
+if d.has_key(key) and d[key]:
+    pass # d has some values for key
+
+
+
+Here are some examples of setdefault to show its usefulness:
+
+"""
+d = {}
+# To add a key->value pair, do the following:
+d.setdefault(key, []).append(value)
+
+# To retrieve a list of the values for a key
+list_of_values = d[key]
+
+# To remove a key->value pair is still easy, if
+# you don't mind leaving empty lists behind when
+# the last value for a given key is removed:
+d[key].remove(value)
+
+# Despite the empty lists, it's still possible to 
+# test for the existance of values easily:
+if d.has_key(key) and d[key]:
+    pass # d has some values for key
+
+# Note: Each value can exist multiple times!
+"""
+e = {}
+print e
+e.setdefault('Cars', []).append('Toyota')
+print e
+e.setdefault('Motorcycles', []).append('Yamaha')
+print e
+e.setdefault('Airplanes', []).append('Boeing')
+print e
+e.setdefault('Cars', []).append('Honda')
+print e
+e.setdefault('Cars', []).append('BMW')
+print e
+e.setdefault('Cars', []).append('Toyota')
+print e
+
+# NOTE: now e['Cars'] == ['Toyota', 'Honda', 'BMW', 'Toyota']
+e['Cars'].remove('Toyota')
+print e
+# NOTE: it's still true that ('Toyota' in e['Cars'])
+
+
+I commonly use setdefault for keyword argument dicts, such as in this function:
+
+def notify(self, level, *pargs, **kwargs):
+    kwargs.setdefault("persist", level >= DANGER)
+    self.__defcon.set(level, **kwargs)
+    try:
+        kwargs.setdefault("name", self.client.player_entity().name)
+    except pytibia.PlayerEntityNotFound:
+        pass
+    return _notify(level, *pargs, **kwargs)
+It's great for tweaking arguments in wrappers around functions that take keyword arguments.
+
+
+
+# really verbose
+new = {}
+for (key, value) in data:
+    if key in new:
+        new[key].append( value )
+    else:
+        new[key] = [value]
+
+
+# easy with setdefault
+new = {}
+for (key, value) in data:
+    group = new.setdefault(key, []) # key might exist already
+    group.append( value )
+
+
+# even simpler with defaultdict
+new = defaultdict(list)
+for (key, value) in data:
+    new[key].append( value ) # all keys have a default already
 
 
 
