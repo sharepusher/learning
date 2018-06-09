@@ -1,0 +1,43 @@
+## Reference
+https://info.townsendsecurity.com/bid/72450/What-are-the-Differences-Between-DES-and-AES-Encryption
+
+## WHAT ARE THE DIFFERENCES BETWEEN DES AND AES ENCRYPTION?
+
+The time required to crack an encryption algorithm is directly related to the length of the key used to secure the communication.
+
+
+# Data Encryption Standard (DES):
+DES is a symmetric block cipher (shared secret key), with a key length of 56-bits.
+Published as the Federal Information Processing Standards (FIPS) 46 standard in 1977,
+DES was officially withdrawn in 2005 [although NIST has approved Triple DES (3DES) through 2030 for sensitive government information]
+
+The federal government originally developed DES encryption over 35 years ago to provide cryptographic security for all government communications.
+The idea was to ensure government systems all used the same, secure standard to facilitate interconnectivity.
+
+Two organizations played key roles in breaking DES: distributed.net and the Electronic Frontier Foundation (EFF).
+Even Triple DES (3DES), a way of using DES encryption three times, proved ineffective against brute force attacks (in addition to slowing down the process substantially).
+
+
+Advanced Encryption Standard (AES):
+Published as a FIPS 197 standard in 2001.
+AES data encryption is a more mathematically efficient and elegant cryptographic algorithm, but its main strength rests in the option for various key lengths.
+1) AES allows you to choose a 128-bit, 192-bit or 256-bit key, making it exponentially stronger than the 56-bit key of DES.
+2) In terms of structure, DES uses the Feistel network which divides the block into two halves before going through the encryption steps.
+3) AES on the other hand, uses permutation-substitution, which involves a series of substitution and permutation steps to create the encrypted block.
+
+The original DES designers made a great contribution to data security, but one could say that the aggregate effort of cryptographers for the AES algorithm has been far greater.
+
+AES was chosen through an open competition with 15 candidates from as many research teams around the world, and the total amount of resources allocated to that process was tremendous.
+
+Finally, in October 2000, a NIST press release announced the selection of Rijndael as the proposed Advanced Encryption Standard (AES).
+
+
+# Comparing DES and AES
+	        DES	                    AES
+Developed	1977	                2000
+KeyLength	56 bits	                128, 192, or 256 bits
+CipherType	SymmetricBlockCipher	Symmetric block cipher
+BlockSize	64 bits	                128 bits
+Security	ProvenInadequate	    ConsideredSecure
+
+
