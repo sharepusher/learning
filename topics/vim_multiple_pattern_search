@@ -1,0 +1,8 @@
+## searching multiple patterns through Vi editor
+
+/pattern1\|patteren2 will do the trick.
+
+
+
+
+
