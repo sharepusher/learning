@@ -1,0 +1,18 @@
+## Reference
+http://www.tutorialspoint.com/python/list_extend.htm
+https://stackoverflow.com/questions/252703/difference-between-append-vs-extend-list-methods-in-python
+
+## Explanation
+
+list.extend(seq)
+#Parameters
+seq − This is the list of elements
+
+#Return Value
+This method does NOT return any value but add the content to existing list.
+
+
+list extend != list "+"
+
+list + will return a new list and will NOT change the old one.
+
