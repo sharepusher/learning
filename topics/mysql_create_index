@@ -8,7 +8,24 @@ CREATE UNIQUE INDEX index_name ON table_name ( column1, column2, ... );
 
 ALTER TABLE tbl_name ADD UNIQUE INDEX index_name ( column1, column2, ...);
 
+## Compand index policy
+What not to do when indexing (or writing SQL queries)?
+
+1) Indexing each and every column in the table separately
+In most cases, MySQL won’t be able to use more than one index for each table in the query.
+We recommend using compound indexes (explained later in this article) rather than single-column indexes.
+
+2) The OR operator in filtering conditions
+In many cases, MySQL won’t be able to use an index to apply an OR condition, and as a result, this query is not index-able.
+
+we recommend to avoid such OR conditions and consider splitting the query to two parts, combined with a UNION DISTINCT 
+(or even better, UNION ALL, in case you know there won’t be any duplicate results)
+
+3) The order of columns in an index is important
+having the reverse index contacts (last_name, first_name) is rather useless, as the database can’t use the index for filtering, 
+as the column we need is second in the index and not first.
 
 
+4) Adding redundant indexes
 
 
