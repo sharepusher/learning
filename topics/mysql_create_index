@@ -1,0 +1,13 @@
+## Reference
+https://stackoverflow.com/questions/17113149/what-is-the-difference-between-mysqls-create-index-and-alter-add-index
+https://www.tutorialspoint.com/mysql/mysql-indexes.htm
+
+## Difference between mysql create index and add index
+CREATE UNIQUE INDEX index_name ON table_name ( column1, column2, ... );
+
+ALTER TABLE tbl_name ADD UNIQUE INDEX index_name ( column1, column2, ...);
+
+
+
+
+
