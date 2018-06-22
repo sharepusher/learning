@@ -1,0 +1,15 @@
+## Reference
+http://xmodulo.com/configure-rsyslog-client-centos.html
+https://linux.cn/article-4835-1.html
+
+1) check rsyslog
+rpm -qa | grep rsyslog
+
+rsyslogd -v
+
+2) rsyslog install on centos
+yum install rsyslog
+
+3) rsyslog restart after configration changes
+#centos7 systemctl restart rsyslog.service
+#centos6 service rsyslog restart
