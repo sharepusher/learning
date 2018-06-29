@@ -1,0 +1,61 @@
+## Reference
+https://stackoverflow.com/questions/19377969/combine-two-columns-of-text-in-dataframe-in-pandas-python
+https://pandas.pydata.org/pandas-docs/stable/merging.html
+
+
+The method cat() of the .str accessor works really well for this.
+
+
+>>> import pandas as pd
+>>> df = pd.DataFrame([[2014, 1],
+...[2015, 3]],
+...columns=('Year', 'Quarter'))
+
+
+>>> print(df)
+   Year Quarter
+0  2014       1
+1  2015       3
+
+>>> df['Period'] = df.Year.astype(str).str.cat(df.Quarter.astype(str), sep='q')
+>>> print(df)
+   Year Quarter  Period
+0  2014       1  2014q1
+1  2015       3  2015q3
+
+
+import pandas as pd
+df = pd.DataFrame({'Year': ['2014', '2015'], 'Quarter': ['q1', 'q2']})
+print df
+df['YearQuarter'] = df[['Year','Quarter']].apply(lambda x : '{}{}'.format(x[0],x[1]), axis=1)
+print df
+
+  Quarter  Year
+0      q1  2014
+1      q2  2015
+  Quarter  Year YearQuarter
+0      q1  2014      2014q1
+1      q2  2015      2015q2
+
+
+This allows you to work with non-strings and reformat values as needed.
+
+mport pandas as pd
+df = pd.DataFrame({'Year': ['2014', '2015'], 'Quarter': [1, 2]})
+print df.dtypes
+print df
+
+df['YearQuarter'] = df[['Year','Quarter']].apply(lambda x : '{}q{}'.format(x[0],x[1]), axis=1)
+print df
+
+Quarter     int64
+Year       object
+dtype: object
+   Quarter  Year
+0        1  2014
+1        2  2015
+   Quarter  Year YearQuarter
+0        1  2014      2014q1
+1        2  2015      2015q2
+
+
