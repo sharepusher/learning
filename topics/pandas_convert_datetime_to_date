@@ -1,0 +1,7 @@
+## Reference
+https://stackoverflow.com/questions/41783003/how-do-i-convert-timestamp-to-datetime-date-in-pandas-dataframe
+
+
+
+pd.to_datetime(df['mydates']).apply(lambda x: x.date())
+
