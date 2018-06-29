@@ -1,0 +1,10 @@
+
+matplotlib.pyplot.show(), which is a method that displays all the figures
+
+import matplotlib.pyplot as plt
+
+# create fig1 (of type plt.figure)
+# create fig2
+
+plt.show()  # will display fig1 and fig2 in different windows
+
