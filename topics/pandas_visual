@@ -1,3 +1,10 @@
+## Reference
+http://www.alexsalo.xyz/python-matplotlib-pandas-visualizations/
+https://pandas.pydata.org/pandas-docs/stable/visualization.html
+http://geoffboeing.com/2014/08/visualizing-summer-travels-part-5-python-matplotlib/
+
+
+
 import matplotlib.pyplot as plt
 
 plt.plot(df.index, df['freq'])
