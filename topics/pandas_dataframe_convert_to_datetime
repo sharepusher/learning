@@ -1,0 +1,12 @@
+## Reference
+
+
+## solution
+import pandas as pd
+
+pd.to_datetime(df["created_time"]) 
+df["created_time"].dt.normalize()
+dates = df['created_time'].values.astype('datetime64[D]')
+
+df['day'] = (df['date'] - dt.datetime.now()).dt.days
+
