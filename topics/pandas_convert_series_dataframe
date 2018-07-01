@@ -1,0 +1,40 @@
+## Reference
+https://stackoverflow.com/questions/26097916/python-best-way-to-convert-a-pandas-series-into-a-pandas-dataframe
+
+
+sf:
+email
+email1@email.com    [1.0, 0.0, 0.0]
+email2@email.com    [2.0, 0.0, 0.0]
+email3@email.com    [1.0, 0.0, 0.0]
+email4@email.com    [4.0, 0.0, 0.0]
+email5@email.com    [1.0, 0.0, 3.0]
+email6@email.com    [1.0, 5.0, 0.0]
+
+# convert it to dataframe
+index | email             | list
+_____________________________________________
+0     | email1@email.com  | [1.0, 0.0, 0.0]
+1     | email2@email.com  | [2.0, 0.0, 0.0]
+2     | email3@email.com  | [1.0, 0.0, 0.0]
+3     | email4@email.com  | [4.0, 0.0, 0.0]
+4     | email5@email.com  | [1.0, 0.0, 3.0]
+5     | email6@email.com  | [1.0, 5.0, 0.0]
+
+
+pd.DataFrame({'email':sf.index, 'list':sf.values})
+
+
+OR
+
+df = sf.to_frame().reset_index()
+
+    email               0
+0   email1@email.com    A
+1   email2@email.com    B
+2   email3@email.com    C
+3   email4@email.com    D
+
+rename the column name and index
+df = df.rename(columns= {0: 'list'})
+df.index.name = 'index'
