@@ -14,6 +14,12 @@ df.to_excel(writer, sheet_name="my_sheet_name")
 # close the pandas excel writer and output the excel file.
 writer.save()
 
+## handling multiple Pandas Dataframes
+It is possible to write more than one dataframe to a worksheet or to several worksheets.
+df1.to_excel(writer, sheet_name='mysheet1')
+df2.to_excel(writer, sheet_name='mysheet2')
+df3.to_excel(writer, sheet_name='mysheet3')
+
 ## Accessing XlsxWriter from pandas
 In order to apply XlsxWriter features such as Charts,Conditional Formatting and Column Formatting to the Pandas output we need to access the underlying workbok and worksheet objects.
 After that we can treat them as normal XlsxWriter objects.
