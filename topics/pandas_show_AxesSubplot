@@ -1,3 +1,7 @@
+## matplotlib.pyplot can show the graph, BUT it will pop up a new window
+%matplotlib inline
+# which will show the pic generate in the ipython
+
 
 matplotlib.pyplot.show(), which is a method that displays all the figures
 
@@ -7,4 +11,5 @@ import matplotlib.pyplot as plt
 # create fig2
 
 plt.show()  # will display fig1 and fig2 in different windows
+
 
