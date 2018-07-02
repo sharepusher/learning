@@ -1,0 +1,17 @@
+## Reference
+https://stackoverflow.com/questions/30878666/matplotlib-python-inline-on-off
+
+
+
+switch the matplotlib's backend by %matplotlib <backend>
+To switch back to your system's default backend use %matplotlib auto or just simply %matplotlib
+
+personally highly recommend the notebook (a.k.a. nbagg) backend
+ It is similar to inline but interactive
+ allowing zooming/panning from inside Jupyter
+
+ For more info try: ?%matplotlib inside an IPython/Jupyter or IPython's online documentation
+
+
+
+
