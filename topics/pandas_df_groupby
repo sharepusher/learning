@@ -1,0 +1,29 @@
+## Reference
+https://stackoverflow.com/questions/27823273/counting-frequency-of-values-by-date-using-pandas
+
+
+>>> df['Week/Year'] = df['Timestamp'].apply(lambda x: "%d/%d" % (x.week, x.year))
+>>> df
+             Timestamp     Category Week/Year
+0  2014-10-16 15:05:17     Facebook   42/2014
+1  2014-10-16 14:56:37        Vimeo   42/2014
+2  2014-10-16 14:25:16     Facebook   42/2014
+
+
+>>> df.groupby(['Week/Year', 'Category']).size()
+Week/Year  Category
+41/2014    DailyMotion    1
+           Facebook       3
+           Vimeo          2
+           Youtube        3
+42/2014    Facebook       7
+           Orkut          1
+           Vimeo          1
+
+
+df.groupby(by=lambda x: "%d/%d" % (x.week(), x.year())).Category.value_counts()
+
+
+
+
+
