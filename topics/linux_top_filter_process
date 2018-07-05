@@ -1,0 +1,7 @@
+## Reference
+https://stackoverflow.com/questions/8710584/filter-by-process-name-and-log-cpu-usage
+
+
+top -p $(pgrep -d',' httpd)
+
+
