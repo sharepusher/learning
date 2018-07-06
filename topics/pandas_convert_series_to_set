@@ -1,0 +1,11 @@
+
+1. If you only need to get list of unique values, you can just use unique method. 
+2. If you want to have Python's set, then do set(some_series)
+
+In [1]: s = pd.Series([1, 2, 3, 1, 1, 4])
+
+In [2]: s.unique()
+Out[2]: array([1, 2, 3, 4])
+
+In [3]: set(s)
+Out[3]: {1, 2, 3, 4}
