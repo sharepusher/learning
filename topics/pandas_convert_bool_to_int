@@ -1,0 +1,49 @@
+## Reference
+https://stackoverflow.com/questions/17383094/python-pandas-numpy-true-false-to-1-0-mapping
+
+
+1) Just multiply your Dataframe by 1 (int)
+
+[1]: data = pd.DataFrame([[True, False, True], [False, False, True]])
+[2]: print data
+          0      1     2
+     0   True  False  True
+     1   False False  True
+
+[3]: print data*1
+         0  1  2
+     0   1  0  1
+     1   0  0  1
+
+2) ds.astype(int)
+
+df.somecolumn = df.somecolumn.astype(int)
+In [104]: df = DataFrame(dict(A = True, B = False),index=range(3))
+
+In [105]: df
+Out[105]: 
+      A      B
+0  True  False
+1  True  False
+2  True  False
+
+In [106]: df.dtypes
+Out[106]: 
+A    bool
+B    bool
+dtype: object
+
+In [107]: df.astype(int)
+Out[107]: 
+   A  B
+0  1  0
+1  1  0
+2  1  0
+
+In [108]: df.astype(int).dtypes
+Out[108]: 
+A    int64
+B    int64
+dtype: object
+
+
