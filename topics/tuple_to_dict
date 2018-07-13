@@ -1,0 +1,16 @@
+
+
+dict([list of tuples])
+
+
+>>> dict((1,2))
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+TypeError: cannot convert dictionary update sequence element #0 to a sequence
+>>> dict([(1,2)])
+{1: 2}
+
+
+
+>>> dict([('A', 1), ('B', 2), ('C', 3)])
+{'A': 1, 'C': 3, 'B': 2}
