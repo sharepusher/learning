@@ -1,0 +1,9 @@
+## svn update .
+
+U: received file from server and updated
+G: local files merged with server files
+
+A: file or directory added to work dir
+R: file or directory replaced
+C: conflict between local file and server 
+
