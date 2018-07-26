@@ -1,0 +1,38 @@
+## Reference
+https://stackoverflow.com/questions/22874058/generate-html-table-from-python-dictionary
+
+
+data = {'Retry': ['30', '12', '12'],
+        'Station MAC': ['aabbccddeea', 'ffgghhiijj', 'kkllmmnnoo'],
+        'Download': ['70.', '99', '90']}
+
+html = '<table><tr><th>' + '</th><th>'.join(data.keys()) + '</th></tr>'
+
+for row in zip(*data.values()):
+    html += '<tr><td>' + '</td><td>'.join(row) + '</td></tr>'
+
+html += '</table>'
+
+print html
+
+OR
+
+d =  {'Retry': ['30', '12', '12'], 'Station MAC': ['aabbccddeea', 'ffgghhiijj', 'kkllmmnnoo'], 'Download': ['70.', '99', '90']}
+
+keys = d.keys()
+length = len(d[keys[0]])
+
+items = ['<table style="width:300px">', '<tr>']
+for k in keys:
+    items.append('<td>%s</td>' % k)
+items.append('</tr>')
+
+for i in range(length):
+    items.append('<tr>')
+    for k in keys:
+        items.append('<td>%s</td>' % d[k][i])
+    items.append('</tr>')
+
+items.append('</table>')
+
+print '\n'.join(items)
