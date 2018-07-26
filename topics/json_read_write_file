@@ -34,3 +34,44 @@ import json, codecs
 with open('data.txt', 'wb') as f:
     json.dump(data, codecs.getwriter('utf-8')(f), ensure_ascii=False)
 
+
+
+## convert the dictionary to a string using json.dumps
+import json
+data = json.dumps(d)
+print(type(data))
+print(data)
+
+<type 'str'>
+{"electromagnetic": {"relative strength": "10^36", "range": "infinity", "mediator": "photons"}, "strong": {"relative strength": "10^38", "range": "10^-15", "mediator": "gluons"}, "weak": {"relative strength": "10^25", "range": "10^-18", "mediator": "W/Z bosons"}, "gravity": {"relative strength": "1", "range": "infinity", "mediator": "gravitons"}}
+
+Note that the "json.dumps()" returns a string as indicated by the "s" at the end of "dumps". 
+This process is called encoding.
+
+## Solution 1, convert json to string by dumps first, and then write, read
+
+import json
+data = json.dumps(d)
+with open("4forces.json","w") as f:
+  f.write(data)
+
+## Let's reads it back and decoding the JSON-encoded string back into a Python dictionary data structure:
+# reads it back
+with open("4forces.json","r") as f:
+  data = f.read()
+
+# decoding the JSON to dictionay
+d = json.loads(data)
+
+
+## Solution 2, dump or load json object directly to the file
+If we prefer working with files instead of strings, we may want to use json.dump() / json.load() to encode / decode JSON data:
+# write to a file
+with open("4forces.json","w") as f:
+  json.dump(d, f)
+
+# reads it back
+with open("4forces.json","r") as f:
+  d = json.load(f)
+
+
