@@ -1,0 +1,6 @@
+## https://blog.csdn.net/benbendy1984/article/details/30031041
+
+# How to handle Binary file (standard input) matches when 'grep'
+grep -a
+
+
