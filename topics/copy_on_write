@@ -1,0 +1,18 @@
+## Reference
+https://stackoverflow.com/questions/628938/what-is-copy-on-write
+
+## Wiki
+Copy-on-write (COW) is an optimization strategy used in computer programming.
+The fundamental idea is that if multiple callers ask for resources which are initially indistinguishable,
+you can give them pointers to the same resource.
+This function can be maintained until a caller tries to modify its 'copy' of the resource, 
+at which point a true private copy is created to prevent the changes becoming visible to everyone else.
+All of this happens transparently to the callers.
+The primary advantage is that if a caller never makes any modifications, no private copy need ever be created.
+
+Copy-on-write means more or less what it sounds like: everyone has a single shared copy of the same data until it's written,
+and then a copy is made. Usually, copy-on-write is used to resolve concurrency sorts of problems.
+In ZFS, for example, data blocks on disk are allocated copy-on-write; as long as there are no changes, you keep the original blocks;
+a change changed only the affected blocks. This means the minimum number of new blocks are allocated.
+
+
