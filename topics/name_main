@@ -1,0 +1,24 @@
+## Reference
+http://ibiblio.org/g2swap/byteofpython/read/module-name.html
+
+A module's __name__
+
+Every module has a name and statements in a module can find out the name of its module.
+When a module is imported for the first time, the main block in that module is run.
+What if we want to run the block only if the program was used by itself and not when it was imported from another module?
+This can be achieved using the __name__ attribute of the module.
+
+## Summary
+Every python module has it's __name__ defined and if this is '__main__', it implies that the module is being run standalone by the user.
+If the module is imported, it's __name__ will be the module's name.
+
+
+## Example
+#!/usr/bin/python
+# Filename: using_name.py
+
+if __name__ == '__main__':
+	print 'This program is being run by itself'
+else:
+    print(__name__)
+	print 'I am being imported from another module'
