@@ -1,0 +1,37 @@
+## Reference
+https://code.tutsplus.com/articles/introduction-to-parallel-and-concurrent-programming-in-python--cms-28612
+
+# Why is parallelism tricky in Python (hint: it's because of the GIL - the global interpreter lock).
+# Threads vs Processes - Different ways of achieving parallelism. When to use one over the other?
+# Paralle vs. Concurrent - Why in some cases we can settle for concurrency rather than parallelism.
+
+## Global Interpreter Lock
+The GIL is one of the most controversial subject in the Python world.
+In CPython, the most popular implementation of Python, the GIL is a mutex that makes things thread-safe.
+The GIL makes it easy to integrate with external libraries that are not thread-safe, and it makes non-parallel code faster.
+This comes at a cost, though. 
+Due to the GIL, we can't achieve true parallelism via multithreading. 
+Basically, two different native threads of the same process can't run Python code at once.
+
+## Threads vs. Processes
+A process is a basic operating system abstraction.
+It is a program that is in execution, in other words, code that is running. 
+Multiple processes are always running in a computer, and they are executing in parallel.
+A process can have multiple threads. They execute the same code belonging to the parent process.
+Ideally, they run in parallel, but not necessarily.
+The reason why processes aren't enough is because applicaitons need to be responsive and listen for user actions
+while updating the display and saving a file.
+# PROCESS
+Processes don't share memory; Spawning/switching processes is expensive; Processes require more resources; No memory synchronisation;
+Threads share memory; Spawning/switching threads is less expensive; Threads require fewer resources; need synchronisation;
+
+## Parallel vs. Concurrent
+Concurrency is often misunderstood and mistaken for parallelism. That's not the case.
+Concurrency implies scheduling independent code to be executed in a cooperative manner. 
+Take advantage of the fact that a piece of code is waiting on I/O operations, and during that time run a different but independent part of the code.
+In Python, we can achieve lightweight concurrent behaviour via greenlets. 
+From a parallelization perspective, using threads or greenlets is equivalent because neither of them runs in parallel.
+Greenlets are even less expensive to create than threads. Because of that, greenlets are heavily used for performing a huge number of 
+simple I/O tasks, like the ones usually found in networking and web servers.
+
+
