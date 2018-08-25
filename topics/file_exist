@@ -1,0 +1,22 @@
+## Reference
+https://www.cyberciti.biz/faq/python-file-exists-examples/
+
+## os.path.isfile(file_path)
+import os module and use os.path.isfile(file-path-here).
+
+return True if “file-path-here” is an existing regular file.
+
+## os.path.isfile vs. os.path.exists
+exists return True incase the given path is a directory or a file
+isfile only return True if the path points to a FILE.
+Directory and file are quite similar from the technical point of view.
+A file can contain any kind of data.
+
+A directory is just a special entry in the file system that represents the fact that it may contain files and other dirs.
+It is a helpful means for building up a data structure.
+A path is an unambiguous pointer to a resource in the file system. It can either pointer to a file or to a directory.
+
+
+
+
+
