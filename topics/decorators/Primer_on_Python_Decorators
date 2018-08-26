@@ -185,4 +185,6 @@ def return_greeting(name):
 
 print(return_greeting("WANG!"))
 
+## 
+print(return_greeting, return_greeting.__name__)
 
