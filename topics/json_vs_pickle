@@ -1,0 +1,21 @@
+## Reference
+https://stackoverflow.com/questions/2259270/pickle-or-json
+https://www.thoughtco.com/using-pickle-to-save-objects-2813661
+
+## pickle disadvantages
+Unpickling can run arbitrary code, and using pickle to transfer data between programs
+or store data between sessions is a security hole.
+
+JSON does NOT introduce a security hole and is standardized, so the data can be accessed by programs 
+in different languages.
+
+Apart from security, JSON has the additional advantage that it makes migrations easy,
+so you can load data that was saved by an older version of your application.
+Meanwhile you could have added a field, or replaced a whole sub structure.
+Writing such a converter(migration) for dict/list is straight forward, but with Pickle you'll have a hard time loading it in the first place.
+
+If you do NOT have any interoperability requirements(e.g. you are just going to use the data with Python)
+and a binary format is fine, go with cPickle which gives you really fast Python object serialization.
+
+If you want interoperability or you want a text format to store your data, go with JSON(or some other appropriate format)
+
