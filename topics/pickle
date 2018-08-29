@@ -1,0 +1,41 @@
+## Reference
+https://www.thoughtco.com/using-pickle-to-save-objects-2813661
+
+## Save Ojbejcts in Python
+Pickle, which is part of the Python library by default, is an important module whenver you need persistence between user sessions.
+As a module, pickle provides for the saving of Python objects between processes.
+
+Whether programming for a db, game, forum, or some other application that must save information betwen sessions,
+pickle is useful for saving identifiers and settings.
+
+The pickle module can store things such as data types such as booleans, strings, and byte arrays, lists, dictionaries, functions, and more.
+
+# The concept of pickling is also known as serialization, marshaling, and flattening.
+# The point is always the same - to save an object to a file for later retrieval.
+# Pickling accomplishes this by writing the objects as one long stream of bytes.
+
+## Pickle Example in Python
+import pickle
+object = Object()
+filehandler = open(filename, 'w')
+pickle.dump(object, filehandler)
+
+# To restore the value of the object to memory, load the object from the file.
+filehandler = open(filename, 'r')
+object = pickle.load(filehandler)
+
+import pickle
+import math
+object_pi = math.pi
+file_pi = open('filename_pi.obj','w')
+pickle.dump(object_pi, file_pi)
+
+file_pi2 = open('filename_pi.obj', 'r')
+object_pi2 = pickle.load(file_pi2)
+
+## Things to Remember
+1) the pickle protocol is specific to Python. It's not guaranteed to be cross-language compitable.
+You most likely cannnot transfer the information to make it useful in Perl, or other languages.
+2) There is also no guarantee of compatibility between different versions of Python.
+The incompatibility exists because not every Python data structure can be serialized by the module.
+
