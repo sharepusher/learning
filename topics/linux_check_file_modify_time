@@ -1,0 +1,27 @@
+## Reference
+https://www.unixtutorial.org/2008/04/atime-ctime-mtime-in-unix-filesystems/
+
+
+# atime, ctime and mtime in Unix filesystems
+Unix filesystems stores a number of timestamps for each file: 
+1) last accessed(read from or written to) - atime
+2) changed(file access permissions were changed) - ctime
+3) modified(written to) - mtime
+
+There's no file creation timestamp kept in most filesystems. This said, it's usually possible to deduce the same from ctime and mtime
+if they match, this probably means that's when the file was created.
+
+
+* ls -l**, which shows you the time of the last file modification – mtime.
+
+ls -lc will show you the last time our file was changed, ctime
+
+ ls -lu will show you the access time
+
+ # Show atime, ctime and mtime with stat command
+ Linux distribution provides stat command.
+
+# stat /tmp/file1 File
+
+
+
