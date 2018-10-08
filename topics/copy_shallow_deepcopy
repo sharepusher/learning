@@ -1,0 +1,58 @@
+## Reference
+https://www.python-course.eu/deep_copy.php
+ 
+## Introduction
+The difference between shallow and deep copying is only relevant for compound objects, which are objects containing other objects,
+like lists or class instances.
+ 
+Python creates real copies only if it has to, i.e. if the user, the programmer, explicitly demands it.
+
+
+## Copy a list with assigment has side effect
+>>> colours1 = ["red", "green"]
+>>> colours2 = colours1
+>>> colours2[1] = "blue"
+>>> colours1
+['red', 'blue']
+
+## Copy with the Slice Operator
+It's possible to completely copy shallow list structures with the slice operator without having any of the side effects, which we have described above:
+
+>>> list1 = ['a','b','c','d']
+>>> list2 = list1[:]
+>>> list2[1] = 'x'
+>>> print list2
+['a', 'x', 'c', 'd']
+>>> print list1
+['a', 'b', 'c', 'd']
+>>> 
+But as soon as a list contains sublists, we have the same difficulty, i.e. just pointers to the sublists.
+>>> lst1 = ['a','b',['ab','ba']]
+>>> lst2 = lst1[:]
+
+>>> lst1 = ['a','b',['ab','ba']]
+>>> lst2 = lst1[:]
+>>> lst2[0] = 'c'
+>>> lst2[2][1] = 'd'
+>>> print(lst1)
+['a', 'b', ['ab', 'd']]
+
+
+## Using deepcopy from the Module copy
+from copy import deepcopy
+
+lst1 = ['a','b',['ab','ba']]
+
+lst2 = deepcopy(lst1)
+
+lst2[2][1] = "d"
+lst2[0] = "c";
+
+print lst2
+print lst1
+
+
+
+
+
+
