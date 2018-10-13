@@ -1,0 +1,40 @@
+## Reference
+https://pantheon.io/docs/kill-mysql-queries/
+https://stackoverflow.com/questions/3787651/how-can-i-stop-a-running-mysql-query
+
+
+
+mysql> SELECT GROUP_CONCAT(CONCAT('KILL ',id,';') SEPARATOR ' ') 'Paste the following query to kill all processes' FROM information_schema.processlist WHERE user<>'system user'\G
+
+
+
+
+mysql>show processlist;
+
+mysql> kill "number from first col";
+
+
+
+# Connect
+mysql -uusername -p  -hhostname
+
+# show full processlist:
+
+mysql> show full processlist;
++---------+--------+-------------------+---------+---------+------+-------+------------------+
+| Id      | User   | Host              | db      | Command | Time | State | Info             |
++---------+--------+-------------------+---------+---------+------+-------+------------------+
+| 9255451 | logreg | dmin001.ops:37651 | logdata | Query   |    0 | NULL  | show processlist |
++---------+--------+-------------------+---------+---------+------+-------+------------------+
+
+# Kill the specific query. Here id=9255451
+
+mysql> kill 9255451;
+
+
+# If you get permission denied, try this SQL:
+CALL mysql.rds_kill(9255451)
+
+
+
+
