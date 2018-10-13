@@ -1,0 +1,6 @@
+## Reference
+https://www.thewindowsclub.com/hosts-file-in-windows
+
+C:\Windows\System32\drivers\etc\
+Type Notepad in start search and right-click on the Notepad result. 
+Select Run as administrator. Open the Hosts file, make the necessary changes, and then click Save.
