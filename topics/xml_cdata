@@ -1,0 +1,13 @@
+## Reference
+https://stackoverflow.com/questions/2784183/what-does-cdata-in-xml-mean?rq=1
+
+CDATA stands for Character DATA.
+You just use this to escape some characters which otherwise will be treated as regular XML.
+The data inside will NOT be parsed.
+For example, if you want to pass a URL that contains & in it, you can use CDATA to do it. Otherwise, you will get an error as it will be parsed as regular XML.
+
+In an XML document or external parsed entity, a CDATA section is a section of element content that is marked for the parser to interpret as only character data, not markup.
+
+The data contained therein will NOT be parsed as XML, and as such does NOT need to be valid XML or can contain elements that may appear to be XML but are not!
+
+
