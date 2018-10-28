@@ -1,0 +1,25 @@
+## Reference
+https://www.cyberciti.biz/faq/unix-linux-disown-command-examples-usage-syntax/
+
+Job control is nothing but the ability to stop/suspend the execution of processes
+and continue/resume their execution as per your requirements.
+
+# bg
+restart a stopped background process.
+# fg
+moves a background job in the current shell env into the foreground.
+
+# disown
+Remove jobs from current shell
+To delete/remove jobs or to tell the shell not to send a HUP signal use disown command 
+
+Pass -a option to disown all jobs
+Pass -r option to disown only running jobs
+
+# keep running job after exit from a shell prompt in background
+-h option mark each jobID so that SIGHUP is not sent to the job if the shell recieves a SIGHUP.
+
+# nohup command can also used to set the signal SIGHUP to be ignored
+
+
+
