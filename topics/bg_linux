@@ -1,0 +1,10 @@
+## Reference
+https://www.cyberciti.biz/faq/unix-linux-bg-command-examples-usage-syntax/
+
+## bg
+Run jobs in the background
+Resumes suspended jobs in the current environment by running them as background jobs
+
+bg jobID1 .... jobIDN
+
+
