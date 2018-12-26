@@ -1,0 +1,29 @@
+## Reference
+https://www.cyberciti.biz/faq/how-to-use-linux-unix-tr-command/
+
+## Intro
+The tr utility copies the given input to produced the output with substitution or deletion of selected characters.
+It takes as parameters two sets of characters, and replaces occurrences of the characters in the first set with the corresponding
+elements from the other set. i.e. it is used to translate characters.
+
+## tr command syntax
+tr [options] "set1" "set2"
+echo something | tr "set1" "set2"
+tr "set1" "set2" < input.txt tr "set1" "set2" < input.txt > output.txt
+
+## How to translate word to upper-case
+$ echo 'linux' | tr "[:lower:]" "[:upper:]"
+$ echo 'linux' | tr "a-z" "A-Z"
+$ echo 'I LovE linuX. one is better Than 2' | tr "a-z" "A-Z"
+
+
+## Merge lines to one line with ','
+$ cat file_with_lines | tr "\n" ","
+
+
+## Merge lines without seperator
+# delete \n to merge lines
+$ cat file_with_lines | tr -d "\n"
+
+
+
