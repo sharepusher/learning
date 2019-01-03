@@ -1,0 +1,23 @@
+## Linux / Unix: Sort ls Command Output By Last Modified Date and Time
+
+## Ans:
+You need to pass the -t option to the ls command. 
+The -t option sort by time modified i.e. most recently modified first before sorting the operands by lexicographical order.
+
+ls -t
+ls -lt | less
+ls -lt ~/Downloads/ | less
+
+
+Pass the -r option to reverse the order of the sort to get reverse lexicographical order or the oldest entries first 
+(or largest files last, if combined with sort by size), enter:
+ls -tr
+ls -ltr | less
+ls -ltr ~/Downloads/ | less
+
+# Sort by modification time, newest first and other options
+Make sure you pass the -A (list all entries except for . and ..) or -a (include directory entries whose names begin with a dot) option to see hidden files:
+ls -Altr ~/Downloads/ | less
+ls -alt ~/Downloads/ | less
+
+
