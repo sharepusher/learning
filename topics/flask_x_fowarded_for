@@ -1,0 +1,59 @@
+## Reference
+https://en.wikipedia.org/wiki/X-Forwarded-For#Format
+https://distinctplace.com/2014/04/23/story-behind-x-forwarded-for-and-x-real-ip-headers/
+
+## Intorduction
+The X-Forwarded-For(XXF) HTTP header field is a common method for identifying the originating IP address of a client connecting to a web server through an HTTP proxy or load balancer.
+
+The XFF HTTP request header was introduced by the Squid caching proxy server's developers.
+X-Forwarded-For is also an email-header indicating that an email-message was forwarded from one or more other accounts(probably automatically).
+
+In this context, the caching servers are most often those of large ISPs who either encourage or force their users to use proxy servers for access to the WWW, something which is often done to reduce external bandwidth through caching.
+In some cases, these proxy servers are transparent proxies, and the user may be unaware that they are using them.
+
+Without the use of XFF or another similar technique, any connection through the proxy would reveal only the originating IP address of the proxy server,
+effectively tuning the proxy server into an anonymizing service, thus making the detection and prevention of abusive accesses significantly harder than if the originating IP address were available.
+
+The usefulness of XFF depends on the proxy server truthfully reporting the original host's IP address;
+for this reason, effective use of XFF requires knowledge of which proxies are trustworthy, for instance by looking them up in a whitelist of servers
+whose maintainers can be trusted.
+
+## Format
+The general format of the field is:
+X-Forwarded-For: client, proxy1, proxy2
+
+where the value is a comma+space separated list of IP addresses, the left-most being the original client, 
+and each successive proxy that passed the request adding the IP address where it received the request from.
+In this example, the request passed through proxy1,proxy2, and then proxy3(not shown in the header). proxy3 appears as remote address of the request.
+
+Since it is easy to forge an X-Forwarded-For field the given information should be used with care.
+The right-most IP address is always the IP address that connects to the last proxy, which means it is the most reliable source of information.
+X-Forwarded-For data can be used in a forward or reverse proxy scenario.
+
+Just logging the X-Forwarded-For field is not always enough as the last proxy IP address in a chain is not contained within the X-forwarded-For field,
+it is in the actual IP header.
+
+A web server should log BOTH the request's source IP address and the X-Forwarded-For field information for completeness.
+
+## CDN, HEADERS and IPs
+sudo tcpdump -A -vvvv -s 9999 -i eth0 port 80 > /tmp/sample
+
+X-Forwarded-For is usually used by proxies to carry original Client IP through intermediary hops.
+Otherwords each time request goes through proxy, it should add current request IP to the list.
+
+There is one problem though, it's not mandatory to use, meaning some proxies will add the header and some will not.
+And it's quite easy to spoof as well.
+Let say you want to hide your real IP - to do that you can just send a request with X-Forwarded-For: spoof and proxy will gladly add request IP to the list.
+The result will look like this X-Forwarded-For: spoof realip. As your can see, you can't just extract leftmost IP, because it might be forged.
+You also need to keep that in mind if you are using that X-Forwarded-For in the application for some kind of of IP based logic.
+
+
+
+
+
+
+
+
+
+
+
