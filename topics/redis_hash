@@ -1,0 +1,74 @@
+## Reference
+https://pythontic.com/database/redis/hash%20-%20add%20and%20remove%20elements
+
+## Summary
+1) Redis is a key value store and supports several data structures.
+2) Redis keys are always strings and they are binary safe.
+3) With Redis, at a higher-level string values can be stored against string keys.
+4) Separate hash maps can as well be created with Redis, which are called as Hashes and they store several key-value pairs.
+
+## HGET, HSET, HGETALL, HEKYS, HVALS, SCAN, HSCAN, HDEL, HEXISTS, HLEN 
+
+
+## Example:
+
+# import the redis client
+import redis
+
+# create redis client
+redisClient = redis.StrictRedis(host='localhost', port=6379, db=0)
+
+redisClient.hset("NumberVsString", "1", "One")
+redisClient.hset("NumberVsString", "2", "Two")
+redisClient.hset("NumberVsString", "3", "Three")
+
+
+# Retrieve the value for a specific key
+
+print("Value for the key 3 is")
+print(redisClient.hget("NumberVsString", "3"))
+
+print("The keys present in the Redis hash:");
+print(redisClient.hkeys("NumberVsString"))
+
+print("The values present in the Redis hash:");
+print(redisClient.hvals("NumberVsString"))
+
+print("The keys and values present in the Redis hash are:")
+print(redisClient.hgetall("NumberVsString"))
+
+# Remove a key
+redisClient.hdel(hashName, 1)
+
+# Print the hash after removing a key
+print(redisClient.hgetall(hashName))
+
+# Defines a Redis hash
+hashName = "Authors"
+redisClient.hmset(hashName,  {1:"The C Programming Language", 2:"The UNIX Programming Environment"})
+
+# Check if a key exists in a Redis key
+key = 1
+print("Does the key {}, exists:".format(key))
+print(redisClient.hexists(hashName, key))
+
+
+# OUTPUT
+Value for the key 3 is
+
+b'Three'
+
+The keys present in the Redis hash:
+
+[b'1', b'2', b'3']
+
+The values present in the Redis hash:
+
+[b'One', b'Two', b'Three']
+
+The keys and values present in the Redis hash are:
+
+{b'1': b'One', b'2': b'Two', b'3': b'Three'}
+
+
+
