@@ -1,0 +1,6 @@
+## Reference
+https://stackoverflow.com/questions/1356866/how-do-i-change-the-data-type-for-a-column-in-mysql
+
+ALTER TABLE tablename MODIFY columnname INTEGER;
+
+alter table table_name modify column_name int(5);
