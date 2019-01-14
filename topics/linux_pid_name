@@ -1,0 +1,18 @@
+## Reference
+https://superuser.com/questions/632979/if-i-know-the-pid-number-of-a-process-how-can-i-get-its-name
+https://www.linuxtopia.org/online_books/introduction_to_linux/linux_Displaying_process_information.html
+
+
+1) ps -p 1337 -o comm=cmd_name
+
+2) cat /proc/pid/cmdline
+
+3) ps ax|egrep "^ [PID]"
+
+
+## absolute path of a running process
+ps -auxwe | grep 24466
+ls -l /proc/24466/exe
+
+
+
