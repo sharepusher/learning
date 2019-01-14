@@ -1,0 +1,10 @@
+## Reference
+https://unix.stackexchange.com/questions/2464/timestamp-modification-time-and-created-time-of-a-file
+
+## Three kinds of timestamps
+1) Access - the last time the file was read
+2) Modify - the last time the file was modified(content modified)
+3) Change - the last time the meta data of the file was changed(e.g. permissions)
+
+## Use stat to display them
+
