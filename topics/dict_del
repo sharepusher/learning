@@ -1,0 +1,11 @@
+## Reference
+https://stackoverflow.com/questions/6332691/python-dictionary-iteration
+https://stackoverflow.com/questions/5384914/how-to-delete-items-from-a-dictionary-while-iterating-over-it/5385075#5385075
+
+#  can't modify a dict while iterating over it, 
+for k in dict2.keys():
+    dict2[k] = [x for x in dict2[k] if x[1] not in idlist]
+    if not dict2[k]:
+        del dict2[k]
+
+
