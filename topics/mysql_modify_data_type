@@ -4,3 +4,5 @@ https://stackoverflow.com/questions/1356866/how-do-i-change-the-data-type-for-a-
 ALTER TABLE tablename MODIFY columnname INTEGER;
 
 alter table table_name modify column_name int(5);
+
+ALTER TABLE xxx_strategy MODIFY price_flag tinyint(4) NOT NULL DEFAULT 0 COMMENT "we are modify comment"
