@@ -1,5 +1,6 @@
 ## Reference
 #  https://www.keakon.net/2009/02/21/在Python下转换时间格式
+#  https://stackoverflow.com/questions/9637838/convert-string-date-to-timestamp-in-python
 
 ## 1) datetime to GMT time
 # 先看如何将datetime类型转换成HTTP头所用的GMT时间格式的字符串（如'Thu, 19 Feb 2009 16:00:07 GMT')
@@ -79,4 +80,23 @@ d.getTime();
 // 结果还是1234567890，懒人必备
 
 8) 最后要注意的是，转换不支持unicode。如果需要中文格式的话，使用GBK或UTF-8编码的字符串
+
+
+9) string date to timestamp
+>>> import time
+>>> import datetime
+>>> s = "01/12/2011"
+>>> time.mktime(datetime.datetime.strptime(s, "%d/%m/%Y").timetuple())
+1322697600.0
+
+import time
+s = "2019-03-07"
+m = time.strptime(s, '%Y-%m-%d')
+time.mktime(m)
+
+
+
+
+
+
 
