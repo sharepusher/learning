@@ -1,0 +1,61 @@
+## Reference
+# https://stackoverflow.com/questions/5790860/and-vs-list-and-dict-which-is-better
+
+## Spped
+>>> from timeit import timeit
+>>> timeit("[]")
+0.040084982867934334
+>>> timeit("list()")
+0.17704233359267718
+>>> timeit("{}")
+0.033620194745424214
+>>> timeit("dict()")
+0.1821558326547077
+
+#and for non-empty:
+>>> timeit("[1,2,3]")
+0.24316302770330367
+>>> timeit("list((1,2,3))")
+0.44744206316727286
+>>> timeit("list(foo)", setup="foo=(1,2,3)")
+0.446036018543964
+>>> timeit("{'a':1, 'b':2, 'c':3}")
+0.20868602015059423
+>>> timeit("dict(a=1, b=2, c=3)")
+0.47635635255323905
+>>> timeit("dict(bar)", setup="bar=[('a', 1), ('b', 2), ('c', 3)]")
+0.9028228448029267
+
+[] and {} are better
+
+list() is inherently slower than [] and dict() is inherently slower than {} ,
+
+Because
+
+There is symbol lookup (no way for python to know in advance if you did not just redefine list to be something else!),
+There is function invocation,
+Then it has to check if there was iterable argument passed (so it can create list with elements from it)
+
+The dict literal might be a tiny bit faster as its bytecode is shorter:
+In [1]: import dis
+In [2]: a = lambda: {}
+In [3]: b = lambda: dict()
+
+In [4]: dis.dis(a)
+  1           0 BUILD_MAP                0
+              3 RETURN_VALUE
+
+In [5]: dis.dis(b)
+  1           0 LOAD_GLOBAL              0 (dict)
+              3 CALL_FUNCTION            0
+              6 RETURN_VALUE
+
+
+
+
+
+
+
+
+
+
