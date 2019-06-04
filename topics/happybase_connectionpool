@@ -1,0 +1,254 @@
+## Reference
+# https://www.jianshu.com/p/0c96e4b113ed
+
+import happybase
+hbase_pool = happybase.ConnectionPool(host=conf['hbase']['host'], port=conf['hbase']['port'], size=100)
+with hbase_pool.connection() as conn:
+    # do sth
+
+## sourcecode
+class ConnectionPool(object):
+    """
+    Thread-safe connection pool.
+
+    .. versionadded:: 0.5
+
+    The `size` argument specifies how many connections this pool
+    manages. Additional keyword arguments are passed unmodified to the
+    :py:class:`happybase.Connection` constructor, with the exception of
+    the `autoconnect` argument, since maintaining connections is the
+    task of the pool.
+
+    :param int size: the maximum number of concurrently open connections
+    :param kwargs: keyword arguments passed to
+                   :py:class:`happybase.Connection`
+    """
+    def __init__(self, size, **kwargs):
+        if not isinstance(size, int):
+            raise TypeError("Pool 'size' arg must be an integer")
+
+        if not size > 0:
+            raise ValueError("Pool 'size' arg must be greater than zero")
+
+        logger.debug(
+            "Initializing connection pool with %d connections", size)
+
+        self._lock = threading.Lock()
+        self._queue = queue.LifoQueue(maxsize=size)
+        self._thread_connections = threading.local()
+
+        connection_kwargs = kwargs
+        connection_kwargs['autoconnect'] = False
+
+        for i in range(size):
+            connection = Connection(**connection_kwargs)
+            self._queue.put(connection)
+
+        # The first connection is made immediately so that trivial
+        # mistakes like unresolvable host names are raised immediately.
+        # Subsequent connections are connected lazily.
+        with self.connection():
+            pass
+
+    def _acquire_connection(self, timeout=None):
+        """Acquire a connection from the pool."""
+        try:
+            return self._queue.get(True, timeout)
+        except queue.Empty:
+            raise NoConnectionsAvailable(
+                "No connection available from pool within specified "
+                "timeout")
+
+    def _return_connection(self, connection):
+        """Return a connection to the pool."""
+        self._queue.put(connection)
+
+    @contextlib.contextmanager
+    def connection(self, timeout=None):
+        """
+        Obtain a connection from the pool.
+
+        This method *must* be used as a context manager, i.e. with
+        Python's ``with`` block. Example::
+
+            with pool.connection() as connection:
+                pass  # do something with the connection
+
+        If `timeout` is specified, this is the number of seconds to wait
+        for a connection to become available before
+        :py:exc:`NoConnectionsAvailable` is raised. If omitted, this
+        method waits forever for a connection to become available.
+
+        :param int timeout: number of seconds to wait (optional)
+        :return: active connection from the pool
+        :rtype: :py:class:`happybase.Connection`
+        """
+
+        connection = getattr(self._thread_connections, 'current', None)
+
+        return_after_use = False
+        if connection is None:
+            # This is the outermost connection requests for this thread.
+            # Obtain a new connection from the pool and keep a reference
+            # in a thread local so that nested connection requests from
+            # the same thread can return the same connection instance.
+            #
+            # Note: this code acquires a lock before assigning to the
+            # thread local; see
+            # http://emptysquare.net/blog/another-thing-about-pythons-
+            # threadlocals/
+            return_after_use = True
+            connection = self._acquire_connection(timeout)
+            with self._lock:
+                self._thread_connections.current = connection
+
+        try:
+            # Open connection, because connections are opened lazily.
+            # This is a no-op for connections that are already open.
+            connection.open()
+
+            # Return value from the context manager's __enter__()
+            yield connection
+
+        except (TException, socket.error):
+            # Refresh the underlying Thrift client if an exception
+            # occurred in the Thrift layer, since we don't know whether
+            # the connection is still usable.
+            logger.info("Replacing tainted pool connection")
+            connection._refresh_thrift_client()
+            connection.open()
+
+            # Reraise to caller; see contextlib.contextmanager() docs
+            raise
+
+        finally:
+            # Remove thread local reference after the outermost 'with'
+            # block ends. Afterwards the thread no longer owns the
+            # connection.
+            if return_after_use:
+                del self._thread_connections.current
+                self._return_connection(connection)
+
+## Analysis
+
+# 1. init
+# stat a thread lock
+self._lock = threading.Lock()
+
+# stat a thread safe LastInFirstOff Queue to store habse connction. 
+self._queue = queue.LifoQueue(maxsize=size)
+
+# record a local variable for each threading objects
+self._thread_connections = threading.local()
+
+# create connection accoring to pool size and put them into queue. 
+for i in range(size):
+    connection = Connection(**connection_kwargs)
+    self._queue.put(connection)
+
+# 2.aquire connection
+# 1) contextmanager decorator make sure with keyword must be used on connection pool
+# 2) whenever create a connection and then yield, finally will return the connection to pool
+#    when exception occurred, it will refresh a new connection, in this case, it can make sure
+#   that the connection returned to pool is always connected.
+
+
+try:
+    # Open connection, because connections are opened lazily.
+    # This is a no-op for connections that are already open.
+    connection.open()
+
+    # Return value from the context manager's __enter__()
+    yield connection
+
+except (TException, socket.error):
+    # Refresh the underlying Thrift client if an exception
+    # occurred in the Thrift layer, since we don't know whether
+    # the connection is still usable.
+    logger.info("Replacing tainted pool connection")
+    connection._refresh_thrift_client()
+    connection.open()
+
+    # Reraise to caller; see contextlib.contextmanager() docs
+    raise
+
+finally:
+    # Remove thread local reference after the outermost 'with'
+    # block ends. Afterwards the thread no longer owns the
+    # connection.
+    if return_after_use:
+        del self._thread_connections.current
+        self._return_connection(connection)
+
+
+@contextlib.contextmanager
+    def connection(self, timeout=None):
+        """
+        Obtain a connection from the pool.
+
+        This method *must* be used as a context manager, i.e. with
+        Python's ``with`` block. Example::
+
+            with pool.connection() as connection:
+                pass  # do something with the connection
+
+        If `timeout` is specified, this is the number of seconds to wait
+        for a connection to become available before
+        :py:exc:`NoConnectionsAvailable` is raised. If omitted, this
+        method waits forever for a connection to become available.
+
+        :param int timeout: number of seconds to wait (optional)
+        :return: active connection from the pool
+        :rtype: :py:class:`happybase.Connection`
+        """
+
+        connection = getattr(self._thread_connections, 'current', None)
+
+        return_after_use = False
+        if connection is None:
+            # This is the outermost connection requests for this thread.
+            # Obtain a new connection from the pool and keep a reference
+            # in a thread local so that nested connection requests from
+            # the same thread can return the same connection instance.
+            #
+            # Note: this code acquires a lock before assigning to the
+            # thread local; see
+            # http://emptysquare.net/blog/another-thing-about-pythons-
+            # threadlocals/
+            return_after_use = True
+            connection = self._acquire_connection(timeout)
+            with self._lock:
+                self._thread_connections.current = connection
+
+        try:
+            # Open connection, because connections are opened lazily.
+            # This is a no-op for connections that are already open.
+            connection.open()
+
+            # Return value from the context manager's __enter__()
+            yield connection
+
+        except (TException, socket.error):
+            # Refresh the underlying Thrift client if an exception
+            # occurred in the Thrift layer, since we don't know whether
+            # the connection is still usable.
+            logger.info("Replacing tainted pool connection")
+            connection._refresh_thrift_client()
+            connection.open()
+
+            # Reraise to caller; see contextlib.contextmanager() docs
+            raise
+
+        finally:
+            # Remove thread local reference after the outermost 'with'
+            # block ends. Afterwards the thread no longer owns the
+            # connection.
+            if return_after_use:
+                del self._thread_connections.current
+                self._return_connection(connection)
+
+
+
+
+
+
