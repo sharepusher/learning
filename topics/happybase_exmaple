@@ -1,0 +1,89 @@
+#!/usr/bin/env python
+# -*- coding=utf-8 -*-
+
+from gevent import monkey; monkey.patch_all()
+import time
+import datetime
+import happybase
+import traceback
+import ujson as json
+
+from tools import Tools
+from logger import Logger
+from consts import ApiLimit
+from consts import RedisConst
+from consts import HbaseConst
+
+from gevent import socket
+from thriftpy import transport
+
+class RecordModel(object):
+    def __init__(self, session, req, hbase_pool=None):
+        self._req = req
+        self._store_type = 2
+        self._session = session
+        self._redis_conn = None
+        self._hbase_column = None
+        self._hbase_pool = hbase_pool
+        self._hbase_column_family = None
+        self.expire_time = RATE_EXPIRE_TIME
+        self._hbase_rowkey = b'{}_{}_{}_{}_{}_{}'.format(
+            req._hotel_id,
+            req._check_in,
+            req._check_out,
+            req._room_count,
+            req._distributor,
+            req._distributor_user_name,
+        )
+
+    def set_redis_conn(self, redis_conn):
+        self._redis_conn = redis_conn
+
+    def _try_hbase_pool_get(self, rowkey, rate_code, tname):
+        re_tries = 1
+        result = {}
+        stime = time.time()
+        while re_tries <= 5:
+            try:
+                with self._hbase_pool.connection(timeout=.3) as connection:
+                    if rate_code:
+                        if self._req._distributor in VERSIONED_DIST:
+                            column = self._hbase_column_family+rate_code
+                            result = connection.table(tname).cells(rowkey, column)
+                        else:
+                            column = (self._hbase_column_family+rate_code,)
+                            result = connection.table(tname).row(rowkey, column)
+                    else:
+                        column = (self._hbase_column,)
+                        result = connection.table(tname).row(rowkey, column)
+                ctime = time.time() - stime
+                return result
+            except transport.TTransportException:
+                ctime = time.time() - stime
+            except socket.error:
+                ctime = time.time() - stime
+            except:
+                # log
+                pass
+            re_tries += 1
+        return result
+
+    def _insert_hbase_pool(self, rowkey, column_values, tname=HbaseConst.API_HOTEL_PRICE_RECORD):
+        stime = time.time()
+        re_tries = 1
+        while re_tries <= 5:
+            try:
+                with self._hbase_pool.connection(timeout=.3) as connection:
+                    # reflesh tainted pool connection with table.families
+                    connection.table(tname).families()
+                    connection.table(tname).put(rowkey, column_values)
+                return True
+            except transport.TTransportException:
+            except socket.error:
+            except:
+            finally:
+                ctime = time.time() - stime
+                if ctime >= 0.5:
+                re_tries += 1
+        return False
+
