@@ -9,7 +9,7 @@ If dst already exists, it will be replaced.
 Special files such as character or block devices and pipes cannot be copied with this funciton.
 src and dst are path names given as strings.
 
-Function          |Copies Metadata|Copies Permissions|Can Use Buffer|Dest Dir OK
+Function            |Copies Metadata|Copies Permissions|Can Use Buffer|Dest Dir OK
 -----------------------------------------------------------------------------------
 | shutil.copy       |      No       |        Yes       |      No      |    Yes
 -----------------------------------------------------------------------------------
