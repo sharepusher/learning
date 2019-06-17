@@ -1,0 +1,20 @@
+## Reference
+# https://www.zhihu.com/question/38528616
+# https://zhu327.github.io/2018/08/29/gunicorn与uwsgi之我见/
+# http://xiaorui.cc/2017/02/16/深入理解uwsgi和gunicorn网络模型上/
+# https://www.jianshu.com/p/e8b682c60be2
+
+## 1. why nginx with Gunicorn
+# Many frameworks and application servers(including Gunicorn) can serve static files(e.g. javascript, css, images etc.)
+# together with responses.
+# However, the better thing to do is to let a (reverse-proxy) server such as Nginx handle the task of serving these files
+# and managing connections(requests). 
+# This relieves a lot of load from the application servers, granting you a much better overall performance.
+# As application grows, you will want to distribute it across servers to be able to handle more connections simultaneously
+# and handle a generally more robust architecture.
+# Having a reverse-proxy in front of your application servers helps you with this from the very beginning.
+# Nginx's extensibility(e.g.)
+
+
+
+
