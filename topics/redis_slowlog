@@ -1,0 +1,39 @@
+## Reference
+# https://www.runoob.com/redis/server-showlog.html
+
+# Redis slowlog a log system that redis used to record the operation execution time.
+# The search operation time means the time cost to perform a query, excluding IO operation, like client talking and sending back 
+redis 127.0.0.1:6379> SLOWLOG subcommand [argument]
+# version >= 2.2.12
+
+redis 127.0.0.1:6379> slowlog get 2
+1) 1) (integer) 14
+   2) (integer) 1309448221
+   3) (integer) 15
+   4) 1) "ping"
+2) 1) (integer) 13
+   2) (integer) 1309448128
+   3) (integer) 30
+   4) 1) "slowlog"
+      2) "get"
+      3) "100"
+
+# view current log size
+redis 127.0.0.1:6379> SLOWLOG LEN
+(integer) 14
+
+
+# clear slow log
+
+redis 127.0.0.1:6379> SLOWLOG RESET
+OK
+
+redis 127.0.0.1:6379> SLOWLOG LEN
+(integer) 0
+
+
+
+
+
+
+
