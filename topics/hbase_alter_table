@@ -1,0 +1,63 @@
+[alihbase-2.0.1]$ ./bin/hbase shell
+HBase Shell
+Use "help" to get list of supported commands.
+Use "exit" to quit this interactive shell.
+Version 2.0.1, ra6509e3e18aa71d129d2f7ce50868c162d41acf2, Thu Jul 19 15:28:27 CST 2018
+Took 0.0047 seconds                                                                                                                                                      
+hbase(main):001:0> 
+hbase(main):002:0* status
+1 active master, 1 backup masters, 2 servers, 0 dead, 85.0000 average load
+Took 0.7912 seconds                                                                                                                                                      
+hbase(main):003:0> whoami
+xxxxx (auth:SIMPLE)
+    groups: xxxxxx 
+Took 0.0214 seconds                                                                                                                                                      
+hbase(main):004:0> describe "xxx:xxx_xxx_record"
+Table xxx:xxx_xxx_record is ENABLED                                                                                                                                  
+xxx:xxx_xxx_record                                                                                                                                                   
+COLUMN FAMILIES DESCRIPTION                                                                                                                                              
+{NAME => 'long_term', VERSIONS => '1', EVICT_BLOCKS_ON_CLOSE => 'false', NEW_VERSION_BEHAVIOR => 'false', KEEP_DELETED_CELLS => 'FALSE', CACHE_DATA_ON_WRITE => 'false', 
+DATA_BLOCK_ENCODING => 'NONE', TTL => '864000 SECONDS (10 DAYS)', MIN_VERSIONS => '0', REPLICATION_SCOPE => '0', BLOOMFILTER => 'ROW', CACHE_INDEX_ON_WRITE => 'false', I
+N_MEMORY => 'false', CACHE_BLOOMS_ON_WRITE => 'false', PREFETCH_BLOCKS_ON_OPEN => 'false', COMPRESSION => 'NONE', BLOCKCACHE => 'true', BLOCKSIZE => '65536'}            
+{NAME => 'short_term', VERSIONS => '3', EVICT_BLOCKS_ON_CLOSE => 'false', NEW_VERSION_BEHAVIOR => 'false', KEEP_DELETED_CELLS => 'FALSE', CACHE_DATA_ON_WRITE => 'false',
+ DATA_BLOCK_ENCODING => 'NONE', TTL => '10800 SECONDS (3 HOURS)', MIN_VERSIONS => '0', REPLICATION_SCOPE => '0', BLOOMFILTER => 'ROW', CACHE_INDEX_ON_WRITE => 'false', I
+N_MEMORY => 'false', CACHE_BLOOMS_ON_WRITE => 'false', PREFETCH_BLOCKS_ON_OPEN => 'false', COMPRESSION => 'NONE', BLOCKCACHE => 'true', BLOCKSIZE => '65536'}            
+2 row(s)
+Took 0.2761 seconds    
+
+## Enable Snappy and increase more versions, TTL
+## 15seconds cost 
+
+hbase(main):005:0> disable "xxx:xxx_xxx_record"
+Took 9.2525 seconds                                                      
+
+hbase(main):006:0> alter "xxx:xxx_xxx_record", {NAME => 'long_term', VERSIONS => 5,COMPRESSION => 'SNAPPY',DATA_BLOCK_ENCODING => 'DIFF',TTL => 1296000}, {NAME => 'short_term', VERSIONS => 10,COMPRESSION => 'SNAPPY',DATA_BLOCK_ENCODING => 'DIFF',TTL => 36000}
+Updating all regions with the new schema...
+All regions updated.
+Done.
+Took 1.9366 seconds                                                                                                                                                      
+hbase(main):007:0> enable  "xxx:xxx_xxx_record"
+Took 2.4854 seconds                                                                                                                                                      
+hbase(main):008:0> describe "xxx:xxx_xxx_record"
+
+Table xxx:xxx_xxx_record is ENABLED
+xxx:xxx_xxx_record
+COLUMN FAMILIES DESCRIPTION
+{NAME => 'long_term', VERSIONS => '5', EVICT_BLOCKS_ON_CLOSE => 'false', NEW_VERSION_BEHAVIOR => 'false', KEEP_DELETED_CELLS => 'FALSE', CACHE_DATA_ON_WRITE => 'false',
+DATA_BLOCK_ENCODING => 'DIFF', TTL => '1296000 SECONDS (15 DAYS)', MIN_VERSIONS => '0', REPLICATION_SCOPE => '0', BLOOMFILTER => 'ROW', CACHE_INDEX_ON_WRITE => 'false',
+IN_MEMORY => 'false', CACHE_BLOOMS_ON_WRITE => 'false', PREFETCH_BLOCKS_ON_OPEN => 'false', COMPRESSION => 'SNAPPY', BLOCKCACHE => 'true', BLOCKSIZE => '65536'}
+{NAME => 'short_term', VERSIONS => '10', EVICT_BLOCKS_ON_CLOSE => 'false', NEW_VERSION_BEHAVIOR => 'false', KEEP_DELETED_CELLS => 'FALSE', CACHE_DATA_ON_WRITE => 'false'
+, DATA_BLOCK_ENCODING => 'DIFF', TTL => '36000 SECONDS (10 HOURS)', MIN_VERSIONS => '0', REPLICATION_SCOPE => '0', BLOOMFILTER => 'ROW', CACHE_INDEX_ON_WRITE => 'false',
+ IN_MEMORY => 'false', CACHE_BLOOMS_ON_WRITE => 'false', PREFETCH_BLOCKS_ON_OPEN => 'false', COMPRESSION => 'SNAPPY', BLOCKCACHE => 'true', BLOCKSIZE => '65536'}
+2 row(s)
+Took 0.0229 seconds
+hbase(main):009:0> major_compact "xxx:xxx_xxx_record"
+Took 0.5261 seconds
+hbase(main):010:0> major_compact "xxx:xxx_xxx_record"packet_write_wait: Connection to 118.178.17.53 port 22: Broken pipe
+
+$
+
+
+
+
+
