@@ -2,6 +2,10 @@
 https://stackoverflow.com/questions/1143671/python-sorting-list-of-dictionaries-by-multiple-keys
 https://docs.python.org/2.7/howto/sorting.html
 
+sorted(iterable, cmp=None, key=None, reverse=False) --> new sorted list
+# The sorted will accept any iterable items, no matter its string or list 
+# Additionally, it will convert the result to a sorted LIST !!!
+# In other words, we can sort a string and convert it to LIST !!!
 
 ## Solution
 multiple key supported !!!!!
