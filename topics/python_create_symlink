@@ -1,0 +1,8 @@
+symlink(...)
+    symlink(src, dst)
+    
+    Create a symbolic link pointing to src named dst.
+
+
+
+
