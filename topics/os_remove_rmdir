@@ -19,4 +19,15 @@ try:
 except OSError:
     print("Failed to remove directory")
 
+import os
+os.remove("/tmp/<file_name>.txt")
+Or
+import os
+os.unlink("/tmp/<file_name>.txt")
+
+try:
+    shutil.rmtree(mydir)
+except OSError as e:
+    print ("Error: %s - %s." % (e.filename, e.strerror))
+
 
