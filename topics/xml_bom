@@ -1,0 +1,24 @@
+## Reference
+# https://stackoverflow.com/questions/1772321/what-is-xml-bom-and-how-do-i-detect-it
+
+## BOM - Byte-Order-Mark
+# is a special marker added at the very beginning of an Unicode file encoded in UTF-8,UTF-16 or UTF-32.
+# It is used to indicate whether the file uses the big-endian or little endian byte order.
+# The BOM is mandatory for UTF-16 and UTF-32, but it is optional for UTF-8
+
+# For ANSI XML file it should actually be removed.
+# UTF-8 don't really need it.
+# ONLY UTF-16 and UTF-32 needed it.
+# Always make sure ethe XML declaration <?xml version="1.0" encoding="UTF-8"?>
+
+The byte order mark is likely to be one of these byte sequences:
+
+     UTF-8 BOM: ef bb bf
+  UTF-16BE BOM: fe ff
+  UTF-16LE BOM: ff fe
+  UTF-32BE BOM: 00 00 fe ff
+  UTF-32LE BOM: ff fe 00 00
+
+
+
+
