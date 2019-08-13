@@ -1,0 +1,29 @@
+## Reference
+# https://developpaper.com/redis-replaces-keys-instruction-with-scan-instruction-detailed/
+
+## Redis replaces "keys" with "scan"
+# The larger the number of keys in redis, the slower the keys command is executed.
+# For single-threaded redis, it is a disaster.
+
+# SCAN commands and their associated HSCAN and ZSCAN are used for incremental iteration of a collection of elements.
+
+# The SCAN command is used to iterate over database keys in the current database.
+# The SSCAN command is used to iterate over elements in the set key
+# The HSCAN command is used to iterate over key-value pairs in hash keys
+# The ZSCAN command is used to iterate over elements in an ordered set(including element memebers and element scores)
+
+# The four commands listed above all support incremental iteration, which returns only a small number of elements each time
+# they are executed, so they are used in production environment without problems like KEYS or SMEMEMBERS command
+# when KEYS or SMEMEMBERS process a large collection key, they may block the server for several seconds.
+
+# However, incremental iteration commmands are not without drawbacks:
+# SMEMEMBERS commands can return all the elements currently contained in a collection key, 
+# but for incremental iteration commands like SCAN, keys may be modified during incremental iteration, 
+# therefore, incremental iteration Generation can only provide limited guarantees about the returned elements.
+
+## Instruciton
+# 1) The first parameter of SSCAN/HSCAN/ZSCAN is always a database key.
+# 2) The SCAN command does NOT need to provide any database keys in the first parameter 
+#    because it iterates over all database keys in the current database.
+
+
