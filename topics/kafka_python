@@ -1,0 +1,62 @@
+## Reference
+# https://community.hortonworks.com/articles/81144/using-python-client-to-readwrite-data-tofrom-kafka.html
+
+## pip install kafka-python
+
+## KafkaConsumer
+
+# General
+from kafka import KafkaConsumer
+consumer = KafkaConsumer("my_topic")
+for msg in consumer:
+    print(msg)
+
+# Manual assign partitions
+from kafka import TopicPartition
+consumer = KafakConsumer(bootstrap_servers='localhost:1234')
+consumer.assign([TopicPartition('my_topic', 2)])
+msg = next(consumer)
+# OR
+msgs = consumer.poll(max_records=50)
+
+# Deserialize msgpack-encoded values
+consumer = KafkaConsumer(value_deserializer=msgpack.loads)
+consumer.subscribe(['my_topic'])
+for msg in consumer:
+    assert isinstance(msg.value, dict)
+
+## KafkaProducer
+from kafka import KafkaProducer
+producer = KafkaProducer(bootstrap_servers='localhost:1234')
+for _ in range(100):
+    producer.send("my_topic", b'some_message_bytes')
+
+# Block until all pending messages are sent
+producer.flush()
+
+# Block until a single message is sent(or timeout)
+producer.send("my_topic", b"another_message").get(timeout=60)
+
+# Use a key for hashed-partitioning
+producer.send("my_topic", key=b"foo", value=b"bar")
+
+# Serialize json messages
+import ujson as json
+producer = KafakProducer(value_serializer=lambda v: json.dumps(v).encode('utf-8'))
+producer.send("my_topic", {"fool":"bar"})
+
+# Serialize string keys
+producer = KafakProducer(key_serializer=str.encode)
+producer.send("my_topic", key='ping', value=b'1234')
+
+# Compress messages
+producer = KafkaProducer(compressin_type='gzip')
+for i in range(100):
+    producer.send('my_topic', b'msg%d'%i)
+
+ 
+
+
+
+
+
