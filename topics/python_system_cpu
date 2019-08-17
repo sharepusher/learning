@@ -1,0 +1,19 @@
+## Reference
+# https://blog.csdn.net/grey_csdn/article/details/70148072
+
+import psutil
+
+psutil.cpu_times()
+scputimes(user=4206.828125,system=2574.46875, idle=128393.578125)
+
+psutil.cpu_times_percent().idle
+
+psutil.cpu_count()
+
+psutil.cpu_count(logical = False)
+
+
+
+
+
+
