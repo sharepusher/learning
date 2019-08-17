@@ -1,0 +1,21 @@
+## Reference
+# https://blog.csdn.net/gingerredjade/article/details/63696842
+
+## WAL(WriteAheadLog) or not
+# disable WAL or async
+
+## Put or BatchPut
+
+## Async BatchPut - SetAutoFlush(False)
+
+## Write Balance => load Balance => RowKey Design
+
+## KeyValue Size too big or Scan regionServer result too big
+
+
+## region split disable, and make it offline
+
+
+
+
+
