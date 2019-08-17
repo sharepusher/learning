@@ -181,7 +181,7 @@ finally:
         self._return_connection(connection)
 
 
-@contextlib.contextmanager
+    @contextlib.contextmanager
     def connection(self, timeout=None):
         """
         Obtain a connection from the pool.
@@ -246,9 +246,5 @@ finally:
             if return_after_use:
                 del self._thread_connections.current
                 self._return_connection(connection)
-
-
-
-
 
 
