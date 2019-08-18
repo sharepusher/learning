@@ -1,0 +1,36 @@
+## https://www.tuicool.com/articles/eYVnEbj
+
+## Nginx
+# 1. high performance HTTP and reverse proxy server
+# 2. IMAP/POP3/SMTP proxy server
+# 3. less memory and more stable
+
+## IO Multiplexing
+# linux network IO use socket for communicaiton, for one process, it can only listen one one socket connection at a time, while IO multiplexing can make it listen multiple socket 
+# Say, there are many socket connetion: sfd1, sfd2 ... sfdn. 
+# And IO multiplexing use one process to monitor the N connection, whenever one of them finish the IO operation, it will be selected and call system read from the socketfd, and then monitor the select again.
+# multi-thread cost much on switch than IO multiplexing.
+
+# the process record and monitor each I/O socket stat
+
+1. select (implemented in BSD 1983)
+1) select will return there's one socket readable, but it won't tell you which one, therefore
+you have to traverse all the sockets to find it, it's very low efficiency
+2) select can only monitor maximum 2014 connections
+3) not thread safe. If a file descriptor being monitored by select() is closed in another thread,
+the result is unspecified.
+
+2. poll
+1) more connections allowed rather than 1024
+2) not thread safe
+
+3. epoll (2002)
+1) thread safe
+2) it will notify which socket IO finished, there's no more traverse on all the socket anymore.
+3) only supported by linux, BSD has kqueue
+
+
+
+
+
+
