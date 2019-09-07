@@ -1,0 +1,30 @@
+
+
+# Accept-Encoding: gzip
+It is a request header.
+The HTTP client use this header to tell the server which encoding it supports.
+The server is allowed to send the response content in any of these encodings.
+
+The Accept-Encoding request HTTP header advertises which content encoding,
+usually a compression algorithm, the client is able to understand.
+Using content negotiation, the server selects on of the proposals, uses it and informs
+the client of its choice with the Content-Encoding response header.
+
+# Content-Encoding
+It is a response header.
+The HTTP server uses this header to tell the client which particular encoding the content
+has actually been encoded in.
+The Content-Encoding entity header is used to compress the media-type.
+When present, its value indicates which encodings were applied to the entity-body.
+It lets the client know, how to decode in order to obtain the media-type referenced 
+by the Content-Type header.
+
+If you want to see them play in action, ioen Inspect Element in Firefox/Chrome
+Then check for the Network tab to see them in action.
+Look for Accept-Encoding in request headers and Content-Encoding in response headers.
+
+
+
+
+
+
