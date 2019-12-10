@@ -1,0 +1,14 @@
+package main
+
+import (
+    "fmt"
+    "time"
+)
+
+func main() {
+    a, _ := time.Parse("2006-01-02", "2017-09-01")
+    b, _ := time.Parse("2006-01-02", "2018-03-11")
+    d := a.Sub(b)
+
+    fmt.Println(d.Hours() / 24)
+
