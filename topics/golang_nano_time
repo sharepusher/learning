@@ -1,0 +1,13 @@
+# Reference
+https://stackoverflow.com/questions/5885486/get-current-time-as-formatted-string-in-go
+https://gobyexample.com/epoch
+
+now := time.Now()
+secs := now.Unix()
+nanos := now.UnixNano()
+millis := nanos / 1000000
+
+msec := time.Now().UnixNano() / 1000000
+
+
+
