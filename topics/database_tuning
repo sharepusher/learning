@@ -1,0 +1,25 @@
+# Aim
+1) faster/quicker
+2) more connections
+
+# How many ways to tune db? Dimensionality
+1) database selection(NOSQL or DBMS/ MySql or Oracal/Mongo or Hbase)/storage engine selection
+2) table schema/design
+3) logical query optimization(SQL usage)
+4) pyhsical query optimization(index)
+5) Redis/Memcache
+5) DB optimization
+
+
+# table design
+normal formulas - 5level, 3 is enough
+1) first normal form: 
+2) 2nd normal form: one table one object 
+# PrimaryKey
+
+
+# ForeignKey
+
+
+
+
