@@ -1,0 +1,18 @@
+package main
+
+import (
+	"crypto/md5"
+	"encoding/hex"
+	"fmt"
+)
+
+func main() {
+	res := MD5("fhjdshfjk shjkfhsd")
+	fmt.Println(res) // c9c3e4a4c2c257450cd74a30a153e8fd
+}
+
+func MD5(text string) string {
+	ctx := md5.New()
+	ctx.Write([]byte(text))
+	return hex.EncodeToString(ctx.Sum(nil))
+}
