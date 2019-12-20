@@ -1,0 +1,14 @@
+## Reference
+# https://stackoverflow.com/questions/3007253/send-post-xml-file-using-curl-command-line
+
+# This way with XML from the command line
+$ curl -X POST -d '<run>...</run>' http://user:pass@myhost:myport/path/of/url
+
+curl -X POST -d @myfilename http://user:pass@myhost:myport/path/of/url
+
+curl -X POST --header "Content-Type:text/xml;charset=UTF-8" --data @soap_get.xml your_url
+
+
+
+
+
