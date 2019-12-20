@@ -1,0 +1,22 @@
+## Reference
+https://stackoverflow.com/questions/19885162/xml-and-json-tags-for-a-golang-struct
+
+Go tags are space-separated between JSON and XML
+NO space allowed in JSON tag or XML tag internally.
+
+By convention, tag strings are a concatenation of optionally space-separated key:"value" pairs. 
+Each key is a non-empty string consisting of non-control characters other than space (U+0020 ' '), quote (U+0022 '"'), and colon (U+003A ':'). 
+Each value is quoted using U+0022 '"' characters and Go string literal syntax.
+
+type Foo struct {
+    Id          int64       `xml:"id,attr" json:"id"`
+    Version     int16       `xml:"version,attr" json:"version"`
+}
+
+Could we use two json tag separated by space?
+No. The tags are read sequentially, and the first matching tag is returned. –
+
+
+
+
+
