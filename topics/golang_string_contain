@@ -1,0 +1,12 @@
+## Reference
+# https://stackoverflow.com/questions/45266784/go-test-string-contains-substring
+
+import {
+    "strings"
+}
+strings.Contains("something", "some") // true
+
+
+
+
+
