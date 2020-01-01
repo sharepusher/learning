@@ -1,0 +1,22 @@
+## Reference
+# https://golangbyexample.com/find-the-type-of-an-object-in-golang/
+
+# Using Reflect Package
+
+package main
+
+import (
+    "fmt"
+    "reflect"
+)
+
+func main() {
+    var test interface{}
+    test = "test_string"
+    fmt.Println(reflect.TypeOf(test))
+}
+
+
+
+
+
