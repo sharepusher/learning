@@ -1,0 +1,13 @@
+## Reference 
+# https://studygolang.com/articles/8168
+
+ map keys may be of any type that is comparable.
+ comparable types are boolean, numeric, string, pointer, channel, and interface types, and structs or arrays that contain only those types.
+
+type Key struct {
+      Path, Country string
+}
+
+hits := make(map[Key]int)
+
+
