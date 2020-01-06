@@ -1,0 +1,19 @@
+# https://stackoverflow.com/questions/28447297/how-to-check-for-an-empty-struct/28447372
+
+
+You can use == to compare with a zero value composite literal because all fields are comparable:
+
+if (Session{}) == session  {
+    fmt.Println("is zero value")
+}
+
+An alternative to comparing the entire value is to compare a field that must be set to a non-zero value in a valid session. For example, if the player id must be != "" in a valid session, use
+
+if session.playerId == "" {
+    fmt.Println("is zero value")
+}
+
+struct containing []byte cannot be compared
+
+
+

@@ -1,0 +1,10 @@
+## Reference
+https://stackoverflow.com/questions/27246275/golang-hide-xml-parent-tag-if-empty
+
+,omitempty tag only works on the element itself and not the a>b>c enclosing elements.
+
+The empty values are false, 0, any nil pointer or interface value, and any array, slice, map, or string of length zero.
+
+
+
+
