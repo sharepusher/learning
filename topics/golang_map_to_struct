@@ -5,6 +5,6 @@ import "github.com/mitchellh/mapstructure"
 
 mapstructure.Decode(myData, &result)
 
-
+# But it's low efficiency
 
 
