@@ -1,0 +1,11 @@
+# https://coderwall.com/p/_fmbug/go-get-path-to-current-file
+
+import "runtime"
+
+_, filename, _, ok := runtime.Caller(1)
+
+filepath := path.Join(path.Dir(filename), "../config/settings.toml")
+
+
+
+
