@@ -1,0 +1,21 @@
+## Reference
+# https://yourbasic.org/golang/last-item-in-slice/
+
+# Read last element
+Use the index len(a)-1 to access the last element of a slice or array a.
+
+a := []string{"A", "B", "C"}
+s := a[len(a)-1] // C
+
+# Remove last element
+a = a[:len(a)-1] // [A B]
+
+# Watch out for memory leaks
+Warning: If the slice is permanent and the element temporary, you may want to remove the reference to the element before slicing it off.
+a[len(a)-1] = "" // Erase element (write zero value)
+a = a[:len(a)-1] // [A B]
+
+
+
+
+
