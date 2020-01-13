@@ -1,0 +1,24 @@
+## Reference
+https://stackoverflow.com/questions/47186741/how-to-get-the-json-from-the-body-of-a-request-on-go/47295689#47295689
+
+## Solution
+
+10
+
+TIL that http.Response.Body is a buffer, which means that once it has been read, it cannot be read again.
+
+It's like a stream of water, you can see it and measure it as it passes but once it's gone, it's gone.
+
+However, knowing this, there is a workaround, you need to "catch" the body and restore it:
+
+// Read the Body content
+var bodyBytes []byte
+if context.Request.Body != nil {
+    bodyBytes, _ = ioutil.ReadAll(context.Request.Body)
+}
+
+// Restore the io.ReadCloser to its original state
+context.Request.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
+
+
+
