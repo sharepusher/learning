@@ -1,0 +1,30 @@
+## Reference
+# https://stackoverflow.com/questions/20545743/delete-entries-from-a-slice-while-iterating-over-it-in-go/43084670
+# https://yourbasic.org/golang/delete-element-slice/
+
+
+As you have mentioned elsewhere, you can allocate new memory block and copy only valid elements to it. 
+However, if you want to avoid the allocation, you can rewrite your slice in-place:
+
+i := 0 // output index
+for _, x := range s {
+    if isValid(x) {
+        // copy and increment index
+        s[i] = x
+        i++
+    }
+}
+s = s[:i]
+
+
+# 
+a := []string{"A", "B", "C", "D", "E"}
+i := 2
+
+// Remove the element at index i from a.
+a[i] = a[len(a)-1] // Copy last element to index i.
+a[len(a)-1] = ""   // Erase last element (write zero value).
+a = a[:len(a)-1]   // Truncate slice.
+
+fmt.Println(a) // [A B E D]
+
