@@ -1,0 +1,86 @@
+# Reference
+# https://golangbyexample.com/find-the-type-of-an-object-in-golang/
+
+## Using Reflect Package
+package main
+
+import (
+    "fmt"
+    "reflect"
+)
+
+func main(){
+    var test interface{}
+    test = "test_string"
+    fmt.Println(reflect.TypeOf(test))
+}
+
+// Output string
+
+
+## Using Type Assertion
+package main
+
+import "fmt"
+
+func main(){
+    var test interface{}
+    test = "test_stirng"
+    val, ok := test.(string)
+    if ok{
+        fmt.Printf("Test is of type string with value %s\n", val)
+    }else{
+        fmt.Printf("Unknown type %T", test)
+    }
+    test = 2
+    val2, ok := test.(int)
+    if ok{
+        fmt.Printf("Test is of type int with value %d\n", val2)
+    }else{
+        fmt.Printf("unknown type %T", test)
+    }
+
+}
+
+// Output: 
+Test is of type string with value test_string
+Test is of type int with value 2
+
+
+## Using Switch
+package main
+import "fmt"
+
+func main(){
+    printType("test_string")
+    printType(2)
+}
+
+func printType(t interface{}){
+    Switch v := t.(type){
+        case string:
+            fmt.Println("Tyep:string")
+        case int:
+            fmt.Println("Type:int")
+        default:
+            fmt.Println("Unknown Type %T", v)
+    }
+}
+
+## Using printf or sprintf
+package main
+
+import "fmt"
+
+func main(){
+    var test interface{}
+    test = "test_string"
+    // Using sprintf
+    testType := fmt.Sprintf("%T",test)
+    fmt.Println(testType)
+    // Using Printf
+    fmt.Printf("%T\n", test)
+
+}
+
+
