@@ -1,0 +1,24 @@
+## Reference 
+# https://stackoverflow.com/questions/36122668/how-to-sort-struct-with-multiple-sort-parameters
+
+# Use the sort.Slice (available since Go 1.8) or the sort.Sort function to sort a slice of values.
+
+The less function is specified using an anonymous function with sort.Slice:
+
+
+var members []Member
+sort.Slice(members, func(i, j int) bool {
+    if members[i].LastName < members[j].LastName {
+        return true
+    }
+    if members[i].LastName > members[j].LastName {
+        return false
+    }
+    return members[i].FirstName < members[j].FirstName
+})
+
+
+
+
+
+
