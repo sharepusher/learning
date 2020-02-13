@@ -1,0 +1,53 @@
+## Reference
+# https://yuerblog.cc/2019/11/08/golang-利用json-iterator库兼容解析php-json/
+
+# json: cannot unmarshal string into Go struct field StdStruct.age of type into
+
+项目地址：https://github.com/json-iterator/go
+
+这个库有2个特点：
+
+完全兼容json标准库，也就是API用法完全一样，原有代码不需要改动。
+提供了一个兼容模式，可以自动转换字符串/数字弱类型问题，可以转换[]与{}弱类型问题（PHP中的array问题）。
+
+
+## Solution
+删除原先的import encoding/json标准库，引入jsoniter库。
+创建一个变量叫做json，取值自jsoniter.ConfigCompatibleWithStandardLibrary。
+需要手动开启PHP的兼容模式，否则默认只是兼容了json标准库
+
+
+import (
+	"fmt"
+	jsoniter "github.com/json-iterator/go"
+	"github.com/json-iterator/go/extra"
+)
+
+var json = jsoniter.ConfigCompatibleWithStandardLibrary
+
+func init() {
+	// RegisterFuzzyDecoders decode input from PHP with tolerance.
+	//  It will handle string/number auto conversation, and treat empty [] as empty struct.
+	extra.RegisterFuzzyDecoders()
+}
+
+type StdStruct struct {
+	Age int `json:"age"`
+}
+
+func main() {
+	s := "{\"age\": \"10\"}"
+
+	d := &StdStruct{}
+
+	if err := json.Unmarshal([]byte(s), d); err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(d.Age)
+	}
+}
+
+后记：只需要在main文件里通过init开启1次PHP兼容模式即可，后续引入的模块不需要重复开启。
+
+
+
