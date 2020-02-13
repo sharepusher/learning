@@ -1,0 +1,19 @@
+## Reference
+# https://stackoverflow.com/questions/18342784/how-to-iterate-through-a-map-in-golang-in-order
+
+## Collect keys, sort and iterate by the sorted keys
+
+Collect all keys, sort them and iterate your map by key, like the following:
+
+keys := make([]int, 0)
+for k, _ := range romanNumeralDict {
+    keys = append(keys, k)
+}
+sort.Ints(keys)
+for _, k := range keys {
+    fmt.Println(k, romanNumeralDict[k])
+}
+
+
+sort.Strings(keys) 
+
