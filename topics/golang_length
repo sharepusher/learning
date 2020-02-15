@@ -1,0 +1,24 @@
+## Reference
+ 
+Use len(m). From http://golang.org/ref/spec#Length_and_capacity
+
+len(s)    string type      string length in bytes
+          [n]T, *[n]T      array length (== n)
+          []T              slice length
+          map[K]T          map length (number of defined keys)
+          chan T           number of elements queued in channel buffer
+Here are a couple examples ported from the now-retired SO documentation:
+
+m := map[string]int{}
+len(m) // 0
+
+m["foo"] = 1
+len(m) // 1
+If a variable points to a nil map, then len returns 0.
+
+var m map[string]int
+len(m) // 0
+
+
+
+
