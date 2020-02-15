@@ -1,0 +1,12 @@
+## Reference
+# https://stackoverflow.com/questions/2116718/svn-error-cant-convert-string-from-native-encoding-to-utf-8
+
+$ svn update
+svn: Error converting entry in directory '.' to UTF-8
+svn: Can't convert string from native encoding to 'UTF-8':
+
+$ export LC_CTYPE=en_US.UTF-8
+
+$ svn update
+
+
