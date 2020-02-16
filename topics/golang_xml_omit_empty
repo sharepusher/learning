@@ -6,5 +6,55 @@ https://stackoverflow.com/questions/27246275/golang-hide-xml-parent-tag-if-empty
 The empty values are false, 0, any nil pointer or interface value, and any array, slice, map, or string of length zero.
 
 
+# Seems it didn't work well on XML properly. 
+# a struct of pointers with the ,omitempty tag. If the pointers are nil, the fields won't be Marshalled.
+#
+# This method will not require additional reflection or inefficient use of maps.
+#
+# Same example as jorelli using this method: http://play.golang.org/p/JJNa0m2_nw
+#
+#
+
+package main
+
+import (
+	"encoding/json"
+	"fmt"
+)
+
+type SearchResult struct {
+	Date        *string      `json:"date,omitempty"`
+	IdCompany   *int         `json:"idCompany,omitempty"`
+	Company     *string      `json:"company,omitempty"`
+	IdIndustry  *interface{} `json:"idIndustry,omitempty"`
+	Industry    *string      `json:"industry,omitempty"`
+	IdContinent *interface{} `json:"idContinent,omitempty"`
+	Continent   *string      `json:"continent,omitempty"`
+	IdCountry   *interface{} `json:"idCountry,omitempty"`
+	Country     *string      `json:"country,omitempty"`
+	IdState     *interface{} `json:"idState,omitempty"`
+	State       *string      `json:"state,omitempty"`
+	IdCity      *interface{} `json:"idCity,omitempty"`
+	City        *string      `json:"city,omitempty"`
+}
+
+func main() {
+	var result SearchResult
+	date := "to be honest you should probably use a time.Time field here, just sayin"
+	industry := "rocketships"
+	var idCity interface{} = "interface{} is kinda inspecific, but this is the idcity field"
+	city := "New York Fuckin' City"
+
+	result.Date = &date
+	result.Industry = &industry
+	result.IdCity = &idCity
+	result.City = &city
+
+	b, err := json.MarshalIndent(result, "", "  ")
+	if err != nil {
+		panic(err)
+	}
+	fmt.Printf("%s\n", b)
+}
 
 
