@@ -1,0 +1,17 @@
+## Reference
+# https://stackoverflow.com/questions/10105935/how-to-convert-an-int-value-to-string-in-go
+
+package main
+
+import (
+    "strconv"
+    "fmt"
+)
+
+func main() {
+    t := strconv.Itoa(123)
+    fmt.Println(t)
+}
+
+
+
