@@ -1,6 +1,36 @@
 ## Reference
 # https://stackoverflow.com/questions/16720541/python-string-replace-regular-expression
+# https://www.tutorialspoint.com/python/string_replace.htm
+# https://stackoverflow.com/questions/3437059/does-python-have-a-string-contains-substring-method
 
+// 1.str.replace
+#!/usr/bin/python
+
+str = "this is string example....wow!!! this is really string"
+print str.replace("is", "was")
+print str.replace("is", "was", 3)
+When we run above program, it produces following result −
+
+thwas was string example....wow!!! thwas was really string
+thwas was string example....wow!!! thwas is really string
+
+// 2. find, contain, in
+
+If it's just a substring search you can use string.find("substring").
+
+You do have to be a little careful with find, index, and in though, as they are substring searches. In other words, this:
+
+s = "This be a string"
+if s.find("is") == -1:
+    print("No 'is' here!")
+else:
+    print("Found 'is' in the string.")
+It would print Found 'is' in the string. Similarly, if "is" in s: would evaluate to True. This may or may not be what you want.
+
+
+
+
+// 3. regex
 import re
 s = "Example String"
 replaced = re.sub('[ES]', 'a', s)
