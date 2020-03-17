@@ -1,0 +1,48 @@
+# Reference
+https://www.runoob.com/linux/linux-comm-ulimit.html
+
+# check current files opened in the process 
+lsof -p Specific_PID
+# check all the process and sort with the files opened
+lsof -n|awk '{print $2}'|sort|uniq -c|sort -nr|more
+
+# check the limit 
+ulimit -n 
+
+ulimit -aHs
+
+core file size          (blocks, -c) unlimited
+data seg size           (kbytes, -d) unlimited
+scheduling priority             (-e) 0
+file size               (blocks, -f) unlimited
+pending signals                 (-i) 63685
+max locked memory       (kbytes, -l) 64
+max memory size         (kbytes, -m) unlimited
+open files                      (-n) 65535
+pipe size            (512 bytes, -p) 8
+POSIX message queues     (bytes, -q) 819200
+real-time priority              (-r) 0
+stack size              (kbytes, -s) unlimited
+cpu time               (seconds, -t) unlimited
+max user processes              (-u) 63685
+virtual memory          (kbytes, -v) unlimited
+file locks                      (-x) unlimited
+
+-a 　显示目前资源限制的设定。
+-n <文件数目> 　指定同一时间最多可开启的文件数。
+-u <程序数目> 　用户最多可开启的程序数目。
+
+-c <core文件上限> 　设定core文件的最大值，单位为区块。
+-d <数据节区大小> 　程序数据节区的最大值，单位为KB。
+-f <文件大小> 　shell所能建立的最大文件，单位为区块。
+-H 　设定资源的硬性限制，也就是管理员所设下的限制。
+-m <内存大小> 　指定可使用内存的上限，单位为KB。
+
+-p <缓冲区大小> 　指定管道缓冲区的大小，单位512字节。
+-s <堆叠大小> 　指定堆叠的上限，单位为KB。
+-S 　设定资源的弹性限制。
+-t <CPU时间> 　指定CPU使用时间的上限，单位为秒。
+
+-v <虚拟内存大小> 　指定可使用的虚拟内存上限，单位为KB。
+
+
