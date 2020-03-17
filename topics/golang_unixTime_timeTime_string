@@ -1,0 +1,14 @@
+# Reference
+# https://golangbyexample.com/parse-unix-timestamp-time-go/
+
+// 1. time.Time to Unix Timestamp
+ tNow := time.Now()
+ tUnix := tNow.Unix()
+
+// 2. unix timestamp to time.Time
+timeT := time.Unix(tUnix, 0)
+
+// 3. unixTime to local time zone string
+func ConvertUnixTimeToString(uTime int64) string {
+	return time.Unix(uTime, 0).Local().String()
+}
