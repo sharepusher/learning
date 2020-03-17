@@ -1,0 +1,13 @@
+# Reference
+# https://stackoverflow.com/questions/28046100/golang-http-concurrent-requests-post-eof
+
+
+It looks to me that you might be having the issue described in this answer. Basically, the Go http client will try to reuse connections unless you've specifically indicated that it shouldn't either in the Transport you've set your Client instance to use or on the request itself with:
+
+request.Close = true
+
+The EOF is usually from a server not returning a complete header (including both CRLFs), 
+or the connection is closed before the header is complete. 
+It's more likely that your overloading your server with concurrent requests, 
+though you should still make sure you have adequate resources locally for the number of concurrent requests you're making. 
+If num is large enough, you're going to run out of something.
