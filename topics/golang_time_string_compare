@@ -1,0 +1,21 @@
+// string date to time.Time
+const (
+	DayFormat = "2006-01-02"
+	DatetimeFormat = "2006-01-02 15:04"
+)
+func GetDays(checkIn string, checkOut string) int {
+  // string to time.Time
+	ci, err := time.Parse(consts.DayFormat, checkIn)
+	if err != nil {
+		logger.Errorf("GetDays: failed to parse checkin date[%s]", err)
+		return 0
+	}
+	co, err := time.Parse(consts.DayFormat, checkOut)
+	if err != nil {
+		logger.Errorf("GetDays: failed to parse checkout date[%s]", err)
+		return 0
+	}
+  // time.Time sub 
+	days := int(co.Sub(ci).Hours() / dayHours)
+	return days
+}
