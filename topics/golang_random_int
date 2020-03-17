@@ -1,0 +1,12 @@
+# Reference
+# https://blog.csdn.net/aslackers/article/details/78548738
+
+func (r *Rand) Seed(seed int64)
+Seed uses the provided seed value to initialize the generator to a deterministic state.
+
+	rand.Seed(time.Now().Unix())
+	fmt.Println(rand.Intn(100))
+	fmt.Println(rand.Intn(100))
+  
+  The Seed shoulde not be a fixed value, or the rand.Intn will generate a stable value based on the fixed seed generator
+  rand.Intn(n int) int i，0 <= i < n
