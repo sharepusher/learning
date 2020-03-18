@@ -1,0 +1,9 @@
+## Reference 
+# https://bani.com.br/2015/06/linux-getting-rid-of-net_ratelimit-n-callbacks-suppressed-messages/
+
+Linux has a mechanism to avoid a DoS attack – with regard to logging – called rate limit(decrease the repeated message log record). 
+The limits can be configured by tuning the files /proc/sys/kernel/printk_ratelimit and /proc/sys/kernel/printk_ratelimit_burst.
+
+To disable this mechanism and allow every message to be logged, simply set the interval to 0:
+
+# sysctl -w net.core.message_cost=0
