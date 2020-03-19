@@ -1,0 +1,46 @@
+
+
+## TCP_timewait_bucket_table_overflow solution
+
+修改vim /etc/sysctl.conf
+net.ipv4.tcp_max_tw_buckets = 50000
+
+如果套接字由本端要求关闭，这个参数决定了它保持在FIN-WAIT-2 状态的时间。对端可以出错并永远不关闭连接，甚至意外当机。
+缺省值是60 秒。2.2 内核的通常值是180 秒，3你可以按这个设置，
+但要记住的是，即使你的机器是一个轻载的WEB 服务器，也有因为大量的死套接字而内存溢出的风险，FIN- WAIT-2 的危险性比FIN-WAIT-1 要小，
+因为它最多只能吃掉1.5K 内存，但是它们的生存期长些。
+net.ipv4.tcp_fin_timeout = 10 
+
+启用timewait 快速回收 //不要开启，现在互联网NAT结构很多，可能直接无法三次握手）
+net.ipv4.tcp_tw_recycle= 0  
+
+开启重用，允许将TIME-WAIT sockets 重新用于新的TCP 连接d
+net.ipv4.tcp_tw_reuse = 1   
+
+保存设置
+sysctl -p
+
+# 1. check all the connection 
+netstat -an | awk '{print $6}' | sort | uniq -c | sort -rn
+
+  17717 TIME_WAIT
+    246 ESTABLISHED
+      6 STREAM
+      6 CONNECTED
+      5 SYN_SENT
+      4 LISTEN
+      4 LAST_ACK
+      3 
+      1 I-Node
+      1 Foreign
+      1 established)
+      1 CLOSE_WAIT
+      
+ # 2. check config
+ cat /proc/sys/net/ipv4/tcp_max_tw_buckets
+524288
+
+Try the following commands to determine if you have a lot of connections coming from one address or if you are under a distributed attack.
+
+netstat -nt | cut -c 40- | cut -d: -f1 | sort | uniq -c | sort -n
+netstat -nt | cut -d: -f2 | sort | uniq -c | sort -n
